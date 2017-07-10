@@ -1,0 +1,19 @@
+{
+  "name": "gachi_back",
+  "version": "0.0.1",
+  "description": "gachi backend",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuponthetop/gachi_back.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/cuponthetop/gachi_back/issues"
+  },
+  "homepage": "https://github.com/cuponthetop/gachi_back#readme"
+}
