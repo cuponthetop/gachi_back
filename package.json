@@ -2,9 +2,10 @@
   "name": "gachi_back",
   "version": "0.0.1",
   "description": "gachi backend",
-  "main": "main.js",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "api": "gulp api"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/cuponthetop/gachi_back/issues"
   },
-  "homepage": "https://github.com/cuponthetop/gachi_back#readme"
+  "homepage": "https://github.com/cuponthetop/gachi_back#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "gulp": "^3.9.1"
+  }
 }
