@@ -26,6 +26,7 @@
     "express": "^4.15.3",
     "method-override": "^2.3.9",
     "morgan": "^1.8.2",
+    "mysql": "^2.13.0",
     "winston": "^2.3.1"
   },
   "devDependencies": {
