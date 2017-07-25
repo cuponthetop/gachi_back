@@ -1,0 +1,6 @@
+{
+    "dbhost": "localhost",
+    "dbuser": "user",
+    "dbpassword": "dbpassword",
+    "dbname": "gachi"
+}

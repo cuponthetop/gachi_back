@@ -1,0 +1,7 @@
+{
+    "isHTTP": false,
+    "lhost": "172.0.0.1",
+    "lport": 80,
+    "lpath": "log",
+    "llabel": "Gachi"
+}
