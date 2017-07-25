@@ -1,8 +1,114 @@
 define({ "api": [
   {
+    "type": "post",
+    "url": "/api/v1/users",
+    "title": "Create a user",
+    "description": "<p>가치 유저 생성</p>",
+    "name": "CreateUser",
+    "group": "UserController",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "Kakao 유저 생성 -\nendpoint: /api/v1/user\n\nbody:\n{\n  \"provider\": \"KAKAO\",\n  \"access_token\":\"kakao_access_token\",\n  \"nickname\":\"kakao\"\n}\n\nEmail/Password 유저 생성 -\nendpoint: /api/v1/user\nbody:\n{\n  \"provider\": \"email\",\n  \"email\":\"email_address\",\n  \"password\": \"hashed_password?\"\n  \"nickname\":\"email\"\n}",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "provider",
+            "description": "<p>유저의 인증 타입 (kakao/email)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "nickname",
+            "description": "<p>공통 필수 유저의 닉네임</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>kakao 인증의 경우 카카오톡의 인증 토큰</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email 인증의 경우 유저 이메일 주소</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>email 인증의 경우 유저 비밀번호</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>true if successful</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>생성된 유저의 ID</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "fbid",
+            "description": "<p>생성된 유저의 Firebase ID</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"uid\": \"1\",\n  \"fbid\": \"sample_fb_id\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>알 수 없는 오류 발생</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/routes/v1/user.js",
+    "groupTitle": "UserController"
+  },
+  {
     "type": "get",
     "url": "/api/v1/user/:uid",
-    "title": "get user information",
+    "title": "Get User Information",
     "description": "<p>유저 정보 받아오기</p>",
     "name": "GetUserInformation",
     "group": "UserController",
@@ -34,7 +140,7 @@ define({ "api": [
             "type": "String",
             "optional": false,
             "field": "uid",
-            "description": "<p>정보를 가져오고자 하는 유저의 id</p> <table> <tr> <th>Field Name</th> <th>설명</th> </tr> <tr> <td>uid</td> <td>유저 ID</td> </tr> <tr> <td>fbid</td> <td>유저 Firebase id</td> </tr> <tr> <td>nickname</td> <td>유저 닉네임</td> </tr> <tr> <td>age</td> <td>유저 나이</td> </tr> <tr> <td>gender</td> <td>유저 성별</td> </tr> <tr> <td>region</td> <td>유저 지역</td> </tr> <tr> <td>genre</td> <td>유저 선호 장르</td> </tr> <tr> <td>reliability</td> <td>유저 신뢰도</td> </tr> <tr> <td>leaders</td> <td>현재 참여 중인 대화 [대화방 ID, [<참여자 ID, 참여자 FB ID>]]</td> </tr> <tr> <td>history</td> <td>참여했던 페스티벌 [페스티벌ID]</td> </tr> </table>"
+            "description": "<p>정보를 가져오고자 하는 유저의 id</p>"
           }
         ]
       }
@@ -47,7 +153,7 @@ define({ "api": [
             "type": "json",
             "optional": false,
             "field": "fields",
-            "description": "<p>유저 정보</p>"
+            "description": "<p>유저 정보</p> <table> <tr> <th>Field Name</th> <th>설명</th> </tr> <tr> <td>uid</td> <td>유저 ID</td> </tr> <tr> <td>fbid</td> <td>유저 Firebase id</td> </tr> <tr> <td>nickname</td> <td>유저 닉네임</td> </tr> <tr> <td>age</td> <td>유저 나이</td> </tr> <tr> <td>gender</td> <td>유저 성별</td> </tr> <tr> <td>region</td> <td>유저 지역</td> </tr> <tr> <td>genre</td> <td>유저 선호 장르</td> </tr> <tr> <td>reliability</td> <td>유저 신뢰도</td> </tr> <tr> <td>leaders</td> <td>현재 참여 중인 대화 [대화방 ID, [<참여자 ID, 참여자 FB ID>]]</td> </tr> <tr> <td>history</td> <td>참여했던 페스티벌 [페스티벌ID]</td> </tr> </table>"
           }
         ]
       },
@@ -84,6 +190,98 @@ define({ "api": [
             "optional": false,
             "field": "UserNotFoundError",
             "description": "<p>해당 유저를 찾을 수 없음</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "lib/routes/v1/user.js",
+    "groupTitle": "UserController"
+  },
+  {
+    "type": "post",
+    "url": "/api/v1/users/login",
+    "title": "Login as a user",
+    "description": "<p>가치 유저 로그인</p>",
+    "name": "LoginUser",
+    "group": "UserController",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "Kakao 유저 로그인 -\nendpoint: /api/v1/user\n\nbody:\n{\n  \"provider\": \"KAKAO\",\n  \"access_token\":\"kakao_access_token\"\n}\n\nEmail/Password 유저 로그인 -\nendpoint: /api/v1/user\nbody:\n{\n  \"provider\": \"email\",\n  \"email\":\"email_address\",\n  \"password\": \"hashed_password\"\n}",
+        "type": "json"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "provider",
+            "description": "<p>필수 유저의 인증 타입 (kakao/email)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>kakao 인증의 경우 카카오톡의 인증 토큰</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>email 인증의 경우 유저 이메일 주소</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>email 인증의 경우 유저 비밀번호</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Bool",
+            "optional": false,
+            "field": "success",
+            "description": "<p>True if successful</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "access_token",
+            "description": "<p>FB 액세스 토큰</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"access_token\": \"sample_token\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "type": "String",
+            "optional": false,
+            "field": "InternalServerError",
+            "description": "<p>알 수 없는 오류 발생</p>"
           }
         ]
       }
@@ -291,203 +489,5 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "lib/routes/v1/user.js",
     "groupTitle": "UserController"
-  },
-  {
-    "type": "post",
-    "url": "/api/v1/users",
-    "title": "Create a user",
-    "description": "<p>가치 유저 생성</p>",
-    "name": "CreateUser",
-    "group": "userController",
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "Kakao 유저 생성 -\nendpoint: /api/v1/user\n\nbody:\n{\n  \"provider\": \"KAKAO\",\n  \"access_token\":\"kakao_access_token\",\n  \"nickname\":\"kakao\"\n}\n\nEmail/Password 유저 생성 -\nendpoint: /api/v1/user\nbody:\n{\n  \"provider\": \"email\",\n  \"email\":\"email_address\",\n  \"password\": \"hashed_password?\"\n  \"nickname\":\"email\"\n}",
-        "type": "json"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "provider",
-            "description": "<p>유저의 인증 타입 (kakao/email)</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "nickname",
-            "description": "<p>공통 필수 유저의 닉네임</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "access_token",
-            "description": "<p>kakao 인증의 경우 카카오톡의 인증 토큰</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>email 인증의 경우 유저 이메일 주소</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>email 인증의 경우 유저 비밀번호</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Boolean",
-            "optional": false,
-            "field": "success",
-            "description": "<p>true if successful</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "id",
-            "description": "<p>생성된 유저의 ID</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "fbid",
-            "description": "<p>생성된 유저의 Firebase ID</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"uid\": \"1\",\n  \"fbid\": \"sample_fb_id\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "String",
-            "optional": false,
-            "field": "InternalServerError",
-            "description": "<p>알 수 없는 오류 발생</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "lib/routes/v1/user.js",
-    "groupTitle": "userController"
-  },
-  {
-    "type": "post",
-    "url": "/api/v1/users/login",
-    "title": "Login as a user",
-    "description": "<p>가치 유저 로그인</p>",
-    "name": "LoginUser",
-    "group": "userController",
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "Kakao 유저 로그인 -\nendpoint: /api/v1/user\n\nbody:\n{\n  \"provider\": \"KAKAO\",\n  \"access_token\":\"kakao_access_token\"\n}\n\nEmail/Password 유저 로그인 -\nendpoint: /api/v1/user\nbody:\n{\n  \"provider\": \"email\",\n  \"email\":\"email_address\",\n  \"password\": \"hashed_password\"\n}",
-        "type": "json"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "provider",
-            "description": "<p>필수 유저의 인증 타입 (kakao/email)</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "access_token",
-            "description": "<p>kakao 인증의 경우 카카오톡의 인증 토큰</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "email",
-            "description": "<p>email 인증의 경우 유저 이메일 주소</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>email 인증의 경우 유저 비밀번호</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "Bool",
-            "optional": false,
-            "field": "success",
-            "description": "<p>True if successful</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "access_token",
-            "description": "<p>FB 액세스 토큰</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"success\": true,\n  \"access_token\": \"sample_token\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "type": "String",
-            "optional": false,
-            "field": "InternalServerError",
-            "description": "<p>알 수 없는 오류 발생</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "lib/routes/v1/user.js",
-    "groupTitle": "userController"
   }
 ] });
