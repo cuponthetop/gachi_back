@@ -1,5 +1,9 @@
 USE gachi
 
+CREATE TABLE auth (
+
+) ENGINE = INNODB;
+
 CREATE TABLE user (
   uid INT NOT NULL AUTO_INCREMENT,
   profile_image VARCHAR(256),

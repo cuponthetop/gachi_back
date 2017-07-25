@@ -57,3 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 build/
+lib/config/firebase-service-config.json
