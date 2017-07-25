@@ -60,3 +60,7 @@ build/
 config/firebase-service-config.json
 config/db-config.json
 config/log-config.json
+lib
+config
+db-scripts
+.vscode
