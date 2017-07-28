@@ -1,4 +1,4 @@
-var db = myFirebase.database();
+var db = firebase.database();
 var room = db.ref('chat/room1');
 
 postButton.click(function () {

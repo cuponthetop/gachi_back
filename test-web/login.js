@@ -3,7 +3,7 @@ loginButton.click(function () {
   var email = emailInput.val();
   var password = passwordInput.val();
 
-  myFirebase.auth().signInWithEmailAndPassword(email, password)
+  firebase.auth().signInWithEmailAndPassword(email, password)
     .then(function (result) {
       console.log('login successful + ' + JSON.stringify(result));
 
@@ -21,9 +21,11 @@ loginButton.click(function () {
       textInput.show();
 
       username = result.displayName;
-      var token = result.getIdToken();
+      return result.getIdToken();
+    })
+    .then(function (token) {
       var tokenText = document.createElement("p");
-      tokenText.textContent = token;
+      tokenText.textContent = JSON.stringify(token);
 
       $("#token").append(tokenText);
 
@@ -36,6 +38,7 @@ loginButton.click(function () {
 var startListening = function (token) {
   room.on('child_added', function (snapshot) {
     var msg = snapshot.val();
+    console.log(JSON.stringify(msg));
 
     var msgemailElement = document.createElement("b");
     msgemailElement.textContent = msg.email;

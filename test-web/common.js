@@ -1,4 +1,3 @@
-var myFirebase = new Firebase('https://gachi-test.firebaseio.com/');
 var gachi = 'http://localhost:3003/api/v1';
 
 var emailInput = $('#email');
