@@ -1,19 +1,23 @@
 let rq = require('request-promise');
 let _ = require('lodash');
-let asyncmap = require('asyncmap');
 
 const festivals = require('./festivals.json');
-const GACHI_URL = 'localhost:3003/api/v1/festival';
+const GACHI_URL = 'http://localhost:3003/api/v1/festival';
 
-let promise = _.map(festivals, function (el) {
-  return rq(GACHI_URL, {
-    title: el.name,
-    from: el.start_date,
-    until: el.end_date,
-    imageURL: el.image,
-    genre: el.genre,
-    detail: el.detail,
-    location: el.location,
+let promises = _.map(festivals, function (el) {
+  return rq({
+    method: 'POST',
+    uri: GACHI_URL,
+    body: {
+      title: el.name,
+      from: el.start_date,
+      until: el.end_date,
+      imageURL: el.image,
+      genre: el.genre,
+      detail: el.detail,
+      location: el.location,
+    },
+    json: true
   });
 });
 
