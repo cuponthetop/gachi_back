@@ -1,1 +1,12 @@
-{"name": "log-config.json"}
+[
+  {
+    "name": "log-config.json"
+  },
+  {
+    "isHTTP": false,
+    "lhost": "",
+    "lport": 80,
+    "lpath": "",
+    "llabel": ""
+  }
+]

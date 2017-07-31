@@ -1,1 +1,13 @@
-{"name": "db-config.json"}
+[
+  {
+    "name": "db-config.json"
+  },
+  {
+    "dbhost": "",
+    "dbport": 3306,
+    "dbuser": "",
+    "dbpassword": "",
+    "dbname": "",
+    "dbreset": true
+  }
+]
