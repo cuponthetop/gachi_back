@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "gulp babel",
     "start": "node build/index.js &",
+    "web": "node web/main_page.js",
     "api": "gulp api"
   },
   "repository": {
@@ -23,6 +24,7 @@
     "babel-runtime": "^6.23.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "ejs-locals": "^1.0.2",
     "express": "^4.15.3",
     "firebase-admin": "^5.0.1",
     "method-override": "^2.3.9",

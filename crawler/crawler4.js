@@ -2,12 +2,15 @@ var Crawler = require("crawler");
 var cheerio = require("cheerio");
 var fs = require('fs');
 
-exports.do = function crawler_all () {
+//exports.do = function crawler_all () {
 //전연 객체
 var total_info = {
   page_numbers: 0,//page_numbers 변수는 크롤링 해야할 페이지 수, number_crawler의 수행을 통해 알 수 있다.
   cnt: 0,//데이터 갯수 측정을 위한 변수
-  festivals: [],
+  festivals:[],
+  image_url:[],
+  image:[],
+  cnt2: 0,
 };
 
 //크롤링 해야할 페이지 수를 알아내는 함수
@@ -43,11 +46,8 @@ var number_crawler = new Crawler({
             page_numbers = parseInt(number_array[1]);//크롤링해야할 페이지수
             total_info.page_numbers = page_numbers;//전역 변수에 page_number를 넣는다.
 
-            //console.log(total_info.page_numbers);
             }
-
         done(fest());//페이지 갯수 측정이 끝나면 fest함수를 실행시킨다.
-
     }
 });
 
@@ -55,6 +55,36 @@ var number_crawler = new Crawler({
 number_crawler.queue([
   'http://www.playdb.co.kr/playdb/playdblist.asp?Page=1&sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=4&sPlayType=3&sStartYear=&sSelectType=3',
 ]);
+
+function image_crawler(){
+  var image = new Crawler({
+      maxConnections : 10,
+      // This will be called for each crawled page
+      callback : function (error, res, done) {
+          if(error){
+              console.log(error);
+            }else{
+                var $ = cheerio.load(res.body);
+
+                var container = $('.pddetail');
+                var image_url = container.children('h2').children('img').attr('src');
+
+                total_info.cnt2 = total_info.cnt2 + 1;
+
+                total_info.image.push(image_url);
+
+                if(total_info.cnt2 == total_info.page_numbers*15){
+                  festival_json();
+                }
+
+            }
+            done();
+        }
+   });
+
+// Queue just one URL, with default callback
+image.queue(total_info.image_url);
+}
 
 
 function fest(){
@@ -83,7 +113,13 @@ function fest(){
                   for(var i=0; i<15; i++){
                       var box = boxes_after[i].children('td').children('table').children('tbody').children('tr').children('td').children('table').children('tbody').children('tr');
 
-                      var image = box.children('td').eq(0).children('table').children('tbody').children('tr').children('td').children('div').children('img').attr('src');
+//                      var image = box.children('td').eq(0).children('table').children('tbody').children('tr').children('td').children('div').children('img').attr('src');
+                      var image_url = box.children('td').eq(0).children('table').children('tbody').children('tr').children('td').children('div').children('img').attr('onclick');
+                      image_url = image_url.replace(/'/gi,"");//따옴표 제거
+                      image_url = image_url.replace(/goDetail/gi,"");//goDetail제거
+                      image_url = image_url.replace(/\(/gi,"");//(제거
+                      image_url = image_url.replace(/\)/gi,"");//)제거
+                      total_info.image_url.push('http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno='+image_url);
 
                       var box_text = box.children('td').eq(2).children('table').children('tbody');
 
@@ -116,10 +152,9 @@ function fest(){
                       end_date = new Date(end_date);
 
                       var location = array2[1].trim();//trim() 문자열 앞 뒤 공백제거
-
 /*
                       console.log(name);
-                      console.log(image);
+                      console.log(total_info.image_url);//
                       console.log(genre);
                       console.log(start_date);
                       console.log(end_date);
@@ -133,7 +168,7 @@ function fest(){
 
                       total_info.festivals.push({
                         'name': name,
-                        'image': image,
+                        'image': "",
                         'genre': genre,
                         'start_date': start_date,
                         'end_date': end_date,
@@ -141,7 +176,8 @@ function fest(){
                       });
 
                       if(total_info.cnt == total_info.page_numbers*15){
-                        festival_json();
+                        image_crawler();
+                        //festival_json();
                       }
 
                     }
@@ -156,10 +192,20 @@ function fest(){
       page_queue.push('http://www.playdb.co.kr/playdb/playdblist.asp?Page='+i+'&sReqMainCategory=000003&sReqSubCategory=&sReqDistrict=&sReqTab=4&sPlayType=3&sStartYear=&sSelectType=3');
     }
 
+    //festival_crawler.queue(page_queue);
     festival_crawler.queue(page_queue);
 }
 
 function festival_json(){
+
+
+  for(var i=1; i<total_info.festivals.length; i++){
+    total_info.festivals[i].image = total_info.image[i];
+  }
+
+
+  console.log(total_info.festivals.length);
+  console.log(total_info.image.length);
   var festival_json = JSON.stringify(total_info.festivals);
 
   //json 파일 작성
@@ -173,4 +219,4 @@ function festival_json(){
   console.log(festival_json);
   return festival_json;
 }
-}
+//}

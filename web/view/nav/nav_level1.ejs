@@ -1,0 +1,196 @@
+
+<!--네비게이션 레벨1 인클루드-->
+<nav class="nav">
+  <div id="side_menu_block">
+    <div id="side_menu_box">
+      <img class="side_menu_image" alt="side_menu" src="/assets/web/image/nav/side_menu_image.png"/>
+    </div>
+  </div>
+
+  <a id="logo" href="http://www.potenup.com">
+    <img class ="logo_image" alt="logo_image" src="/assets/web/image/nav/logo_pc.png"/>
+  </a>
+
+  <a id="logo_pc" href="http://www.potenup.com">
+    <img class ="logo_pc_image" alt="logo_image" src="/assets/web/image/nav/logo_pc.png"/>
+  </a>
+
+  <div id="search_mobile_block">
+    <div id="search_mobile">
+      <img class="search_mobile_image" alt="search_mobile_image" src="/image/nav/search_icon.png"/>
+    </div>
+  </div>
+
+  <div id="search_mobile_box">
+    <form id="search_mobile_form" action = "/search" method = "get">
+      <input id="search_mobile_field" type="text" name="keyword" autofocus>
+      <div id="search_mobile_action">
+        <img class="search_mobile_image" alt="search_mobile_image" src="/assets/web/image/nav/search_mobile_image.png"/>
+      </div>
+    </form>
+  </div>
+
+  <div id="cover_black">
+  </div>
+
+  <div id="list_navigation">
+    <ul>
+      <li><a class="menu-link menu-link1" href="http://www.potenup.com">홈</a></li>
+      <li><a class="menu-link menu-link2" href="http://www.potenup.com/subscription">구독</a></li>
+      <li><a class="menu-link menu-link3" href="http://www.potenup.com/category">강연</a></li>
+      <li><a class="menu-link menu-link4" href="http://www.potenup.com/tag">태그</a></li>
+      <li><a class="menu-link menu-link5" href="http://www.potenup.com/magazine">매거진</a></li>
+    </ul>
+  </div>
+
+  <div id="search_pc">
+
+    <div id="input_search">
+      <form id="search_form" action = "/search" method = "get">
+        <input id="search_field" type="text" name="keyword">
+      </form>
+    </div>
+    <div id="search_pc_button">
+      <img id="search_pc_image" alt="search_mobile_image" src="/assets/web/image/nav/search_white.png">
+    </div>
+
+  </div>
+
+  <div id="auth">
+  </div>
+</nav>
+
+<script>
+//------------------------------------------------------------------------------
+//PURPOSE : 사이드 메뉴 오픈시 클래스 추가를 통해 #side_menu, .page_cover를 제외한 nav, list_navigation_under, section 고정
+//CREATE  : 2017-03-03 김정윤
+//MODIFY  :
+//------------------------------------------------------------------------------
+  $("#side_menu_box").click(function() {
+  $("#side_menu,.page_cover,html").addClass("open");
+  $( '.nav' ).addClass( 'nav_sidefixed' );
+  $( '.list_navigation_under' ).addClass( 'list_navigation_under_sidefixed' );
+  $( '.category_slide_all').addClass( 'category_slide_all_sidefixed' );
+  $( '.section' ).addClass( 'section_sidefixed' );
+  $( 'footer').css('display','none');
+  window.location.hash = "#open";
+  });
+
+  window.onhashchange = function() {
+  if (location.hash != "#open") {
+    $("#side_menu,.page_cover,html").removeClass("open");
+    $( '.nav' ).removeClass( 'nav_sidefixed' );
+    $( '.list_navigation_under' ).removeClass( 'list_navigation_under_sidefixed' );
+    $( '.category_slide_all').removeClass( 'category_slide_all_sidefixed' );
+    $( '.section' ).removeClass( 'section_sidefixed' );
+    $( 'footer').css('display','block');
+  }
+  };
+</script>
+
+<!-- .page_cover, #side_menu는 nav, section, footer 어디에도 속하지 않는 돔이다.-->
+<div onclick="history.back();" class="page_cover">
+</div>
+
+<div id="side_menu">
+  <div id="profile">
+    {% if request.user.is_authenticated %}
+      {% if request.user.image.url == None %}
+        <img id="noprofile_image" src="/assets/web/image/nav/noprofile.png"/>
+      {% else %}
+        <img id="noprofile_image" src="/assets/web/image/nav/noprofile.png"/>
+      {% endif %}
+    {% else %}
+    <img id="noprofile_image" src="/assets/web/image/nav/noprofile.png"/>
+    {% endif %}
+    {% if request.user.is_authenticated %}
+    <a href="http://www.potenup.com/profile" id="profile_email">
+      {{request.user.email}}
+    </a>
+    {% else %}
+    <a href="http://www.potenup.com/accounts/login" id="profile_login_btn">
+      로그인하세요
+    </a>
+    {% endif %}
+    <div onclick="history.back();" class="close">
+    </div>
+  </div>
+  <div id="list_navigation_side_menu">
+    <ul>
+      <li><a href="http://www.potenup.com">홈</a></li>
+      <li><a href="http://www.potenup.com/subscription">구독</a></li>
+      <li><a href="http://www.potenup.com/category">강연</a></li>
+      <li><a href="http://www.potenup.com/tag">태그</a></li>
+      <li><a href="http://www.potenup.com/magazine">매거진</a></li>
+    </ul>
+  </div>
+  <a id="side_dolecture" href="http://www.potenup.com/proposal/">강연 주최하기</a>
+  {% if request.user.is_authenticated %}
+  <a id = "logout" href="http://www.potenup.com/accounts/logout">로그아웃</a>
+  {% else %}
+  <a id = "login" href="http://www.potenup.com/accounts/login">로그인</a>
+  {% endif %}
+</div>
+
+<script>
+function search() {
+$.ajax({
+//url:'http://www.potenup.com:8000/search/',
+type:'GET',
+})
+}
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+</script>
+
+
+<script>
+//------------------------------------------------------------------------------
+//PURPOSE : 검색 버튼 눌렀을 때 폼 데이터 GET 방식으로 전송
+//CREATE  : 2017-05-15 김정윤
+//MODIFY  :
+//------------------------------------------------------------------------------
+  $('#search_pc_button').click(function() {
+    $('#search_form').submit();
+  })
+</script>
+
+<script>
+//------------------------------------------------------------------------------
+//PURPOSE : 검색창에서 엔터 눌렀을 때 폼 데이터 GET 방식으로 전송
+//CREATE  : 2017-05-15 김정윤
+//MODIFY  :
+//------------------------------------------------------------------------------
+$('#search_field').on('keyup', function (e) {
+    if (e.keyCode == 13) {
+      $('#search_form').submit();
+    }
+});
+</script>
+
+<script>
+  $('#search_mobile_box').css("display","none");
+  $('#cover_black').css("display","none");
+
+$('#search_mobile').click(function(){
+
+  $('#search_mobile_box').css("display","block");
+  $('#cover_black').css("display","block");
+  $('#cover_black').css('width','100%');
+  $('#cover_black').css('height','100%');
+  $('#cover_black').css('background-color','rgba(0,0,0,0.6)');
+  $('#cover_black').css('position','fixed');
+  $('#search_mobile_box').focus();
+})
+
+$('#cover_black').click(function(){
+  $('#search_mobile_box').css("display","none");
+  $('#cover_black').css("display","none");
+})
+</script>
