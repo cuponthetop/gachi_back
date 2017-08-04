@@ -1,112 +1,29 @@
-#bestlecutre_word{
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.famefestival_link{
   width:100%;
-  height:30px;
-  margin-top:26px;
-  margin-bottom:5px;
+  height:100%;
+  text-decoration: none;
 }
-#famefestival_title{
-  color:#000;
-  font-family:"Nanum Barun Gothic";
-  font-weight:600;
-  font-size:17px;
-  float:left;
-  margin-left:15px;
-}
-#famefestival_description{
-  color:#888c92;
-  font-family:"Nanum Barun Gothic";
-  font-size:11px;
-  float:left;
-  line-height:25px;
-  margin-left:7px;
-}
-#famefestival_buttons{
-  float:right;
-  display: none;
-  border:1px solid #ececec;
-  box-sizing: border-box;
-}
-#famefestival_left{
-  float:left;
-  width: 28px;
-  height: 28px;
-  border-right:1px solid #ececec;
-  box-sizing: border-box;
-  cursor:pointer;
-  background-color: transparent;
-}
-#famefestival_left:hover{
-  background-color:#FAFAFA
-}
-#left_arrow{
-  width:16px;
-  height:16px;
-  margin-left:5px;
-  margin-top:6px;
-  display: block;
-}
-#famefestival_right{
-  float:right;
-  width: 28px;
-  height: 28px;
-  cursor:pointer;
-}
-#famefestival_right:hover{
-  background-color:#FAFAFA
-}
-#right_arrow{
-  width:16px;
-  height:16px;
-  margin-left:6px;
-  margin-top:6px;
-  display: block;
-}
-
-
- .famefestival-container {
-     width: calc(100% - 30px);
-     height: calc(24vw + 55px);
- }
- .famefestival-slide {
-     text-align: center;
-     font-size: 18px;
-     background: #fff;
- }
- .famefestival_link{
-   width:100%;
-   height:100%;
-   text-decoration: none;
- }
 .famefestival_image{
   width:100%;
-  height:24vw;
-  overflow:hidden;
-  background-position:center;
-  -webkit-background-size:cover;
-  -moz-background-size:cover;
-  -ms-background-size:cover;
-  -o-background-size:cover;
+  height:48vw;
+  background-position: center;
   background-size:cover;
-  margin-bottom:5px;
+  overflow: hidden;
 }
 .famefestival_info{
   width:100%;
-  height:42px
-}
-.famefestival_number{
-  width:20%;
-  height:42px;
-  float:left;
-  padding-top:3px;
-  color:#181a1d;
+  height:100px;
 }
 .famefestival_title{
-  color:#101010;
-  width:80%;
-  height:29px;
-  float:left;
-  font-size:12px;
-  font-family: "Nanumgothic";
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:40px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:#484848;
   text-align: left;
   padding-top:5px;
 
@@ -117,44 +34,121 @@
   -webkit-box-orient: vertical;
   word-wrap:break-word;
 }
-.famefestival_partner{
-  padding-top:3px;
-  width:80%;
-  height:13px;
+.famefestival_date{
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  line-height: 20px;
+  text-align:left;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  color:#888c92;
+}
+.famefestival_genre{
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  line-height: 20px;
+  text-align:left;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  color:#888c92;
+}
+
+#famefestival_word{
+  width:calc(100% - 30px);
+  height:30px;
+  margin-top:45px;
+  margin-bottom:5px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#famefestival_title{
+  color:#484848;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight:600;
+  font-size:23px;
   float:left;
+}
+#famefestival_description{
+  color:#888c92;
+  font-family:"Nanum Barun Gothic";
   font-size:11px;
-  font-family: "Nanumgothic";
-  text-align: left;
-  color:#7ba7df;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  word-wrap:break-word;
-}
-.famefestival_number_insert{
-  display: block;
-  width:100%;
-  height:29px;
-  font-family: 'Nanum Barun Gothic';
-  text-align: left;
-  font-size:27px;
-  font-weight:200;
-}
-.famefestival_number_border{
-  display:block;
-  text-align: left;
-  font-size:18px;
-  color:#999999;
-  line-height:10px;
-  padding-left:3px;
+  float:left;
+  line-height:23px;
+  margin-left:7px;
 }
 
+#famefestival_more{
+  float:right;
+  margin-top:12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#famefestival_more_word{
+  color:#484848;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  float:left;
+  font-weight: 300;
+}
+
+#famefestival_more_arrow{
+  width:12px;
+  height:12px;
+  float:left;
+  margin-top:4px;
+  margin-left:5px;
+
+  overflow:hidden;
+  background-position:center;
+  background-size:cover;
+}
 
 
 
+/**
+ * famefestival 3.4.2
+ * Most modern mobile touch slider and framework with hardware accelerated transitions
+ *
+ * http://www.idangero.us/famefestival/
+ *
+ * Copyright 2017, Vladimir Kharlampidi
+ * The iDangero.us
+ * http://www.idangero.us/
+ *
+ * Licensed under MIT
+ *
+ * Released on: March 10, 2017
+ */
+ .famefestival-container {
+     width: 100%;
+     height: 300px;
+     margin: 20px auto;
+     width: calc(100% - 30px);
+     height: calc(60vw + 55px);
+ }
+ .famefestival-slide {
+     text-align: center;
+     font-size: 18px;
+
+     /* Center slide text vertically */
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     -webkit-justify-content: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     align-items: center;
+ }
 
 
 .famefestival-container {
@@ -718,16 +712,21 @@ button.famefestival-pagination-bullet {
     transform: rotate(360deg);
   }
 }
-@media  screen and (min-width:600px){
+
+@media  screen and (min-width:500px){
   .famefestival_image{
-    height:18.9vw;
-  }
-  .famefestival-container{
-    height:calc(18.9vw + 55px);
+    height:34vw;
   }
 }
+
+@media  screen and (min-width:700px){
+  .famefestival_image{
+    height:22vw;
+  }
+}
+
 @media  screen and (min-width:1080px){
-  #bestlecutre_word{
+  #famefestival_word{
     width:1080px;
     margin-left:auto;
     margin-right:auto;
@@ -744,26 +743,21 @@ button.famefestival-pagination-bullet {
   }
   .famefestival-container{
     width:1080px;
-    height:210px;
+    height:380px;
     margin-left:auto;
     margin-right:auto;
   }
   .famefestival_image{
-    height:130px;
-    margin-bottom:17px;
+    height:253px;
   }
-  .famefestival_number_insert{
-    height:43px;
-    font-family:"Nanum Barun Gothic";
-    font-weight:200;
-    font-size:33px;
-  }
-  .famefestival_number_border{
-    font-size:20px;
-    padding-left:3px;
+  .famefestival_info{
+    width:100%;
+    height:50px;
   }
   .famefestival_title{
-    font-size:13px;
+    width:100%;
+    height:50px;
+    font-size:15px;
   }
   .famefestival_partner{
     height:13px;
