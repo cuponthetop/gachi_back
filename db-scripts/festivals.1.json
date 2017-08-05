@@ -16,54 +16,6 @@
     "location": "640아트홀"
   },
   {
-    "name": "칵스 & 트리스 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111746_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "KT&G 상상마당 라이브홀"
-  },
-  {
-    "name": "더 보이스 오브 듀오 콘서트 - 제주",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_112434_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "설문대여성문화센터"
-  },
-  {
-    "name": "조항조 & 장윤정 콘서트 - 전주",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111368_0206.gif",
-    "genre": "트로트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "한국소리문화의전당 모악당"
-  },
-  {
-    "name": "레드벨벳 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111286_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-20T00:00:00.000Z",
-    "location": "올림픽공원 올림픽홀"
-  },
-  {
-    "name": "무브 투 뮤직",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111401_0801.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "고려대학교 화정체육관"
-  },
-  {
-    "name": "걸스 라이브 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_112100_0457.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "장충체육관"
-  },
-  {
     "name": "이지형 콘서트",
     "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111791_0858.gif",
     "genre": "콘서트",
