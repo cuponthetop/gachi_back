@@ -1,4 +1,28 @@
 <!--인기 공연 인클루드-->
+<script>
+  var info = {
+    festival: [],
+  }
+</script>
+
+<script>
+    $.ajax({
+      type: 'GET',
+      data: {
+      },
+      url:"http://cuponthetop.com/gachi/api/v1/festival/list",
+      async:false,
+      }).done(function(data){
+        console.log(data);
+        info.festival = data;
+      })
+      console.log(info.festival);
+
+      for(var i=0; i<info.festival.length; i++){
+          console.log(info.festival[i].fid);
+      }
+</script>
+
 <div id="famefestival_word">
 
   <div id="famefestival_title">
@@ -7,7 +31,7 @@
 
   <a id="famefestival_more" href="##">
     <div id="famefestival_more_word">
-      전체보기
+      더보기
     </div>
     <div id="famefestival_more_arrow" style="background-image:url('/image/famefestival/arrow_right.png')">
 

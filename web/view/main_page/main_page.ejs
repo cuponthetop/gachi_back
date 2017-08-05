@@ -45,6 +45,10 @@
   <!--6-1-1 네비게이션 레벨1 css-->
   <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
 
+  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css"/>
+
   <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
 
   <!--6-2 인기 페스티벌 css-->
@@ -56,23 +60,13 @@
 
     <% include ../nav/nav_level1.ejs %>
 
+    <% include ../nav/nav_level2.ejs %>
+
+    <% include ../nav/nav_level3.ejs %>
+
     <% include ../nav/nav_level4.ejs %>
 
     <% include /famefestival/famefestival.ejs %>
-
-      <script type="text/javascript">
-/*
-        $.ajax({
-          type: 'GET',
-          data: {
-          url:"http://localhost:3003/api/v1/festival/list",
-          },
-          async:false,
-          }).done(function(data){
-            alert(data);
-        })
-*/
-      </script>
 
   </body>
 </html>

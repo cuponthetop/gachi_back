@@ -27,6 +27,12 @@
 }
 
 @media  screen and (min-width:1080px){
+  #nav_level4_all{
+    width:1080px;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: none;
+  }
   #nav_level4{
     width:1080px;
   }
