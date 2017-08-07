@@ -1,27 +1,4 @@
 <!--인기 공연 인클루드-->
-<script>
-  var info = {
-    festival: [],
-  }
-</script>
-
-<script>
-    $.ajax({
-      type: 'GET',
-      data: {
-      },
-      url:"http://cuponthetop.com/gachi/api/v1/festival/list",
-      async:false,
-      }).done(function(data){
-        console.log(data);
-        info.festival = data;
-      })
-      console.log(info.festival);
-
-      for(var i=0; i<info.festival.length; i++){
-          console.log(info.festival[i].fid);
-      }
-</script>
 
 <div id="famefestival_word">
 
@@ -45,24 +22,26 @@
 <div class="famefestival-container">
     <div class="famefestival-wrapper">
 
-        <div class="famefestival-slide">
+        <div class="famefestival-slide" v-for="fest in famefestivals2">
           <a class="famefestival_link" href="#">
 
-            <div class="famefestival_image" style="background-image:url('/image/1.gif')">
+            <div class="famefestival_image"  v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
             </div>
 
             <div class="famefestival_info">
 
               <div class="famefestival_title">
-                아리아나 그란데 내한공연
+                {{fest.title}}
               </div>
 
               <div class="famefestival_date">
-                08.15 ~ 08.15
+                {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
               </div>
 
               <div class="famefestival_genre">
-                내한공연
+                <span v-for="a in fest.genres">
+                  {{a.genre}}
+                </span>
               </div>
 
             </div>
@@ -70,111 +49,55 @@
           </a>
         </div>
 
-        <div class="famefestival-slide">
-          <a class="famefestival_link" href="#">
 
-            <div class="famefestival_image" style="background-image:url('/image/2.gif')">
-            </div>
-
-            <div class="famefestival_info">
-
-              <div class="famefestival_title">
-                하이라이트 콘서트 부산 can you feel it can you
-              </div>
-
-              <div class="famefestival_date">
-                08.15 ~ 08.15
-              </div>
-
-              <div class="famefestival_genre">
-                내한공연
-              </div>
+      </div>
+    </div>
 
 
-            </div>
 
-          </a>
-        </div>
+          <script>
 
-        <div class="famefestival-slide">
-          <a class="famefestival_link" href="#">
+            var app = new Vue({
+            el: '.famefestival-container',
 
-            <div class="famefestival_image" style="background-image:url('/image/3.gif')">
-            </div>
-
-            <div class="famefestival_info">
-
-              <div class="famefestival_title">
-                아리아나 그란데 내한공연
-              </div>
-
-              <div class="famefestival_date">
-                08.15 ~ 08.15
-              </div>
-
-              <div class="famefestival_genre">
-                내한공연
-              </div>
+            data: {
+              famefestivals: [],
+            },
+            computed: {
+              famefestivals2: function () {
+                return _.orderBy(this.famefestivals, 'fid')
+              }
+            },
+            created: function(){
+              this.load();
+            },
 
 
-            </div>
 
-          </a>
-        </div>
+            methods: {
+              load: function() {
+                this.famefestivals = Array.apply(null, new Array(13)).map(Number.prototype.valueOf,0);
+                axios.get('http://cuponthetop.com/gachi/api/v1/festival/list')
+                .then(function (response){
+                    app.famefestivals = response.data;
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+              },
+            }
 
-        <div class="famefestival-slide">
-          <a class="famefestival_link" href="#">
+          });
 
-            <div class="famefestival_image" style="background-image:url('/image/4.gif')">
-            </div>
+          </script>
 
-            <div class="famefestival_info">
-
-              <div class="famefestival_title">
-                아리아나 그란데 내한공연
-              </div>
-
-              <div class="famefestival_date">
-                08.15 ~ 08.15
-              </div>
-
-              <div class="famefestival_genre">
-                내한공연
-              </div>
-
-
-            </div>
-
-          </a>
-        </div>
-
-        <div class="famefestival-slide">
-          <a class="famefestival_link" href="#">
-
-            <div class="famefestival_image" style="background-image:url('/image/5.gif')">
-            </div>
-
-            <div class="famefestival_info">
-
-              <div class="famefestival_title">
-                아리아나 그란데 내한공연
-              </div>
-
-              <div class="famefestival_date">
-                08.15 ~ 08.15
-              </div>
-
-              <div class="famefestival_genre">
-                내한공연
-              </div>
-
-
-            </div>
-
-          </a>
-        </div>
-
-</div>
+          <script>
+          Vue.filter('formatDate', function(value) {
+            if (value) {
+              return moment(String(value)).format('MM/DD')
+            }
+          });
+          </script>
 
 <!-- famefestival JS -->
 <script src="/js/main_page/famefestival/famefestival.js"></script>

@@ -33,15 +33,35 @@ var fs = require('fs');
                 end_date = new Date(end_date).toISOString();
                 var location = sub_info.children('tr').eq(2).children('td').eq(1).children('a').text();
 
+                //출연
+                var star = sub_info.children('tr').eq(3).children('td').eq(1).text();
+                star = star.trim();
+                var star_check = sub_info.children('tr').eq(3).children('td').eq(1).children('a').text();
+
+                if(star_check.length == 0){
+                  star ="없음";
+                }
+
+                //정보
+                var detail = $('.detail_contentsbox').children('p').text();
+
+                if(detail.length == 0){
+                  detail="없음";
+                }
+
                 console.log(title);
                 console.log(genre);
                 console.log(start_date);
                 console.log(end_date);
                 console.log(location);
+                console.log(star);
+                console.log(detail);
 
             }
             done();
         }
    });
 
-festival.queue('http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=108377');
+festival.queue('http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=111677');
+//festival.queue('http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=112431');
+//festival.queue('http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=108377');

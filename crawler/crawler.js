@@ -143,6 +143,22 @@ function festival_crawler(){
                 end_date = new Date(end_date).toISOString();
                 var location = sub_info.children('tr').eq(2).children('td').eq(1).children('a').text();
 
+                //출연
+                var star = sub_info.children('tr').eq(3).children('td').eq(1).text();
+                star = star.trim();
+                var star_check = sub_info.children('tr').eq(3).children('td').eq(1).children('a').text();
+
+                if(star_check.length == 0){
+                  star ="없음";
+                }
+
+                //정보
+                var detail = $('.detail_contentsbox').children('p').text();
+
+                if(detail.length == 0){
+                  detail="없음";
+                }
+
 /*
                 console.log(name);
                 console.log(genre);
@@ -157,6 +173,8 @@ function festival_crawler(){
                     'start_date': start_date,
                     'end_date': end_date,
                     'location': location,
+                    'star': star,
+                    'detail': detail,
                 });
 
                 if(total_info.detail_url.length == total_info.page_numbers*15){
