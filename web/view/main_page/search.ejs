@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 타이틀
+  2. 메타 태그
+  3. 파비콘
+  4. 제이쿼리
+  5. 웹 폰트
+  6. css
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+    -->
+
+  <!--1 타이틀-->
+  <title>가치 - 공연을 함께</title>
+
+  <!--2 메타 태그-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="theme-color" content="#fff">
+  <meta property="og:url" content="">
+  <meta property="og.title" content="가치">
+  <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta content="telephone=no" name="format-detection">
+
+  <!--3 파비콘-->
+  <link rel="shortcut icon" href="">
+  <link rel="apple-touch-icon" href="">
+
+  <!--4 제이쿼리-->
+  <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+
+  <!--5 웹 폰트-->
+  <link href="" rel="stylesheet" type="text/css"/>
+
+  <!--5 웹 폰트-->
+
+
+  <!--6-1-1 네비게이션 레벨1 css-->
+  <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
+
+  <!--6-2 인기 페스티벌 css-->
+  <link href="/css/search/search_head/search_head.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/search/search_result/search_result.css" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript" src="/vue/vue.js"></script>
+  <script type="text/javascript" src="/axio/axio.js"></script>
+  <script type="text/javascript" src="/moment/moment.js"></script>
+  <script type="text/javascript" src="/lodash/lodash.js"></script>
+
+
+
+  </head>
+
+  <body>
+
+    <% include ../nav/nav_level1.ejs %>
+
+    <div id="search_head">
+      <span id="word1">
+        '<%=term%>'
+      </span>
+      <span id="word2">
+        검색결과
+      </span>
+      <span id="word3">
+      </span>
+    </div>
+
+    <% include ../nav/nav_level3.ejs %>
+
+    <div id="search_result">
+
+      <a class="search_box" v-for="fest in searchfestivals">
+        <div class="search_image" v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
+
+        </div>
+        <div class="search_info">
+          <div class="search_title">
+            {{fest.title}}
+          </div>
+          <div class="search_date">
+            {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
+          </div>
+          <div class="search_genre">
+            <span v-for="a in fest.genres">
+              {{a.genre}}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <div style="clear:both;">
+
+      </div>
+    </div>
+
+    <script>
+      $('#search').val('<%=term%>');
+    </script>
+
+    <script>
+      var app = new Vue({
+      el: '#search_result',
+      data: {
+        searchfestivals: [],
+      },
+      created: function(){
+        this.load();
+      },
+      methods: {
+        load: function() {
+          axios.get('http://cuponthetop.com/gachi/api/v1/festival/search?term='+'<%=term%>')
+          .then(function (response){
+              app.searchfestivals = response.data;
+              $('#word3').html(response.data.length);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        },
+      }
+    });
+    </script>
+
+    <script>
+    Vue.filter('formatDate', function(value) {
+      if (value) {
+        return moment(String(value)).format('MM/DD')
+      }
+    });
+    </script>
+
+
+  </body>
+</html>

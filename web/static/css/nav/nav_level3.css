@@ -38,6 +38,11 @@ input[type=search] {
   padding-left: 10px;
   padding-right: 10px;
   border:none;
+  font-size:14px;
+}
+
+input[type=search]:focus{
+  outline:none;
 }
 
 input[type=search]::-webkit-input-placeholder { /* Chrome/Opera/Safari */

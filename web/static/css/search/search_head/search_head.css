@@ -1,0 +1,35 @@
+#search_head{
+  width:calc(100% - 30px);
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:30px;
+}
+
+#word1{
+  font-weight:500;
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#4f2cfa;
+}
+#word2{
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#484848;
+}
+#word3{
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#4f2cfa;
+}
+
+@media  screen and (min-width:1080px){
+  #search_head{
+    width:1080px;
+  }
+  #word1{
+    font-size:25px;
+  }
+  #word2{
+    font-size:25px;
+  }
+  #word3{
+    font-size:25px;
+  }
+}
