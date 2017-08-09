@@ -3,7 +3,7 @@ var engine = require('ejs-locals');
 var app = express();
 var Sequelize = require('sequelize');
 
-const syncDB = require(__dirname + '/sync-db')
+//var syncDB = require(__dirname + '/sync-db');
 
 //ejs 템플릿 엔진
 app.engine('ejs', engine);
@@ -22,4 +22,5 @@ syncDB.then(_=> {
 app.get('/', function(req, res){
   res.render('main_page');
 });
+
 app.listen(3030);

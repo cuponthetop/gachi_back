@@ -1,5 +1,4 @@
 <!--인기 공연 인클루드-->
-
 <div id="famefestival_word">
 
   <div id="famefestival_title">
@@ -56,10 +55,8 @@
 
 
           <script>
-
             var app = new Vue({
             el: '.famefestival-container',
-
             data: {
               famefestivals: [],
             },
@@ -71,9 +68,6 @@
             created: function(){
               this.load();
             },
-
-
-
             methods: {
               load: function() {
                 this.famefestivals = Array.apply(null, new Array(13)).map(Number.prototype.valueOf,0);
@@ -99,8 +93,6 @@
           });
           </script>
 
-<!-- famefestival JS -->
-<script src="/js/main_page/famefestival/famefestival.js"></script>
 
 <!-- Initialize famefestival -->
 <script>
