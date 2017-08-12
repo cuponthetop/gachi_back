@@ -13,6 +13,10 @@
 #logo{
   width:35px;
   height:35px;
+  overflow:hidden;
+  background-size:cover;
+  background-position: center;
+  display:block;
 }
 #nav_right{
   float:right;

@@ -107,6 +107,15 @@
       </div>
     </div>
 
+    <div id="no_search">
+      <div id="no_search_head"><%=term%>에 대한 검색결과가 없습니다.</div>
+      <ul>
+        <li>단어의 철자가 정확한지 확인해주세요</li>
+        <li>검색어의 단어 수를 줄이거나, 다른 검색어로 검색해보세요.</li>
+        <li>더 일반적인 검색어로 다시 검색해 보세요.</li>
+      </ul>
+    </div>
+
     <script>
       $('#search').val('<%=term%>');
     </script>
@@ -126,6 +135,9 @@
           .then(function (response){
               app.searchfestivals = response.data;
               $('#word3').html(response.data.length);
+              if(response.data.length == 0){
+                $('#no_search').css('display','block');
+              }
           })
           .catch(function (error) {
             console.log(error);

@@ -39,9 +39,6 @@
   <!--5 웹 폰트-->
   <link href="" rel="stylesheet" type="text/css"/>
 
-  <!--5 웹 폰트-->
-
-
   <!--6-1-1 네비게이션 레벨1 css-->
   <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
 
@@ -62,11 +59,44 @@
 
   <!-- famefestival JS -->
   <script src="/js/main_page/famefestival/famefestival.js"></script>
+  <!-- soonfestival JS -->
   <script src="/js/main_page/soonfestival/soonfestival.js"></script>
 
+  <!-- google firebase-->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script>
+  var config = {
+      apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
+      authDomain: "gachi-test.firebaseapp.com",
+      databaseURL: "https://gachi-test.firebaseio.com",
+      projectId: "gachi-test",
+      storageBucket: "gachi-test.appspot.com",
+      messagingSenderId: "48888243317"
+    };
+    firebase.initializeApp(config);
 
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log('로그인함');
+    console.log(user.email);
+    console.log(user.uid);
+    total_info.is_login=true;
+    total_info.email = user.email;
+  } else {
+    console.log("로그인 안했음");
+    // No user is signed in.
+  }
+  });
+
+  var total_info = {
+    is_login:false,
+    email:"",
+  }
+  </script>
   </head>
   <body>
+
 
     <% include ../nav/nav_level1.ejs %>
 

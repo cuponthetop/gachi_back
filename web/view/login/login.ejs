@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+    head에 기술하는 것은 다음 규칙에 따른다.
+    1. 타이틀
+    2. 메타 태그
+    3. 파비콘
+    4. 제이쿼리
+    5. 웹 폰트
+    6. css
+    7. 페이지별 스타일 시트
+    8. 구글 애널리틱스
+    9. 페이스북 픽셀
+      -->
+
+    <!--1 타이틀-->
+    <title>회원가입</title>
+
+    <!--2 메타 태그-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="theme-color" content="#fff">
+    <meta property="og:url" content="">
+    <meta property="og.title" content="가치">
+    <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="">
+    <meta content="telephone=no" name="format-detection">
+
+    <!--3 파비콘-->
+    <link rel="shortcut icon" href="">
+    <link rel="apple-touch-icon" href="">
+
+    <!--4 제이쿼리-->
+    <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+
+    <!--6-1 회원가입CSS-->
+    <link href="/css/auth/login.css" rel="stylesheet" type="text/css"/>
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+<script>
+var config = {
+    apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
+    authDomain: "gachi-test.firebaseapp.com",
+    databaseURL: "https://gachi-test.firebaseio.com",
+    projectId: "gachi-test",
+    storageBucket: "gachi-test.appspot.com",
+    messagingSenderId: "48888243317"
+  };
+  firebase.initializeApp(config);
+</script>
+
+  </head>
+  <body>
+
+    <div id="login_all">
+      <img id="gachi_logo" src="/image/gachi_logo.png">
+
+      <form id="login">
+        <p><label for="id_login"></label> <input autofocus="autofocus" id="email" name="email" placeholder="이메일을 입력해주세요" type="email" /></p>
+
+        <p><label for="id_password"></label> <input id="password" name="password" placeholder="비밀번호를 입력해주세요" type="password" /></p>
+
+        <button class="primaryAction" type="submit">로그인</button>
+      </form>
+
+<script>
+  $('form').submit(function () {
+    fb();
+    return false;
+  })
+</script>
+
+<script>
+function fb(){
+var email = $('#email').val();
+var password = $('#password').val();
+
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+    var errorCode = error.code;
+    if(errorCode == "auth/user-not-found"){
+    alert("등록된 정보가 없습니다.");
+    }
+
+    if(errorCode == "auth/wrong-password"){
+      alert("비밀번호를 잘못 입력하셨습니다");
+    }
+  });
+}
+</script>
+
+<script>
+firebase.auth().onAuthStateChanged(function(user) {
+if (user) {
+  // User is signed in.
+  console.log('로그인함');
+  console.log(user.email);
+  console.log(user.uid);
+  location.href="/";
+} else {
+  console.log("로그인 안했음");
+  // No user is signed in.
+}
+});
+</script>
+
+      <div id="reg_find">
+        <a class="register" href="signup">회원가입</a>
+      </div>
+
+      <div class="social_all">
+        <div class="social_box kakao_login_box">
+          <a href="">
+            <img src="/image/kakao_logo.png">
+            <p>카카오로 로그인</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

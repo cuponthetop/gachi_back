@@ -68,6 +68,31 @@
   font-size:12px;
   color:#a4aab3;
 }
+#no_search{
+  width:calc(100% - 30px);
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+#no_search_head{
+  width:100%;
+}
+
+#no_search ul{
+  width:calc(100% - 30px);
+  margin-left:auto;
+  margin-right: auto;
+  color:#85898f;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:15px;
+  font-weight: 200;
+}
+
+#no_search ul li{
+  width:100%;
+  margin-bottom:5px;
+}
 
 @media  screen and (min-width:1080px){
   #search_result{
