@@ -19,6 +19,7 @@ let promises = _.map(festivals, function (el) {
       until: el.end_date,
       imageURL: el.image,
       genre: processGenre(el.genre),
+      starring: el.star,
       detail: el.detail,
       location: el.location,
     },

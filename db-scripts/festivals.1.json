@@ -1,59 +1,13 @@
 [
   {
-    "name": "시네마틱 재즈나잇",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111803_01.gif",
-    "genre": "재즈/블루스",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "낙원상가 4층 아트라운지 멋진하늘"
-  },
-  {
-    "name": "안중재 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111307_01.gif",
+    "name": "폴인어쿠스틱 페스티벌 2017",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/03/0400011703_106233_0540.gif",
     "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "640아트홀"
-  },
-  {
-    "name": "힙합 페스티벌 in 대전",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/08/0400011708_112496_01.gif",
-    "genre": "힙합/랩",
-    "start_date": "2017-09-22T00:00:00.000Z",
-    "end_date": "2017-09-23T00:00:00.000Z",
-    "location": "대전 무역전시관"
-  },
-  {
-    "name": "아침음악나들이 3 BMK - 고양",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/03/0400011703_106786_0032.gif",
-    "genre": "콘서트",
-    "start_date": "2017-09-21T00:00:00.000Z",
-    "end_date": "2017-09-21T00:00:00.000Z",
-    "location": "고양 어울림누리 어울림극장"
-  },
-  {
-    "name": "슈가볼 콘서트 - 대구",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110171_0755.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-12T00:00:00.000Z",
-    "end_date": "2017-08-12T00:00:00.000Z",
-    "location": "클럽 헤비"
-  },
-  {
-    "name": "두번째달 콘서트 - 안양",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/04/0400011704_107893_0916.gif",
-    "genre": "콘서트",
-    "start_date": "2017-09-21T00:00:00.000Z",
-    "end_date": "2017-09-21T00:00:00.000Z",
-    "location": "평촌아트홀"
-  },
-  {
-    "name": "피터 밴스 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110717_01.gif",
-    "genre": "내한공연",
-    "start_date": "2017-09-21T00:00:00.000Z",
-    "end_date": "2017-09-21T00:00:00.000Z",
-    "location": "롯데콘서트홀"
+    "start_date": "2017-09-16T00:00:00.000Z",
+    "end_date": "2017-09-16T00:00:00.000Z",
+    "location": "대명 비발디파크(홍천)",
+    "star": "없음",
+    "detail": "가을을 의미하는 ＇Fall＇과 무언가에 푹 빠진 상태를 나타내는 ＇Falling＇ 두 가지 의미가 모두 녹아있는 ＇폴인어쿠스틱(FallinAcoustic) ‘폴인어쿠스틱’에서의 ‘어쿠스틱’은 단지 어쿠스틱 악기와 연주만을 의미하지는 않습니다. 많은 사람들이 모이는 큰 장소, 큰 무대에서 기계장치의 증폭 없이 의도한 사운드를 효과적으로 전달 한다는 건 상당히 어려운 일이니까요. 앰프랑 스피커 사용을 차치하고서라도 공연중에 연주되는 악기가 일렉트로닉 악기인 경우가 많이 있으니, 사실은 단어 자체 의미의 어쿠스틱과는 상당히 거리가 있긴 합니다. 그럼에도 불구하.."
   },
   {
     "name": "모비딕 콘서트 - 제주",
@@ -61,15 +15,9 @@
     "genre": "락/메탈",
     "start_date": "2017-09-16T00:00:00.000Z",
     "end_date": "2017-09-16T00:00:00.000Z",
-    "location": "벨롱"
-  },
-  {
-    "name": "김건모 콘서트 - 원주",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110623_0317.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-05T00:00:00.000Z",
-    "location": "원주따뚜공연장"
+    "location": "벨롱",
+    "star": "모비딕밴드",
+    "detail": "없음"
   },
   {
     "name": "안테나 뮤직 레이블 콘서트 - 대구",
@@ -77,7 +25,9 @@
     "genre": "콘서트",
     "start_date": "2017-09-16T00:00:00.000Z",
     "end_date": "2017-09-16T00:00:00.000Z",
-    "location": "대구 엑스코(EXCO)"
+    "location": "대구 엑스코(EXCO)",
+    "star": "정재형, 토이, 루시드폴, 페퍼톤스, 박새별, 이진아, 정승환, 권진아, 샘김, 이수정...",
+    "detail": "없음"
   },
   {
     "name": "썸데이 페스티벌",
@@ -85,55 +35,29 @@
     "genre": "콘서트",
     "start_date": "2017-09-16T00:00:00.000Z",
     "end_date": "2017-09-17T00:00:00.000Z",
-    "location": "난지 한강공원"
+    "location": "난지 한강공원",
+    "star": "박정현, 못, 자우림, 하동균, 노리플라이, 윤하, 루시아(심규선), 바닐라 어쿠스틱, 에피톤 프로젝트, 커피소년, 에일리, 로꼬, 스웨덴세탁소, 선우정아, 크러쉬...",
+    "detail": "음악의 본질적 아름다움과 만나다. Someday Festival 2017Someday Festival에는 오롯이 자신의 목소리와 음악으로 소통하는 뮤지션, 그리고 그들을 느낄 수 있는 관객이 있습니다. Someday Festival에서는 자연도 음악이 됩니다. Someday Festival이기에 순수함을 잃지 않은 음악으로 우리 마음 속 깊은 감동을 선물합니다. 선선한 가을 바람 부는 잔디 위낭만 가득한 시간으로 여러분을 초대합니다.음악을 즐기는 가장 완벽한 순간Just Music ‘Someday Festival’"
   },
   {
-    "name": "류엘의 로맨틱 매직콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110688_01.gif",
-    "genre": "개그콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-06T00:00:00.000Z",
-    "location": "한국방송회관 코바코홀 (구,브로드홀)"
+    "name": "임경은 콘서트 - 인천",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111800_01.gif",
+    "genre": "재즈/블루스",
+    "start_date": "2017-09-16T00:00:00.000Z",
+    "end_date": "2017-09-16T00:00:00.000Z",
+    "location": "부평아트센터 달누리 극장",
+    "star": "없음",
+    "detail": "없음"
   },
   {
-    "name": "오지은 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110722_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-06T00:00:00.000Z",
-    "location": "충무아트센터 소극장 블루"
-  },
-  {
-    "name": "에디전 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111447_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-05T00:00:00.000Z",
-    "location": "스텀프"
-  },
-  {
-    "name": "가을방학 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110818_0410.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-06T00:00:00.000Z",
-    "location": "블루스퀘어 삼성카드홀"
-  },
-  {
-    "name": "테일즈샵 파티 2017",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_112143_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-05T00:00:00.000Z",
-    "location": "하나투어 브이홀 (구 레진코믹스 브이홀)"
-  },
-  {
-    "name": "스탠딩에그 콘서트 - 전주",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111188_01.gif",
-    "genre": "콘서트",
-    "start_date": "2017-08-05T00:00:00.000Z",
-    "end_date": "2017-08-05T00:00:00.000Z",
-    "location": "전북대학교 삼성문화회관"
+    "name": "드림 시어터 내한공연",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111090_0112.gif",
+    "genre": "내한공연",
+    "start_date": "2017-09-16T00:00:00.000Z",
+    "end_date": "2017-09-16T00:00:00.000Z",
+    "location": "올림픽공원 올림픽홀",
+    "star": "드림 시어터",
+    "detail": "메탈 걸작 ［Images and Words］ 전곡 플레이 확정!총 150여 분의 장엄한 메탈 오페라드림 시어터, 역사상 유례없는 8번째 내한공연이번 내한공연은 1992년에 발표되어 현재까지도 프로그레시브 메탈의 기념비적인 앨범으로 손꼽히고 있는 의 발매 25주년을 기념한 투어로 이 앨범의 모든 수록곡이 셋리스트에 포함될 것으로 알려지며 기대를 모은다. 이외에도 EP부터 신보까지 각 앨범의 대표곡을 선별해 총 150여 분의 장엄한 메탈 오페라를 집대성 할 예정이다."
   },
   {
     "name": "데이브 코즈 내한공연",
@@ -141,22 +65,128 @@
     "genre": "내한공연",
     "start_date": "2017-09-20T00:00:00.000Z",
     "end_date": "2017-09-20T00:00:00.000Z",
-    "location": "한전아트센터"
+    "location": "한전아트센터",
+    "star": "데이브 코즈",
+    "detail": "폴 잭슨 주니어 ／그렉 필링게인즈 등 최고의 연주자들과 함께 하는 세계 최정상의 컨템퍼러리 재즈 색소포니스트 데이브 코즈 내한공연"
   },
   {
-    "name": "랩소디 오브 파이어 내한공연",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/08/0400011708_112557_01.gif",
-    "genre": "내한공연",
-    "start_date": "2017-11-11T00:00:00.000Z",
-    "end_date": "2017-11-11T00:00:00.000Z",
-    "location": "예스24 무브홀 (구,클럽 맨션)"
-  },
-  {
-    "name": "이지형 콘서트",
-    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111791_0858.gif",
+    "name": "터보 콘서트 - 성남",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111907_0830.gif",
     "genre": "콘서트",
-    "start_date": "2017-08-19T00:00:00.000Z",
-    "end_date": "2017-08-19T00:00:00.000Z",
-    "location": "어라운지 선유도점"
+    "start_date": "2017-09-16T00:00:00.000Z",
+    "end_date": "2017-09-16T00:00:00.000Z",
+    "location": "성남아트센터 오페라하우스",
+    "star": "터보",
+    "detail": "2017년 여름그 어느 때 보다 더 핫하게더욱 의리 의리하게돌아온 세 남자 터보!지난 해 성공적인 대형 공연에 이어올해는 첫 극장판 콘서트로 관객 밀착형 공연을 선보인다.본능적 떼창과 떼춤을 유발하는취향저격 음악축제놀 줄 아는 동네형들과신나는 한판전국의 어른이 대환영!이제, 더 많이 즐겨야 한다!You Only Live OnceYOLO, 욜로와!웰컴백 터보의 첫 극장판 콘서트<아는형들> 성남!"
+  },
+  {
+    "name": "서민 기생충과 인간 - 대구",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_112188_0810.gif",
+    "genre": "콘서트",
+    "start_date": "2017-09-16T00:00:00.000Z",
+    "end_date": "2017-09-16T00:00:00.000Z",
+    "location": "대구 수성아트피아 무학홀",
+    "star": "없음",
+    "detail": "없음"
+  },
+  {
+    "name": "박강수 콘서트 - 전주",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/08/0400011708_112737_01.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-25T00:00:00.000Z",
+    "end_date": "2017-08-25T00:00:00.000Z",
+    "location": "전주 우진문화공간",
+    "star": "박강수",
+    "detail": "없음"
+  },
+  {
+    "name": "2017 ACC 월드뮤직 페스티벌 - 광주",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/08/0400011708_112774_01.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-25T00:00:00.000Z",
+    "end_date": "2017-08-26T00:00:00.000Z",
+    "location": "광주 국립아시아문화전당",
+    "star": "없음",
+    "detail": "없음"
+  },
+  {
+    "name": "주현미 콘서트 - 통영",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110971_01.gif",
+    "genre": "재즈/블루스",
+    "start_date": "2017-08-24T00:00:00.000Z",
+    "end_date": "2017-08-24T00:00:00.000Z",
+    "location": "통영시민문화회관 대극장",
+    "star": "주현미",
+    "detail": "없음"
+  },
+  {
+    "name": "커피콘서트 6 블랙스트링 - 인천",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110911_01.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-23T00:00:00.000Z",
+    "end_date": "2017-08-23T00:00:00.000Z",
+    "location": "인천종합문화예술회관 소공연장",
+    "star": "허윤정, 오정수, 이아람, 황민왕",
+    "detail": "2017 커피콘서트Ⅵ즉흥음악앙상블 블랙스트링, ‘장르의 경계를 허물다’한국 전통음악에 기반을 두고 있는 블랙스트링은 ‘즉흥음악’이라는 공통점을 가지고 있는 재즈와 조화를 이루어 현대적이고 독특한 아름다움이 담긴 음악을 선보이고 있다.거문고 명인 허윤정을 주축으로 하고 있는 블랙스트링은, 국악과 재즈계에서 활발한 활동을 하고 있는 정상급 연주자들로 이루어져 있다. 자신만의 독창적인 음악 색깔로 주목받고 있는 기타리스트 오정수, 다양한 장르에서 연주와 창작활동을 펼치고 있는 전방위 대금 연주자 이아람이 허윤정과 함께 .."
+  },
+  {
+    "name": "제10회 카오스 콘서트",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111604_01.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-23T00:00:00.000Z",
+    "end_date": "2017-08-23T00:00:00.000Z",
+    "location": "블루스퀘어 삼성카드홀",
+    "star": "권일",
+    "detail": "없음"
+  },
+  {
+    "name": "더티룹스 내한공연",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/06/0400011706_110098_0351.gif",
+    "genre": "내한공연",
+    "start_date": "2017-08-20T00:00:00.000Z",
+    "end_date": "2017-08-20T00:00:00.000Z",
+    "location": "현대카드 UNDERSTAGE",
+    "star": "더티룹스",
+    "detail": "완벽한 연주란 이런 것! 세계를 놀라게 한 스웨덴 출신의 3인조 밴드 더티룹스는 조나 닐슨 (보컬/키보드), 헨릭 린더 (베이스), 아론 멜러가드(드럼)로 구성된 3인조 밴드로 멤버 개개인의 경이로운 연주력과 폭발적인 가창력으로 데뷔 초기부터 많은 아티스트와 팬들 사이에서 괴물 밴드라는 닉네임으로 불리고 있다. 2009년 밴드 결성 후 2010년 레이디 가가 (Lady Gaga)의 “Just Dance”를 독특하게 커버한 영상으로 화제를 모았던 이들은 이후, 엄청난 사운드와 연주 실력으로 세계 음악 팬들의 이목을 집중시켰다. ＇Dirty Loops Sound’ 라고 칭하는 그들만의 사.."
+  },
+  {
+    "name": "서영도 일렉트릭 앙상블 콘서트",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_112238_0254.gif",
+    "genre": "재즈/블루스",
+    "start_date": "2017-08-23T00:00:00.000Z",
+    "end_date": "2017-08-23T00:00:00.000Z",
+    "location": "웨스트브릿지 라이브홀",
+    "star": "서영도 일렉트릭 앙상블",
+    "detail": "없음"
+  },
+  {
+    "name": "리브 포에버 롱 내한공연",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/05/0400011705_109230_0724.gif",
+    "genre": "내한공연",
+    "start_date": "2017-08-22T00:00:00.000Z",
+    "end_date": "2017-08-22T00:00:00.000Z",
+    "location": "잠실종합운동장 보조경기장",
+    "star": "푸 파이터스, 더 모노톤즈",
+    "detail": "푸 파이터스，리암 갤러거，더 모노톤즈－최고의 록 뮤지션들의 열광적인 라이브 무대"
+  },
+  {
+    "name": "2017 수원아트리움 하우스콘서트",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111033_01.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-20T00:00:00.000Z",
+    "end_date": "2017-08-20T00:00:00.000Z",
+    "location": "수원 SK아트리움 소공연장",
+    "star": "없음",
+    "detail": "없음"
+  },
+  {
+    "name": "민트페스타 vol.56",
+    "image": "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/17/07/0400011707_111502_0213.gif",
+    "genre": "콘서트",
+    "start_date": "2017-08-20T00:00:00.000Z",
+    "end_date": "2017-08-20T00:00:00.000Z",
+    "location": "KT&G 상상마당 라이브홀",
+    "star": "멜로망스, 오왠",
+    "detail": "민트페이퍼의 시작, 그리고 현재일요일 오후의 작은 축제 ‘MINT FESTA’‘그랜드 민트 페스티벌’, ‘뷰티풀 민트 라이프’, ‘카운트다운 판타지’를 비롯한 페스티벌과 ‘고양이 이야기’, ‘강아지 이야기’, ‘남과 여… 그리고 이야기’, ‘LIFE’, ‘cafe : night ＆ day’, ‘bright’ 시리즈 등의 프로젝트 앨범을 통해 특별한 감성을 전달해온 민트페이퍼.2006년 첫 공연을 시작한 ‘민트페스타’는 민트페이퍼의 시작과 함께 해온 정.."
   }
 ]
