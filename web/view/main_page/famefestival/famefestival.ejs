@@ -22,7 +22,7 @@
     <div class="famefestival-wrapper">
 
         <div class="famefestival-slide" v-for="fest in famefestivals2">
-          <a class="famefestival_link" >
+          <a class="famefestival_link" :href="'/' + fest.fid">
 
             <div class="famefestival_image"  v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
             </div>
@@ -70,8 +70,8 @@
             },
             methods: {
               load: function() {
-                this.famefestivals = Array.apply(null, new Array(13)).map(Number.prototype.valueOf,0);
-                axios.get('http://cuponthetop.com/gachi/api/v1/festival/list')
+                this.famefestivals = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
+                axios.get('http://cuponthetop.com/gachi/api/v1/festival/list?page=1&type=default')
                 .then(function (response){
                     app.famefestivals = response.data;
                 })

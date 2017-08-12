@@ -17,11 +17,5 @@ app.use(express.static( __dirname + '/static'));
 //라우팅
 app.use('/', route);
 
-/*
-syncDB.then(_=> {
-  console.log('sync database');
-})
-*/
-
-app.listen(3030);
+app.listen(3001);
 module.exports = app;

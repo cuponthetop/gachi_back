@@ -39,9 +39,6 @@
   <!--5 웹 폰트-->
   <link href="" rel="stylesheet" type="text/css"/>
 
-  <!--5 웹 폰트-->
-
-
   <!--6-1-1 네비게이션 레벨1 css-->
   <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
 
@@ -51,14 +48,21 @@
 
   <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
 
+  <link href="/css/detail/detail.css" rel="stylesheet" type="text/css"/>
+
   <!--6-2 인기 페스티벌 css-->
-  <link href="/css/search/search_head/search_head.css" rel="stylesheet" type="text/css"/>
-  <link href="/css/search/search_result/search_result.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/main_page/famefestival/famefestival.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/main_page/soonfestival/soonfestival.css" rel="stylesheet" type="text/css"/>
 
   <script type="text/javascript" src="/vue/vue.js"></script>
   <script type="text/javascript" src="/axio/axio.js"></script>
   <script type="text/javascript" src="/moment/moment.js"></script>
   <script type="text/javascript" src="/lodash/lodash.js"></script>
+
+  <!-- famefestival JS -->
+  <script src="/js/main_page/famefestival/famefestival.js"></script>
+  <!-- soonfestival JS -->
+  <script src="/js/main_page/soonfestival/soonfestival.js"></script>
 
   <!-- google firebase-->
   <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
@@ -92,100 +96,79 @@
     email:"",
   }
   </script>
-
-
+  <style media="screen">
+    #nav_level1{
+      margin-bottom:15px;
+    }
+  </style>
   </head>
-
   <body>
 
     <% include ../nav/nav_level1.ejs %>
-
-    <div id="search_head">
-      <span id="word1">
-        '<%=term%>'
-      </span>
-      <span id="word2">
-        검색결과
-      </span>
-      <span id="word3">
-      </span>
-    </div>
-
-    <% include ../nav/nav_level3.ejs %>
-
-    <div id="search_result">
-
-      <a class="search_box" v-for="fest in searchfestivals">
-        <div class="search_image" v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
-
-        </div>
-        <div class="search_info">
-          <div class="search_title">
-            {{fest.title}}
-          </div>
-          <div class="search_date">
-            {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
-          </div>
-          <div class="search_genre">
-            <span v-for="a in fest.genres">
-              {{a.genre}}
-            </span>
-          </div>
-        </div>
-      </a>
-
-      <div style="clear:both;">
-
+  <div id="image_info_all">
+    <div id="image_info">
+      <div id="image_blur" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
       </div>
     </div>
+    <div id="center">
+      <div id="center_image" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
 
-    <div id="no_search">
-      <div id="no_search_head"><%=term%>에 대한 검색결과가 없습니다.</div>
-      <ul>
-        <li>단어의 철자가 정확한지 확인해주세요</li>
-        <li>검색어의 단어 수를 줄이거나, 다른 검색어로 검색해보세요.</li>
-        <li>더 일반적인 검색어로 다시 검색해 보세요.</li>
-      </ul>
+      </div>
+      <div id="center_info">
+        <div id="center_date">
+          {{info.from | formatDate}} ~ {{info.until | formatDate}}
+        </div>
+        <div id="center_title">
+          {{info.title}}
+        </div>
+        <div id="center_tag">
+          <span>#{{info.location}}</span>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-      $('#search').val('<%=term%>');
-    </script>
+  <div id="intro">
+
+  </div>
+
+
+
 
     <script>
       var app = new Vue({
-      el: '#search_result',
+      el: '#image_info_all',
       data: {
-        searchfestivals: [],
+        info: undefined,
       },
       created: function(){
         this.load();
       },
       methods: {
         load: function() {
-          axios.get('http://cuponthetop.com/gachi/api/v1/festival/search?page=1&term='+'<%=term%>')
+          //this.famefestivals = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
+          axios.get('http://cuponthetop.com/gachi/api/v1/festival/'+'<%=fid%>')
           .then(function (response){
-              app.searchfestivals = response.data;
-              $('#word3').html(response.data.length);
-              if(response.data.length == 0){
-                $('#no_search').css('display','block');
-              }
+              app.info = response.data;
           })
           .catch(function (error) {
             console.log(error);
           })
         },
       }
+
     });
+
     </script>
 
     <script>
     Vue.filter('formatDate', function(value) {
       if (value) {
-        return moment(String(value)).format('MM/DD')
+        return moment(String(value)).format('YYYY.MM.DD')
       }
     });
     </script>
+
 
 
   </body>

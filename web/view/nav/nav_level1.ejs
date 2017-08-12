@@ -1,5 +1,5 @@
   <div id="nav_level1">
-    <a id="logo" href="/" style="background-image:url('/image/gachi_logo.png')"></a>
+    <a id="logo" href="/" style="background-image:url('/image/gachi_logo1.png')"></a>
     <div id="nav_right">
       <a v-if="user" class="nav_info" href="/info">
         {{user.email}}
@@ -8,7 +8,7 @@
         로그인
       </a>
 
-      <div id="logout" class="nav_info" v-if="user" v-on:click="logout">
+      <div class="nav_info logout" v-if="user" v-on:click="logout">
         로그아웃
       </div>
 

@@ -22,7 +22,7 @@
   <div class="soonfestival-wrapper">
 
     <div class="soonfestival-slide" v-for="fest in soonfestivals2">
-      <a class="soonfestival_link" href="#">
+      <a class="soonfestival_link" :href="'/' + fest.fid">
 
         <div class="soonfestival_image"  v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
         </div>
@@ -70,7 +70,7 @@
   methods: {
     load: function() {
       this.soonfestivals = Array.apply(null, new Array(13)).map(Number.prototype.valueOf,0);
-      axios.get('http://cuponthetop.com/gachi/api/v1/festival/list')
+      axios.get('http://cuponthetop.com/gachi/api/v1/festival/list?page=1&type=default')
       .then(function (response){
           soonfestivals.soonfestivals = response.data;
       })

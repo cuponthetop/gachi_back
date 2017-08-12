@@ -38,6 +38,11 @@
     <!--6-1 회원가입CSS-->
     <link href="/css/auth/login.css" rel="stylesheet" type="text/css"/>
 
+    <!--카카오-->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+
+
 <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
 <script>
@@ -56,7 +61,7 @@ var config = {
   <body>
 
     <div id="login_all">
-      <img id="gachi_logo" src="/image/gachi_logo.png">
+      <img id="gachi_logo" src="/image/gachi_logo1.png">
 
       <form id="login">
         <p><label for="id_login"></label> <input autofocus="autofocus" id="email" name="email" placeholder="이메일을 입력해주세요" type="email" /></p>
@@ -111,14 +116,73 @@ if (user) {
       </div>
 
       <div class="social_all">
-        <div class="social_box kakao_login_box">
-          <a href="">
-            <img src="/image/kakao_logo.png">
-            <p>카카오로 로그인</p>
-          </a>
-        </div>
+        <a id="facebook_login">
+            <img src="/image/facebook_logo.png">
+            <p>페이스북으로 로그인</p>
+        </a>
       </div>
     </div>
+
+    <script>
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      console.log('로그인함');
+      console.log(user.email);
+      console.log(user.uid);
+      location.href="/";
+    } else {
+      console.log("로그인 안했음");
+      // No user is signed in.
+    }
+    });
+    </script>
+
+<script>
+$('#facebook_login').click(function(){
+  facebook_login();
+})
+
+function facebook_login(){
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // ...
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+
+
+      firebase.auth().getRedirectResult().then(function(result) {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          var token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        var user = result.user;
+      }).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+}
+</script>
 
   </body>
 </html>
