@@ -20,79 +20,44 @@
 <!-- soonfestival -->
 <div class="soonfestival-container">
   <div class="soonfestival-wrapper">
+    <% festival.forEach(function(fest) { %>
 
-    <div class="soonfestival-slide" v-for="fest in soonfestivals2">
-      <a class="soonfestival_link" :href="'/' + fest.fid">
+    <div class="soonfestival-slide">
+      <a class="soonfestival_link" href='/festival/<%= fest.fid%>'>
 
-        <div class="soonfestival_image"  v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
+        <div class="soonfestival_image"  style="background-image:url('<%= fest.image %>')">
         </div>
 
         <div class="soonfestival_info">
 
           <div class="soonfestival_title">
-            {{fest.title}}
+            <%= fest.title %>
           </div>
 
           <div class="soonfestival_date">
-            {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
+            <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
           </div>
 
           <div class="soonfestival_genre">
-            <span v-for="a in fest.genres">
-              {{a.genre}}
+            <% for (var key in fest.genres) { %>
+            <span>
+              <%= fest.genres[key].genre %>
             </span>
+            <% } %>
           </div>
 
         </div>
 
       </a>
     </div>
+    <% }); %>
 
   </div>
 </div>
 
-
-
-<script>
-  var soonfestivals = new Vue({
-  el: '.soonfestival-container',
-  data: {
-    soonfestivals: [],
-  },
-  created: function(){
-    this.load();
-  },
-  computed: {
-    soonfestivals2: function () {
-      return _.orderBy(this.soonfestivals, 'from')
-    }
-  },
-  methods: {
-    load: function() {
-      this.soonfestivals = Array.apply(null, new Array(13)).map(Number.prototype.valueOf,0);
-      axios.get('http://cuponthetop.com/gachi/api/v1/festival/list?page=1&type=default')
-      .then(function (response){
-          soonfestivals.soonfestivals = response.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-    },
-  }
-
-});
-
-Vue.filter('formatDate', function(value) {
-  if (value) {
-    return moment(String(value)).format('MM/DD')
-  }
-});
-</script>
-
 <script>
 var soonfestival = new soonfestival('.soonfestival-container', {
     slidesPerView: 5,
-    paginationClickable: true,
     spaceBetween: 10,
     freeMode: true,
     breakpoints: {

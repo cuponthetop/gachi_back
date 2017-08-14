@@ -20,79 +20,39 @@
 <!-- famefestival -->
 <div class="famefestival-container">
     <div class="famefestival-wrapper">
+<% festival.forEach(function(fest) { %>
+        <div class="famefestival-slide">
+          <a class="famefestival_link" href='/festival/<%= fest.fid%>'>
 
-        <div class="famefestival-slide" v-for="fest in famefestivals2">
-          <a class="famefestival_link" :href="'/' + fest.fid">
-
-            <div class="famefestival_image"  v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
+            <div class="famefestival_image" style="background-image:url('<%= fest.image %>')">
             </div>
 
             <div class="famefestival_info">
 
               <div class="famefestival_title">
-                {{fest.title}}
+                <%= fest.title %>
               </div>
 
               <div class="famefestival_date">
-                {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
+                <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
               </div>
 
               <div class="famefestival_genre">
-                <span v-for="a in fest.genres">
-                  {{a.genre}}
+                <% for (var key in fest.genres) { %>
+                <span>
+                  <%= fest.genres[key].genre %>
                 </span>
+                <% } %>
               </div>
 
             </div>
 
           </a>
         </div>
-
+<% }); %>
 
       </div>
     </div>
-
-
-
-          <script>
-            var app = new Vue({
-            el: '.famefestival-container',
-            data: {
-              famefestivals: [],
-            },
-            computed: {
-              famefestivals2: function () {
-                return _.orderBy(this.famefestivals, 'fid')
-              }
-            },
-            created: function(){
-              this.load();
-            },
-            methods: {
-              load: function() {
-                this.famefestivals = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
-                axios.get('http://cuponthetop.com/gachi/api/v1/festival/list?page=1&type=default')
-                .then(function (response){
-                    app.famefestivals = response.data;
-                })
-                .catch(function (error) {
-                  console.log(error);
-                })
-              },
-            }
-
-          });
-
-          </script>
-
-          <script>
-          Vue.filter('formatDate', function(value) {
-            if (value) {
-              return moment(String(value)).format('MM/DD')
-            }
-          });
-          </script>
-
 
 <!-- Initialize famefestival -->
 <script>

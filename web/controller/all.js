@@ -1,8 +1,25 @@
 var request = require('request');
 var http  = require('http');
+var moment = require('moment');
 
-const index = function(req, res){
- res.render('main_page');
+var index_data;
+
+var festData = function(callback){
+  var options = {
+      url: 'http://cuponthetop.com/gachi/api/v1/festival/list?page=1&type=default',
+      method: 'GET',
+  };
+  request(options, function(err, res, body) {
+      index_data = JSON.parse(res.body);
+      //index_data = res.body;
+      callback();
+  });
+}
+
+var index = function(req, res){
+ festData(function() {
+   res.render('main_page',{'festival':index_data, moment:moment});
+ });
 };
 
 const search = function(req, res){
@@ -23,12 +40,27 @@ const info_slide = function(req, res){
   res.render('../info_slide/info_slide');
 }
 
+var detail_data;
+var fid="";
+
+var detailData = function(callback){
+  var options = {
+      url: 'http://cuponthetop.com/gachi/api/v1/festival/'+fid,
+      method: 'GET',
+  };
+  request(options, function(err, res, body) {
+      index_data = JSON.parse(res.body);
+      callback();
+  });
+}
+
 const detail = function(req, res){
-  var fid = req.params.fid;
+  fid = req.params.fid;
 
- res.render('../detail/detail',{fid: fid});
+  detailData(function() {
+    res.render('../detail/detail',{fid: fid});
+  });
 };
-
 
 
 

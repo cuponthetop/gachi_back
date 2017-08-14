@@ -13,7 +13,7 @@ router.get('/signup', ctrl.signup);
 
 router.get('/info_slide', ctrl.info_slide);
 
-router.get('/:fid', ctrl.detail);
+router.get('/festival/:fid', ctrl.detail);
 
 
 

@@ -77,27 +77,46 @@
 
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    // User is signed in.
+    var uid = user.uid;
+    var fbtk;
     console.log('로그인함');
     console.log(user.email);
     console.log(user.uid);
-    total_info.is_login=true;
-    total_info.email = user.email;
+    console.log(user.fbid);
+    console.log(user);
+    user.getIdToken().then(function(data) {
+      console.log(data)
+      fbtk = data;
+      $.ajax({
+        type: 'GET',
+        url: 'http://cuponthetop.com/gachi/api/v1/user/'+'66661790-92a7-47bb-ad91-f78deabe460e',
+        dataType : 'xml',
+        beforeSend : function(xhr){
+            xhr.setRequestHeader("authorization", fbtk);
+        },
+        async:false,
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+    });
+
+
+
+
+
+
   } else {
     console.log("로그인 안했음");
-    // No user is signed in.
   }
   });
 
-  var total_info = {
-    is_login:false,
-    email:"",
-  }
   </script>
   </head>
   <body>
-
-
     <% include ../nav/nav_level1.ejs %>
 
     <% include ../nav/nav_level2.ejs %>

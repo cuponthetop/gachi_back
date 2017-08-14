@@ -38,7 +38,7 @@
 
   <!--5 웹 폰트-->
   <link href="" rel="stylesheet" type="text/css"/>
-
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
   <!--6-1-1 네비게이션 레벨1 css-->
   <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
 
@@ -104,11 +104,30 @@
   </head>
   <body>
 
-    <% include ../nav/nav_level1.ejs %>
+  <div id="detail_nav_all">
+    <div id="detail_nav">
+      <a id="gachi_logo" href="/">
+        GACHI
+      </a>
+      <div id="gachi_title">
+
+      </div>
+      <div id="search_button">
+
+      </div>
+    </div>
+  </div>
+
+
+<div id="all">
   <div id="image_info_all">
     <div id="image_info">
+
       <div id="image_blur" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
       </div>
+      <div id="filter">
+      </div>
+
     </div>
     <div id="center">
       <div id="center_image" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
@@ -122,22 +141,30 @@
           {{info.title}}
         </div>
         <div id="center_tag">
-          <span>#{{info.location}}</span>
+          <span v-for="a in info.genres">
+            #{{a.genre}}
+          </span>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="intro">
-
+  <div id="intro_head">
+    정보
   </div>
-
-
-
+  <div id="intro">
+    {{info.detail}}
+  </div>
+  <div id="intro_foot">
+    <div id="intro_more">
+      더보기
+    </div>
+  </div>
+</div>
 
     <script>
       var app = new Vue({
-      el: '#image_info_all',
+      el: '#all',
       data: {
         info: undefined,
       },
@@ -168,8 +195,10 @@
       }
     });
     </script>
-
-
-
+    <script>
+    $('#intro_more').click(function(){
+      $('#in').css('height','auto');
+    })
+    </script>
   </body>
 </html>

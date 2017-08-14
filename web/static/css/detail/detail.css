@@ -1,6 +1,36 @@
+*{
+  margin:0;
+  padding:0;
+}
+#detail_nav_all{
+  width:100%;
+  height:47px;
+}
+
+#detail_nav{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  height:47px;
+}
+
+#gachi_logo{
+  display:block;
+  width:50px;
+  height:47px;
+  line-height: 50px;
+  font-family: 'Baloo Bhaina', cursive;
+  color:#242424;
+  text-decoration: none;
+  font-size:18px;
+  float:left;
+}
+
+
+
 #image_info{
   width:100%;
-  height:50vw;
+  height:160px;
   overflow:hidden;
   position:relative;
 }
@@ -21,8 +51,15 @@
   filter: blur(30px);
 }
 
+#filter{
+  position: absolute;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.18);
+}
+
 #center{
-  margin-top:-25vw;
+  margin-top:-95px;
   position: absolute;
   height:121px;
   left:50%;
@@ -48,6 +85,9 @@
   height:121px;
   float:right;
   position: relative;
+  float:left;
+  margin-left:15px;
+  width:calc(100% - 115px);
 }
 #center_date{
   width:100%;
@@ -66,6 +106,8 @@
 #center_tag{
   position:absolute;
   bottom:0px;
+  height:20px;
+  width:100%;
 }
 #center_tag span{
   font-family: 'Noto Sans KR', sans-serif;
@@ -77,16 +119,59 @@
 
   height:20px;
   line-height: 20px;
-  display: inline-block;
   border-radius: 10px;
   font-weight:300;
+  display: block;
+  float:left;
+  margin-right:10px;
+  padding-left:8px;
+  padding-right:8px;
+  width:auto;
 }
-
-#intro{
-  width:calc(100% - 30px);
+#intro_head{
+  width:calc(100% - 40px);
   margin-left:auto;
   margin-right:auto;
-  background-color:pink;
-  height:100px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  font-weight:500;
+  height:30px;
+  line-height: 30px;
   margin-top:50px;
+}
+#intro{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  height:100px;
+  margin-top:10px;
+  color:#888c92;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  overflow: hidden;
+}
+#intro_foot{
+  width:calc(100% - 40px);
+  height:35px;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom: 1px solid #ececec;
+}
+#intro_more{
+  width:50px;
+  margin-top:10px;
+  height:15px;
+  line-height: 15px;
+  float:right;
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+  color:#888c92;
+}
+
+@media  screen and (min-width:466px){
+  #center{
+    width:466px;
+    margin-left:-213px;
+  }
 }
