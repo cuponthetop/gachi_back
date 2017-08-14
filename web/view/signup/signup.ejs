@@ -159,18 +159,10 @@
     }
     </script>
     <script>
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      console.log('로그인함');
-      console.log(user.email);
-      console.log(user.uid);
-      location.href="/";
-    } else {
-      console.log("로그인 안했음");
-      // No user is signed in.
+    //init_info();
+    function init_info() {
+      location.href="/info_slide";
     }
-    });
     </script>
   </body>
 </html>
