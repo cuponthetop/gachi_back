@@ -1,0 +1,51 @@
+*{
+  margin:0px;
+  padding:0px;
+}
+#nav_level1{
+  width:calc(100% - 30px);
+  height:35px;
+  margin-top:15px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:30px;
+}
+#logo{
+  width:35px;
+  height:35px;
+  float:left;
+  overflow:hidden;
+  background-size:cover;
+  background-position: center;
+  display:block;
+}
+#nav_right{
+  float:right;
+  display: none;
+}
+
+
+@media  screen and (min-width:1080px){
+    #nav_level1{
+      margin-bottom:60px;
+      width:calc(100% - 60px);
+    }
+    #nav_right{
+      display:block;
+    }
+    .nav_info{
+      float:left;
+      margin-left:35px;
+      line-height:35px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight:300;
+      color:#484848;
+      text-decoration: none;
+    }
+    .nav_email{
+      color:#4f2cfa;
+    }
+    .logout{
+      cursor:pointer;
+    }
+}

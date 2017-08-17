@@ -1,0 +1,56 @@
+#nav_level2{
+  width:calc(100% - 30px);
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:45px;
+}
+
+#head_word1{
+  color:#484848;
+  font-size:25px;
+  font-weight:500;
+  font-family: 'Noto Sans KR', sans-serif;
+  width:100%;
+  display:block;
+  color:#FF5A5F;
+  color:#4f2cfa;
+}
+
+#head_word2{
+  color:#484848;
+  font-size:25px;
+  font-weight:300;
+  font-family: 'Noto Sans KR', sans-serif;
+  width:100%;
+  display:block;
+}
+
+#head_word3{
+  color:#484848;
+  font-size:25px;
+  font-weight:300;
+  font-family: 'Noto Sans KR', sans-serif;
+  width:100%;
+  display:block;
+}
+
+@media  screen and (min-width:1080px){
+  #nav_level2{
+    width:1080px;
+  }
+  #head_word1{
+    font-size:48px;
+    height:55px;
+    line-height: 55px;
+  }
+  #head_word2{
+    font-size:48px;
+    height:55px;
+    line-height: 55px;
+  }
+  #head_word3{
+    font-size:48px;
+    height:55px;
+    line-height: 55px;
+  }
+}

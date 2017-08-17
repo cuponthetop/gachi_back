@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 타이틀
+  2. 메타 태그
+  3. 파비콘
+  4. 제이쿼리
+  5. 웹 폰트
+  6. css
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+    -->
+
+  <!--1 타이틀-->
+  <title>가치 - 공연을 함께</title>
+
+  <!--2 메타 태그-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="theme-color" content="#fff">
+  <meta property="og:url" content="">
+  <meta property="og.title" content="가치">
+  <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta content="telephone=no" name="format-detection">
+
+  <!--3 파비콘-->
+  <link rel="shortcut icon" href="">
+  <link rel="apple-touch-icon" href="">
+
+  <!--4 제이쿼리-->
+  <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+
+  <!--5 웹 폰트-->
+  <link href="" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+  <!--6-1-1 네비게이션 레벨1 css-->
+  <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/detail/detail.css" rel="stylesheet" type="text/css"/>
+
+  <!--6-2 인기 페스티벌 css-->
+  <link href="/css/main_page/famefestival/famefestival.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/main_page/soonfestival/soonfestival.css" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript" src="/vue/vue.js"></script>
+  <script type="text/javascript" src="/axio/axio.js"></script>
+  <script type="text/javascript" src="/moment/moment.js"></script>
+  <script type="text/javascript" src="/lodash/lodash.js"></script>
+
+  <!-- famefestival JS -->
+  <script src="/js/main_page/famefestival/famefestival.js"></script>
+  <!-- soonfestival JS -->
+  <script src="/js/main_page/soonfestival/soonfestival.js"></script>
+
+  <!-- google firebase-->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script>
+  var config = {
+      apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
+      authDomain: "gachi-test.firebaseapp.com",
+      databaseURL: "https://gachi-test.firebaseio.com",
+      projectId: "gachi-test",
+      storageBucket: "gachi-test.appspot.com",
+      messagingSenderId: "48888243317"
+    };
+    firebase.initializeApp(config);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    console.log('로그인함');
+    console.log(user.email);
+    console.log(user.uid);
+    total_info.is_login=true;
+    total_info.email = user.email;
+  } else {
+    console.log("로그인 안했음");
+    // No user is signed in.
+  }
+  });
+
+  var total_info = {
+    is_login:false,
+    email:"",
+  }
+  </script>
+  <style media="screen">
+    #nav_level1{
+      margin-bottom:15px;
+    }
+  </style>
+  </head>
+  <body>
+
+  <div id="detail_nav_all">
+    <div id="detail_nav">
+      <a id="gachi_logo" href="/">
+        GACHI
+      </a>
+      <div id="gachi_title">
+
+      </div>
+      <div id="search_button" style="background-image:url('/image/search_black.png')">
+
+      </div>
+    </div>
+  </div>
+
+
+  <div id="image_info_all">
+    <div id="image_info">
+
+      <div id="image_blur" style="background-image:url('<%= festival.image %>')">
+      </div>
+      <div id="filter">
+      </div>
+
+    </div>
+    <div id="pc_info_all">
+
+      <div id="pc_title">
+        <%=festival.title%>
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/schedule.png">
+        <div class="pc_info_description">
+          <%= moment(festival.from).format('YYYY/MM/DD') %> ~ <%= moment(festival.until).format('YYYY/MM/DD') %>
+        </div>
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/location.png">
+        <div class="pc_info_description">
+          <%= festival.location%>
+        </div>
+      </div>
+
+      <div id="pc_intro">
+        <div id="pc_intro_label">
+          소개
+        </div>
+        <div id="pc_intro_description">
+          <%=festival.detail%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_star">
+        <div id="pc_star_label">
+          출연
+        </div>
+        <div id="pc_star_description">
+          <%=festival.starring%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_genre">
+        <div id="pc_genre_label">
+          장르
+        </div>
+        <div id="pc_genre_description">
+          <% for (var key in festival.genres) { %>
+          <span>
+            #<%= festival.genres[key].genre %>
+          </span>
+          <% } %>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_room">
+        <div id="pc_room_label">
+          대화방
+        </div>
+        <div id="pc_room_description">
+          <%=festival.starring%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+
+    </div>
+    <div id="center">
+      <div id="center_image" style="background-image:url('<%= festival.image %>')">
+
+      </div>
+      <div id="pc_gachi">
+        가치하기
+      </div>
+      <div id="center_info">
+        <div id="center_date">
+          <%= moment(festival.from).format('YY/MM/DD') %> ~ <%= moment(festival.until).format('MM/DD') %>
+        </div>
+        <div id="center_title">
+          <%=festival.title%>
+        </div>
+        <div id="center_tag">
+          <% for (var key in festival.genres) { %>
+          <span>
+            #<%= festival.genres[key].genre %>
+          </span>
+          <% } %>
+        </div>
+
+
+      </div>
+    </div>
+    <div style="clear:both;">
+
+    </div>
+
+  </div>
+
+  <div id="intro_head">
+    정보
+  </div>
+  <div id="intro">
+    <%=festival.detail%>
+  </div>
+  <div id="intro_foot">
+    <div id="intro_more">
+      더보기
+    </div>
+  </div>
+
+  <div id="star_head">
+    라인업
+  </div>
+  <div id="star">
+    <%=festival.starring%>
+  </div>
+  <div id="star_foot">
+  </div>
+
+  <div id="room_head">
+    대화방
+  </div>
+
+
+
+
+    <script>
+    $('#intro_more').click(function(){
+      $('#intro').css('height','auto');
+    })
+    </script>
+  </body>
+</html>

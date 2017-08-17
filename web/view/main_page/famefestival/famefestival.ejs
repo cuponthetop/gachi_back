@@ -1,0 +1,73 @@
+<!--인기 공연 인클루드-->
+<div id="famefestival_word">
+
+  <div id="famefestival_title">
+    인기 페스티벌
+  </div>
+
+  <a id="famefestival_more" href="##">
+    <div id="famefestival_more_word">
+      더보기
+    </div>
+    <div id="famefestival_more_arrow" style="background-image:url('/image/famefestival/arrow_right.png')">
+
+    </div>
+  </a>
+
+</div>
+
+
+<!-- famefestival -->
+<div class="famefestival-container">
+    <div class="famefestival-wrapper">
+<% festival.forEach(function(fest) { %>
+        <div class="famefestival-slide">
+          <a class="famefestival_link" href='/festival/<%= fest.fid%>'>
+
+            <div class="famefestival_image" style="background-image:url('<%= fest.image %>')">
+            </div>
+
+            <div class="famefestival_info">
+
+              <div class="famefestival_title">
+                <%= fest.title %>
+              </div>
+
+              <div class="famefestival_date">
+                <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
+              </div>
+
+              <div class="famefestival_genre">
+                <% for (var key in fest.genres) { %>
+                <span>
+                  <%= fest.genres[key].genre %>
+                </span>
+                <% } %>
+              </div>
+
+            </div>
+
+          </a>
+        </div>
+<% }); %>
+
+      </div>
+    </div>
+
+<!-- Initialize famefestival -->
+<script>
+var famefestival = new famefestival('.famefestival-container', {
+    slidesPerView: 5,
+    paginationClickable: true,
+    spaceBetween: 10,
+    freeMode: true,
+    breakpoints: {
+      499: {
+        slidesPerView:2.2
+      },
+      699: {
+        slidesPerView:3.2
+      },
+    }
+});
+</script>

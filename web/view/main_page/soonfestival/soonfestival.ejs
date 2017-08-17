@@ -1,0 +1,72 @@
+<!--공연 임박 인클루드-->
+<div id="soonfestival_word">
+
+  <div id="soonfestival_title">
+    공연 임박
+  </div>
+
+  <a id="soonfestival_more" href="##">
+    <div id="soonfestival_more_word">
+      더보기
+    </div>
+    <div id="soonfestival_more_arrow" style="background-image:url('/image/soonfestival/arrow_right.png')">
+
+    </div>
+  </a>
+
+</div>
+
+
+<!-- soonfestival -->
+<div class="soonfestival-container">
+  <div class="soonfestival-wrapper">
+    <% festival.forEach(function(fest) { %>
+
+    <div class="soonfestival-slide">
+      <a class="soonfestival_link" href='/festival/<%= fest.fid%>'>
+
+        <div class="soonfestival_image"  style="background-image:url('<%= fest.image %>')">
+        </div>
+
+        <div class="soonfestival_info">
+
+          <div class="soonfestival_title">
+            <%= fest.title %>
+          </div>
+
+          <div class="soonfestival_date">
+            <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
+          </div>
+
+          <div class="soonfestival_genre">
+            <% for (var key in fest.genres) { %>
+            <span>
+              <%= fest.genres[key].genre %>
+            </span>
+            <% } %>
+          </div>
+
+        </div>
+
+      </a>
+    </div>
+    <% }); %>
+
+  </div>
+</div>
+
+<script>
+var soonfestival = new soonfestival('.soonfestival-container', {
+    slidesPerView: 5,
+    spaceBetween: 10,
+    freeMode: true,
+    breakpoints: {
+      499: {
+        slidesPerView:2.2
+      },
+      699: {
+        slidesPerView:3.2
+      },
+    }
+});
+</script>

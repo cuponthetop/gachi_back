@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 타이틀
+  2. 메타 태그
+  3. 파비콘
+  4. 제이쿼리
+  5. 웹 폰트
+  6. css
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+    -->
+
+  <!--1 타이틀-->
+  <title>가치 - 공연을 함께</title>
+
+  <!--2 메타 태그-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="theme-color" content="#fff">
+  <meta property="og:url" content="">
+  <meta property="og.title" content="가치">
+  <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta content="telephone=no" name="format-detection">
+
+  <!--3 파비콘-->
+  <link rel="shortcut icon" href="">
+  <link rel="apple-touch-icon" href="">
+
+  <!--4 제이쿼리-->
+  <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+
+  <!--5 웹 폰트-->
+  <link href="" rel="stylesheet" type="text/css"/>
+
+  <!--6-1-1 네비게이션 레벨1 css-->
+  <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css"/>
+
+  <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
+
+  <!--6-2 인기 페스티벌 css-->
+  <link href="/css/main_page/famefestival/famefestival.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/main_page/soonfestival/soonfestival.css" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript" src="/vue/vue.js"></script>
+  <script type="text/javascript" src="/axio/axio.js"></script>
+  <script type="text/javascript" src="/moment/moment.js"></script>
+  <script type="text/javascript" src="/lodash/lodash.js"></script>
+
+  <!-- famefestival JS -->
+  <script src="/js/main_page/famefestival/famefestival.js"></script>
+  <!-- soonfestival JS -->
+  <script src="/js/main_page/soonfestival/soonfestival.js"></script>
+
+  <!-- google firebase-->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script>
+  var config = {
+      apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
+      authDomain: "gachi-test.firebaseapp.com",
+      databaseURL: "https://gachi-test.firebaseio.com",
+      projectId: "gachi-test",
+      storageBucket: "gachi-test.appspot.com",
+      messagingSenderId: "48888243317"
+    };
+    firebase.initializeApp(config);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    var uid = user.uid;
+    var fbtk;
+    console.log('로그인함');
+    console.log(user.email);
+    console.log(user.uid);
+    console.log(user.fbid);
+    console.log(user);
+    user.getIdToken().then(function(data) {
+      console.log(data)
+      fbtk = data;
+      $.ajax({
+        type: 'GET',
+        url: 'http://cuponthetop.com/gachi/api/v1/user/'+'66661790-92a7-47bb-ad91-f78deabe460e',
+        dataType : 'xml',
+        beforeSend : function(xhr){
+            xhr.setRequestHeader("authorization", fbtk);
+        },
+        async:false,
+        success: function(data) {
+          console.log(data);
+        },
+        error: function(data){
+          console.log(data);
+        }
+      });
+    });
+
+
+
+
+
+
+  } else {
+    console.log("로그인 안했음");
+  }
+  });
+
+  </script>
+  </head>
+  <body>
+    <% include ../nav/nav_level1.ejs %>
+
+    <% include ../nav/nav_level2.ejs %>
+
+    <% include ../nav/nav_level3.ejs %>
+
+    <% include ../nav/nav_level4.ejs %>
+
+    <% include /famefestival/famefestival.ejs %>
+
+    <% include /soonfestival/soonfestival.ejs %>
+
+  </body>
+</html>

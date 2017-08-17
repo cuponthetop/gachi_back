@@ -1,0 +1,510 @@
+*{
+  margin:0;
+  padding:0;
+}
+#detail_nav_all{
+  width:100%;
+  height:47px;
+}
+
+#detail_nav{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  height:47px;
+}
+
+#gachi_logo{
+  display:block;
+  width:50px;
+  height:47px;
+  line-height: 50px;
+  font-family: 'Baloo Bhaina', cursive;
+  color:#242424;
+  text-decoration: none;
+  font-size:18px;
+  float:left;
+}
+#search_button{
+  width:21px;
+  height:21px;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  float:right;
+  margin-top:13px;
+}
+
+
+#image_info{
+  width:100%;
+  height:160px;
+  overflow:hidden;
+  position:relative;
+}
+
+#image_blur{
+  position: absolute;
+  width:100%;
+  height:100%;
+
+  background-size:cover;
+  background-position: center;
+  overflow:hidden;
+
+  -webkit-filter: blur(30px);
+  -moz-filter: blur(30px);
+  -o-filter: blur(30px);
+  -ms-filter: blur(30px);
+  filter: blur(30px);
+}
+
+#filter{
+  position: absolute;
+  width:100%;
+  height:100%;
+  background-color: rgba(0,0,0,0.18);
+}
+
+#center{
+  margin-top:-95px;
+  position: absolute;
+  height:121px;
+  left:50%;
+  width:calc(100% - 40px);
+  margin-left:-140px;
+  width:90vw;
+  margin-left:-45vw;
+}
+
+#center_image{
+  width:100px;
+  height:121px;
+  z-index: 10;
+
+  background-size:cover;
+  background-position: center;
+  overflow:hidden;
+  float:left;
+}
+
+#center_info{
+  width:170px;
+  height:121px;
+  float:right;
+  position: relative;
+  float:left;
+  margin-left:15px;
+  width:calc(100% - 115px);
+}
+#center_date{
+  width:100%;
+  height:20px;
+  line-height: 20px;
+  color:#fff;
+  font-size:13px;
+}
+#center_title{
+  width:100%;
+  height:50px;
+  color:#fff;
+  font-size:18px;
+  line-height: 25px;
+}
+#center_tag{
+  position:absolute;
+  bottom:0px;
+  height:20px;
+  width:100%;
+}
+#center_tag span{
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#fff;
+  background-color:#4f2cfa;
+  font-size:10px;
+  padding-left:5px;
+  padding-right:5px;
+
+  height:20px;
+  line-height: 20px;
+  border-radius: 10px;
+  font-weight:300;
+  display: block;
+  float:left;
+  margin-right:10px;
+  padding-left:8px;
+  padding-right:8px;
+  width:auto;
+}
+#pc_gachi{
+  display: none;
+}
+#pc_info_all{
+  display: none;
+}
+
+
+#intro_head{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  font-weight:500;
+  height:30px;
+  line-height: 30px;
+  margin-top:50px;
+}
+#intro{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  height:100px;
+  margin-top:10px;
+  color:#888c92;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  overflow: hidden;
+}
+#intro_foot{
+  width:calc(100% - 40px);
+  height:35px;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom: 1px solid #ececec;
+}
+#intro_more{
+  width:50px;
+  margin-top:10px;
+  height:15px;
+  line-height: 15px;
+  float:right;
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align: center;
+  color:#888c92;
+}
+
+#star_head{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  font-weight:500;
+  height:30px;
+  line-height: 30px;
+  margin-top:20px;
+}
+#star{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  margin-top:10px;
+  color:#888c92;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  overflow: hidden;
+}
+#star_foot{
+  width:calc(100% - 40px);
+  height:20px;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom: 1px solid #ececec;
+}
+
+#room_head{
+  width:calc(100% - 40px);
+  margin-left:auto;
+  margin-right:auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  font-weight:500;
+  height:30px;
+  line-height: 30px;
+  margin-top:20px;
+}
+
+
+@media  screen and (min-width:466px){
+  #center{
+    width:466px;
+    margin-left:-213px;
+  }
+  #intro_head{
+    width:426px;
+  }
+  #intro{
+    width:426px;
+  }
+  #intro_foot{
+    width:426px;
+  }
+
+  #star_head{
+    width:426px;
+  }
+  #star{
+    width:426px;
+  }
+  #star_foot{
+    width:426px;
+  }
+  #room_head{
+    width:426px;
+  }
+}
+@media  screen and (min-width:890px){
+  #detail_nav_all{
+    height:60px;
+    margin-bottom:30px;
+    border-bottom:1px solid #dbdbdb;
+    box-sizing: border-box;
+  }
+
+  #detail_nav{
+    width:calc(100% - 60px);
+    height:60px;
+  }
+
+  #gachi_logo{
+    display:block;
+    width:80px;
+    height:60px;
+    line-height: 64px;
+    font-size:27px;
+  }
+  #search_button{
+    width:26px;
+    height:26px;
+    margin-top:17px;
+  }
+
+  #image_info_all{
+    width:890px;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  #image_info{
+    display: none;
+  }
+  #center{
+    position: relative;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:0px;
+    left:0;
+    height:360px;
+    width:230px;
+    float:left;
+    border-bottom: 1px solid #dbdbdb;
+    box-sizing: border-box;
+  }
+  #center_image{
+    width:230px;
+    height:280px;
+  }
+  #center_info{
+    width:350px;
+    height:220px;
+    margin-top:5px;
+    margin-left:120px;
+  }
+  #center_date{
+    display: none;
+  }
+  #center_title{
+    color:#000;
+    font-size:32px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    height:auto;
+    line-height: 38px;
+    margin-bottom: 20px;
+    display:none;
+  }
+  #center_tag{
+    display: none;
+  }
+
+  #pc_info_all{
+    display: block;
+    width:600px;
+    float:left;
+    margin-right:60px;
+  }
+  #pc_title{
+    font-size:36px;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom:25px;
+    height:auto;
+    line-height:43px;
+    margin-bottom:24px;
+
+  }
+  .pc_info{
+    width:350px;
+    min-height: 30px;
+    height:auto;
+  }
+  .pc_info_image{
+    width:18px;
+    margin-top:7px;
+    float:left;
+  }
+  .pc_info_description{
+    height:30px;
+    line-height: 30px;
+    font-size: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
+    float:left;
+    margin-left:10px;
+    height:auto;
+    width:300px;
+    font-size:19px;
+    color:#484848;
+    font-weight: 300;
+  }
+
+  #pc_intro{
+    width:600px;
+    border-top:1px solid #dbdbdb;
+    margin-top:24px;
+    padding-top:25px;
+  }
+
+  #pc_intro_label{
+    width:170px;
+    height:auto;
+    float:left;
+    font-size:19px;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+  #pc_intro_description{
+    width:430px;
+    height:auto;
+    float:left;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+
+  #pc_star{
+    width:600px;
+    border-top:1px solid #dbdbdb;
+    margin-top:24px;
+    padding-top:25px;
+  }
+
+  #pc_star_label{
+    width:170px;
+    height:auto;
+    float:left;
+    font-size:19px;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+  #pc_star_description{
+    width:430px;
+    height:auto;
+    float:left;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+  #pc_room{
+    width:600px;
+    border-top:1px solid #dbdbdb;
+    margin-top:24px;
+    padding-top:25px;
+  }
+  #pc_room_label{
+    width:170px;
+    height:auto;
+    float:left;
+    font-size:19px;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+  #pc_room_description{
+    width:430px;
+    height:auto;
+    float:left;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+
+  #pc_genre{
+    width:600px;
+    border-top:1px solid #dbdbdb;
+    margin-top:24px;
+    padding-top:25px;
+  }
+  #pc_genre_label{
+    width:170px;
+    height:auto;
+    float:left;
+    font-size:19px;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+  #pc_genre_description{
+    width:430px;
+    height:auto;
+    float:left;
+    color:#484848;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight:300;
+  }
+
+
+  #intro_head{
+    display: none;
+  }
+  #intro{
+    display: none;
+  }
+  #intro_foot{
+    display: none;
+  }
+  #star_head{
+    display: none;
+  }
+  #star{
+    display: none;
+  }
+  #star_foot{
+    display: none;
+  }
+  #room_head{
+    display: none;
+  }
+  #pc_gachi{
+    width:230px;
+    margin-top: 20px;
+    height:40px;
+    line-height: 40px;
+    display: block;
+    float:right;
+    text-align: center;
+    background-color: #4f2cfa;
+    color:#fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  #pc_gachi:hover{
+    opacity: 0.85;
+  }
+}
