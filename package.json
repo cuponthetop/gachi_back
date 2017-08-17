@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpile": "gulp babel",
-    "start": "node build/index.js &",
+    "start": "node build/index.js",
     "web": "node web/main_page.js",
     "api": "gulp api"
   },
