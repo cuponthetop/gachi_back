@@ -13,6 +13,7 @@
 #logo{
   width:35px;
   height:35px;
+  float:left;
   overflow:hidden;
   background-size:cover;
   background-position: center;
@@ -22,6 +23,7 @@
   float:right;
   display: none;
 }
+
 
 @media  screen and (min-width:1080px){
     #nav_level1{
@@ -39,6 +41,9 @@
       font-weight:300;
       color:#484848;
       text-decoration: none;
+    }
+    .nav_email{
+      color:#4f2cfa;
     }
     .logout{
       cursor:pointer;

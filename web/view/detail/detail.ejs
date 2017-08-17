@@ -112,92 +112,162 @@
       <div id="gachi_title">
 
       </div>
-      <div id="search_button">
+      <div id="search_button" style="background-image:url('/image/search_black.png')">
 
       </div>
     </div>
   </div>
 
 
-<div id="all">
   <div id="image_info_all">
     <div id="image_info">
 
-      <div id="image_blur" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
+      <div id="image_blur" style="background-image:url('<%= festival.image %>')">
       </div>
       <div id="filter">
       </div>
 
     </div>
-    <div id="center">
-      <div id="center_image" v-bind:style="{ backgroundImage: 'url(' + info.image + ')' }">
+    <div id="pc_info_all">
 
+      <div id="pc_title">
+        <%=festival.title%>
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/schedule.png">
+        <div class="pc_info_description">
+          <%= moment(festival.from).format('YYYY/MM/DD') %> ~ <%= moment(festival.until).format('YYYY/MM/DD') %>
+        </div>
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/location.png">
+        <div class="pc_info_description">
+          <%= festival.location%>
+        </div>
+      </div>
+
+      <div id="pc_intro">
+        <div id="pc_intro_label">
+          소개
+        </div>
+        <div id="pc_intro_description">
+          <%=festival.detail%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_star">
+        <div id="pc_star_label">
+          출연
+        </div>
+        <div id="pc_star_description">
+          <%=festival.starring%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_genre">
+        <div id="pc_genre_label">
+          장르
+        </div>
+        <div id="pc_genre_description">
+          <% for (var key in festival.genres) { %>
+          <span>
+            #<%= festival.genres[key].genre %>
+          </span>
+          <% } %>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+      <div id="pc_room">
+        <div id="pc_room_label">
+          대화방
+        </div>
+        <div id="pc_room_description">
+          <%=festival.starring%>
+        </div>
+        <div style="clear:both;">
+
+        </div>
+
+      </div>
+
+
+    </div>
+    <div id="center">
+      <div id="center_image" style="background-image:url('<%= festival.image %>')">
+
+      </div>
+      <div id="pc_gachi">
+        가치하기
       </div>
       <div id="center_info">
         <div id="center_date">
-          {{info.from | formatDate}} ~ {{info.until | formatDate}}
+          <%= moment(festival.from).format('YY/MM/DD') %> ~ <%= moment(festival.until).format('MM/DD') %>
         </div>
         <div id="center_title">
-          {{info.title}}
+          <%=festival.title%>
         </div>
         <div id="center_tag">
-          <span v-for="a in info.genres">
-            #{{a.genre}}
+          <% for (var key in festival.genres) { %>
+          <span>
+            #<%= festival.genres[key].genre %>
           </span>
+          <% } %>
         </div>
+
+
       </div>
     </div>
+    <div style="clear:both;">
+
+    </div>
+
   </div>
 
   <div id="intro_head">
     정보
   </div>
   <div id="intro">
-    {{info.detail}}
+    <%=festival.detail%>
   </div>
   <div id="intro_foot">
     <div id="intro_more">
       더보기
     </div>
   </div>
-</div>
 
-    <script>
-      var app = new Vue({
-      el: '#all',
-      data: {
-        info: undefined,
-      },
-      created: function(){
-        this.load();
-      },
-      methods: {
-        load: function() {
-          //this.famefestivals = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0);
-          axios.get('http://cuponthetop.com/gachi/api/v1/festival/'+'<%=fid%>')
-          .then(function (response){
-              app.info = response.data;
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-        },
-      }
+  <div id="star_head">
+    라인업
+  </div>
+  <div id="star">
+    <%=festival.starring%>
+  </div>
+  <div id="star_foot">
+  </div>
 
-    });
+  <div id="room_head">
+    대화방
+  </div>
 
-    </script>
 
-    <script>
-    Vue.filter('formatDate', function(value) {
-      if (value) {
-        return moment(String(value)).format('YYYY.MM.DD')
-      }
-    });
-    </script>
+
+
     <script>
     $('#intro_more').click(function(){
-      $('#in').css('height','auto');
+      $('#intro').css('height','auto');
     })
     </script>
   </body>

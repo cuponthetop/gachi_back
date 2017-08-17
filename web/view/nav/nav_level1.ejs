@@ -1,7 +1,7 @@
   <div id="nav_level1">
     <a id="logo" href="/" style="background-image:url('/image/gachi_logo1.png')"></a>
     <div id="nav_right">
-      <a v-if="user" class="nav_info" href="/info">
+      <a v-if="user" class="nav_info nav_email" href="/info">
         {{user.email}}
       </a>
       <a v-if="user == null" class="nav_info" href="login">

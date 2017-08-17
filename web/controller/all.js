@@ -49,7 +49,7 @@ var detailData = function(callback){
       method: 'GET',
   };
   request(options, function(err, res, body) {
-      index_data = JSON.parse(res.body);
+      detail_data = JSON.parse(res.body);
       callback();
   });
 }
@@ -58,7 +58,7 @@ const detail = function(req, res){
   fid = req.params.fid;
 
   detailData(function() {
-    res.render('../detail/detail',{fid: fid});
+    res.render('../detail/detail',{'festival': detail_data, 'moment':moment});
   });
 };
 
