@@ -1,411 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>info_slide demo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta charset="utf-8">
+  <title>info_slide demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
-    <!-- Link info_slide's CSS -->
-    <link rel="stylesheet" href="/css/info_slide/info_slide.css">
+  <!-- Link info_slide's CSS -->
+  <link rel="stylesheet" href="/css/info_slide/info_slide.css">
 
-    <script
-      src="https://code.jquery.com/jquery-1.12.4.min.js"
-      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-      crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
-    <!-- Demo styles -->
-    <style>
-    html, body {
-        position: relative;
-        height: 100%;
-    }
+  <!-- Demo styles -->
+  <style>
+    html,
     body {
-        background: #fff;
-        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 14px;
-        color:#000;
-        margin: 0;
-        padding: 0;
+      position: relative;
+      height: 100%;
     }
-    .info_slide-container {
-        width: 100%;
-        height: 100%;
-    }
-    .info_slide-slide {
-        text-align: center;
-        font-size: 18px;
 
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
     }
-    </style>
+
+    .info_slide-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .info_slide-slide {
+      text-align: center;
+      font-size: 18px;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+  </style>
 </head>
+
 <body>
 
-<script>
-  var total_info = {
-    nickname:"",
-    age:"",
-    gender:"",
-    location:"",
-    genre:"",
-    step:0,
-    is_skip:true,
-    skip: [true, true, true, true, true],
-  };
-</script>
+  <script>
+    var total_info = {
+      nickname: "",
+      age: "",
+      gender: "",
+      location: "",
+      genre: "",
+      step: 0,
+      is_skip: true,
+      skip: [true, true, true, true, true],
+    };
 
-    <div id="nav">
-      <div id="nav_prev">
-        돌아가기
-      </div>
-      <div id="nav_next">
-        건너뛰기
-      </div>
+  </script>
+
+  <div id="nav">
+    <div id="nav_prev">
+      돌아가기
     </div>
+    <div id="nav_next">
+      건너뛰기
+    </div>
+  </div>
 
 
-    <!-- info_slide -->
-    <div class="info_slide-container">
-        <div class="info_slide-wrapper">
+  <!-- info_slide -->
+  <div class="info_slide-container">
+    <div class="info_slide-wrapper">
 
-            <div class="info_slide-slide">
+      <div class="info_slide-slide">
 
-              <div id="nickname_all">
+        <div id="nickname_all">
 
-                <h1 id="nickname_title">닉네임</h1>
+          <h1 id="nickname_title">닉네임</h1>
 
-                <input id="nickname_input" type="text" name="nickname" value="" onfocus="this.placeholder = ''" placeholder="닉네임을 입력해주세요">
-                <div id="nickname_word">
-                  필수 입력사항입니다.
-                </div>
+          <input id="nickname_input" type="text" name="nickname" value="" onfocus="this.placeholder = ''" placeholder="닉네임을 입력해주세요">
+          <div id="nickname_word">
+            필수 입력사항입니다.
+          </div>
 
-                <div id="nickname_button">
-                  다음
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="info_slide-slide">
-
-              <div id="age_all">
-
-                <h1 id="age_title">나이</h1>
-
-                <input id="age_input" type="text" name="nickname" value="" onfocus="this.placeholder = ''" placeholder="나이를 입력해주세요">
-                <div id="age_word">
-                  연령대로 표시됩니다.
-                </div>
-
-                <div id="age_button">
-                  다음
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="info_slide-slide">
-
-              <div id="gender_all">
-
-                <h1 id="gender_title">성별</h1>
-
-                <div id="gender_select">
-
-                  <div id="gender_man">
-                    남자
-                  </div>
-
-                  <div id="gender_woman">
-                    여자
-                  </div>
-
-                </div>
-
-                <div id="gender_button">
-                  다음
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div class="info_slide-slide">
-
-              <div id="location_all">
-
-                <h1 id="location_title">지역</h1>
-
-                <div id="location_word">
-                  출발 지역을 선택해주세요
-                </div>
-
-                <div id="location_select_all">
-                  <div class="location_select">
-                    서울특별시
-                  </div>
-                  <div class="location_select">
-                    부산광역시
-                  </div>
-                  <div class="location_select">
-                    대구광역시
-                  </div>
-                  <div class="location_select">
-                    인천광역시
-                  </div>
-                  <div class="location_select">
-                    경기도
-                  </div>
-                  <div class="location_select">
-                    광주광역시
-                  </div>
-                  <div class="location_select">
-                    대전광역시
-                  </div>
-                  <div class="location_select">
-                    울산광역시
-                  </div>
-                  <div class="location_select">
-                    세종특별자치시
-                  </div>
-                  <div class="location_select">
-                    강원도
-                  </div>
-                  <div class="location_select">
-                    충청북도
-                  </div>
-                  <div class="location_select">
-                    전라북도
-                  </div>
-                  <div class="location_select">
-                    전라남도
-                  </div>
-                  <div class="location_select">
-                    경상북도
-                  </div>
-                  <div class="location_select">
-                    경상남도
-                  </div>
-                  <div class="location_select">
-                    제주특별자치도
-                  </div>
-
-                </div>
-
-                <div id="location_button">
-                  다음
-                </div>
-
-              </div>
-
-            </div>
-
-            <div class="info_slide-slide">
-
-              <div id="genre_all">
-
-                <h1 id="genre_title">선호 장르</h1>
-
-                <div id="genre_word">
-                  선호 장르를 선택해주세요
-                </div>
-
-                <div id="genre_select_all">
-
-                  <div class="genre_select">
-                    락 메탈
-                  </div>
-
-                  <div class="genre_select">
-                    발라드
-                  </div>
-
-                  <div class="genre_select">
-                    알앤비
-                  </div>
-
-                  <div class="genre_select">
-                    힙합
-                  </div>
-
-                  <div class="genre_select">
-                    일렉트로니카
-                  </div>
-
-                  <div class="genre_select">
-                    댄스
-                  </div>
-
-                  <div class="genre_select">
-                    포크
-                  </div>
-
-                  <div class="genre_select">
-                    트로트
-                  </div>
-
-                  <div class="genre_select">
-                    크로스오버
-                  </div>
-
-                  <div class="genre_select">
-                    뉴에이지
-                  </div>
-
-                  <div class="genre_select">
-                    클럽
-                  </div>
-
-                  <div class="genre_select">
-                    재즈블루스
-                  </div>
-
-                  <div class="genre_select">
-                    제이팝
-                  </div>
-
-                  <div class="genre_select">
-                    콘서트
-                  </div>
-
-                  <div class="genre_select">
-                    탱고
-                  </div>
-
-                  <div class="genre_select">
-                    내한공연
-                  </div>
-
-                  <div class="genre_select">
-                    개그콘서트
-                  </div>
-
-                </div>
-
-                <div id="genre_button">
-                  적용
-                </div>
-
-              </div>
-
-            </div>
+          <div id="nickname_button">
+            다음
+          </div>
 
         </div>
-        <!-- Add Pagination -->
-        <div class="info_slide-pagination"></div>
 
+      </div>
+
+      <div class="info_slide-slide">
+
+        <div id="age_all">
+
+          <h1 id="age_title">나이</h1>
+
+          <input id="age_input" type="text" name="nickname" value="" onfocus="this.placeholder = ''" placeholder="나이를 입력해주세요">
+          <div id="age_word">
+            연령대로 표시됩니다.
+          </div>
+
+          <div id="age_button">
+            다음
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="info_slide-slide">
+
+        <div id="gender_all">
+
+          <h1 id="gender_title">성별</h1>
+
+          <div id="gender_select">
+
+            <div id="gender_man">
+              남자
+            </div>
+
+            <div id="gender_woman">
+              여자
+            </div>
+
+          </div>
+
+          <div id="gender_button">
+            다음
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="info_slide-slide">
+
+        <div id="location_all">
+
+          <h1 id="location_title">지역</h1>
+
+          <div id="location_word">
+            출발 지역을 선택해주세요
+          </div>
+
+          <div id="location_select_all">
+            <div class="location_select">
+              서울특별시
+            </div>
+            <div class="location_select">
+              부산광역시
+            </div>
+            <div class="location_select">
+              대구광역시
+            </div>
+            <div class="location_select">
+              인천광역시
+            </div>
+            <div class="location_select">
+              경기도
+            </div>
+            <div class="location_select">
+              광주광역시
+            </div>
+            <div class="location_select">
+              대전광역시
+            </div>
+            <div class="location_select">
+              울산광역시
+            </div>
+            <div class="location_select">
+              세종특별자치시
+            </div>
+            <div class="location_select">
+              강원도
+            </div>
+            <div class="location_select">
+              충청북도
+            </div>
+            <div class="location_select">
+              전라북도
+            </div>
+            <div class="location_select">
+              전라남도
+            </div>
+            <div class="location_select">
+              경상북도
+            </div>
+            <div class="location_select">
+              경상남도
+            </div>
+            <div class="location_select">
+              제주특별자치도
+            </div>
+
+          </div>
+
+          <div id="location_button">
+            다음
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="info_slide-slide">
+
+        <div id="genre_all">
+
+          <h1 id="genre_title">선호 장르</h1>
+
+          <div id="genre_word">
+            선호 장르를 선택해주세요
+          </div>
+
+          <div id="genre_select_all">
+
+            <div class="genre_select">
+              락 메탈
+            </div>
+
+            <div class="genre_select">
+              발라드
+            </div>
+
+            <div class="genre_select">
+              알앤비
+            </div>
+
+            <div class="genre_select">
+              힙합
+            </div>
+
+            <div class="genre_select">
+              일렉트로니카
+            </div>
+
+            <div class="genre_select">
+              댄스
+            </div>
+
+            <div class="genre_select">
+              포크
+            </div>
+
+            <div class="genre_select">
+              트로트
+            </div>
+
+            <div class="genre_select">
+              크로스오버
+            </div>
+
+            <div class="genre_select">
+              뉴에이지
+            </div>
+
+            <div class="genre_select">
+              클럽
+            </div>
+
+            <div class="genre_select">
+              재즈블루스
+            </div>
+
+            <div class="genre_select">
+              제이팝
+            </div>
+
+            <div class="genre_select">
+              콘서트
+            </div>
+
+            <div class="genre_select">
+              탱고
+            </div>
+
+            <div class="genre_select">
+              내한공연
+            </div>
+
+            <div class="genre_select">
+              개그콘서트
+            </div>
+
+          </div>
+
+          <div id="genre_button">
+            적용
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
+    <!-- Add Pagination -->
+    <div class="info_slide-pagination"></div>
 
-    <!-- info_slide JS -->
-    <script src="/js/info_slide/info_slide.js"></script>
 
-    <!-- Initialize info_slide -->
-    <script>
+  </div>
+
+  <!-- info_slide JS -->
+  <script src="/js/info_slide/info_slide.js"></script>
+
+  <!-- Initialize info_slide -->
+  <script>
     var info_slide = new info_slide('.info_slide-container', {
-        pagination: '.info_slide-pagination',
-        paginationClickable: false,
-        //nextButton: '.info_slide-button-next',
-        //prevButton: '.info_slide-button-prev',
+      pagination: '.info_slide-pagination',
+      paginationClickable: false,
+      //nextButton: '.info_slide-button-next',
+      //prevButton: '.info_slide-button-prev',
     });
-    </script>
+  </script>
 
-    <script>
+  <script>
     //나이 숫자만 입력받음
-    $(document).ready(function() {
+    $(document).ready(function () {
       $("#age_input").keydown(function (e) {
-      // Allow: backspace, delete, tab, escape, enter and .
-      if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
-           // Allow: Ctrl/cmd+A
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+          // Allow: Ctrl/cmd+A
           (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-           // Allow: Ctrl/cmd+C
+          // Allow: Ctrl/cmd+C
           (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
-           // Allow: Ctrl/cmd+X
+          // Allow: Ctrl/cmd+X
           (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
-           // Allow: home, end, left, right
+          // Allow: home, end, left, right
           (e.keyCode >= 35 && e.keyCode <= 39)) {
-               // let it happen, don't do anything
-               return;
-      }
-      // Ensure that it is a number and stop the keypress
-      if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+          // let it happen, don't do anything
+          return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
           e.preventDefault();
-          }
-        });
+        }
       });
-    </script>
+    });
+  </script>
 
 
-    <script>
+  <script>
     //성별
-      $('#gender_man').click(function() {
-        $('#gender_man').css('color','#4f2cfa');
-        $('#gender_man').css('border-color','#4f2cfa');
+    $('#gender_man').click(function () {
+      $('#gender_man').css('color', '#4f2cfa');
+      $('#gender_man').css('border-color', '#4f2cfa');
 
-        $('#gender_woman').css('color','#888c92');
-        $('#gender_woman').css('border-color','#888c92');
-      })
+      $('#gender_woman').css('color', '#888c92');
+      $('#gender_woman').css('border-color', '#888c92');
+    })
 
-      $('#gender_woman').click(function() {
-        $('#gender_woman').css('color','#4f2cfa');
-        $('#gender_woman').css('border-color','#4f2cfa');
+    $('#gender_woman').click(function () {
+      $('#gender_woman').css('color', '#4f2cfa');
+      $('#gender_woman').css('border-color', '#4f2cfa');
 
-        $('#gender_man').css('color','#888c92');
-        $('#gender_man').css('border-color','#888c92');
-      })
-    </script>
+      $('#gender_man').css('color', '#888c92');
+      $('#gender_man').css('border-color', '#888c92');
+    })
+  </script>
 
-    <script>
-    //지역선택
-      $('.location_select').click(function() {
+  <script>
+      //지역선택
+      $('.location_select').click(function () {
         var index = $('.location_select').index(this);
 
-        $('.location_select').css('color','#888c92');
-        $('.location_select').css('border-color','#888c92');
+        $('.location_select').css('color', '#888c92');
+        $('.location_select').css('border-color', '#888c92');
 
-        $('.location_select').eq(index).css('color','#4f2cfa');
-        $('.location_select').eq(index).css('border-color','#4f2cfa');
+        $('.location_select').eq(index).css('color', '#4f2cfa');
+        $('.location_select').eq(index).css('border-color', '#4f2cfa');
         total_info.location = $('.location_select').eq(index).html().trim();
         console.log(total_info.location);
       })
-    </script>
+  </script>
 
-    <script>
-    //장르 선택
-      $('.genre_select').click(function() {
+  <script>
+      //장르 선택
+      $('.genre_select').click(function () {
         var index = $('.genre_select').index(this);
 
-        $('.genre_select').css('color','#888c92');
-        $('.genre_select').css('border-color','#888c92');
+        $('.genre_select').css('color', '#888c92');
+        $('.genre_select').css('border-color', '#888c92');
 
-        $('.genre_select').eq(index).css('color','#4f2cfa');
-        $('.genre_select').eq(index).css('border-color','#4f2cfa');
+        $('.genre_select').eq(index).css('color', '#4f2cfa');
+        $('.genre_select').eq(index).css('border-color', '#4f2cfa');
         total_info.genre = $('.genre_select').eq(index).html().trim();
         console.log(total_info.genre);
       })
-    </script>
+  </script>
 
-    <script>
-      $('#nickname_button').click(function() {
+  <script>
+      $('#nickname_button').click(function () {
 
         var nickname = $('#nickname_input').val();
         console.log(nickname);
-        if(nickname == ''){
+        if (nickname == '') {
           alert('닉네임을 입력해주세요');
           return false;
         }
@@ -414,40 +418,40 @@
 
         $.ajax({
           type: 'GET',
-          url:"http://cuponthetop.com/gachi/api/v1/user/check",
+          url: "http://cuponthetop.com/gachi/api/v1/user/check",
           data: {
-          nickname: nickname,
+            nickname: nickname,
           },
-          async:false,
-          success: function(data){
+          async: false,
+          success: function (data) {
             console.log('성공');
             total_info.nickname = nickname;
             console.log(total_info.nickname);
           },
-          error: function(data){
+          error: function (data) {
             is_error = true;
             console.log('에러');
             alert('이미 사용하고 있는 닉네임입니다.')
             console.log(data.responseText);
           }
-          }).done(function(data){
-            //console.log(data);
-          })
+        }).done(function (data) {
+          //console.log(data);
+        })
 
-          if(is_error){
-            return false;
-          }
+        if (is_error) {
+          return false;
+        }
 
         total_info.is_skip = false;
         $('#nav_next').click();
         total_info.is_skip = true;
       })
 
-      $('#age_button').click(function() {
+      $('#age_button').click(function () {
 
         var age = $('#age_input').val();
         console.log(age);
-        if(age == ''){
+        if (age == '') {
           alert('나이를 입력해주세요');
           return false;
         }
@@ -457,9 +461,9 @@
         total_info.is_skip = true;
       })
 
-      $('#gender_button').click(function() {
+      $('#gender_button').click(function () {
 
-        if(total_info.gender == ""){
+        if (total_info.gender == "") {
           alert('성별을 선택해주세요');
           return false;
         }
@@ -471,9 +475,9 @@
       })
 
 
-      $('#location_button').click(function() {
+      $('#location_button').click(function () {
 
-        if(total_info.location == ""){
+        if (total_info.location == "") {
           alert('지역을 선택해주세요');
           return false;
         }
@@ -483,8 +487,8 @@
         total_info.is_skip = true;
       })
 
-      $('#genre_button').click(function() {
-        if(total_info.genre == ""){
+      $('#genre_button').click(function () {
+        if (total_info.genre == "") {
           alert('장르를 선택해주세요');
           return false;
         }
@@ -493,31 +497,31 @@
         $('#nav_next').click();
         total_info.is_skip = true;
       })
+  </script>
 
-    </script>
+  <script>
+      function check_skip() {
 
-<script>
-function check_skip() {
+        if (total_info.is_skip == false) {
+          total_info.skip[total_info.step] = false;
+        } else {
+          total_info.skip[total_info.step] = true;
+        }
 
-  if(total_info.is_skip == false){
-     total_info.skip[total_info.step] = false;
-  }else{
-     total_info.skip[total_info.step] = true;
-  }
+      }
 
-}
-</script>
+  </script>
 
-    <script>
-    $('#nav_next').click(function() {
+  <script>
+    $('#nav_next').click(function () {
       check_skip();
       console.log(total_info.skip);
-      if(total_info.step < 4){
-      total_info.step+=1;
-      info_slide.slideTo(total_info.step,300);
-      check_nav_state();
-      console.log(total_info.step);
-      }else if(total_info.step == 4){
+      if (total_info.step < 4) {
+        total_info.step += 1;
+        info_slide.slideTo(total_info.step, 300);
+        check_nav_state();
+        console.log(total_info.step);
+      } else if (total_info.step == 4) {
         console.log("끝");
         console.log(total_info.nickname);
         console.log(total_info.age);
@@ -527,48 +531,53 @@ function check_skip() {
         update_user();
       }
     })
-    $('#nav_prev').click(function() {
-      if(total_info.step > 0){
-      total_info.step-=1;
+    $('#nav_prev').click(function () {
+      if (total_info.step > 0) {
+        total_info.step -= 1;
       }
-      info_slide.slideTo(total_info.step,300);
+      info_slide.slideTo(total_info.step, 300);
       check_nav_state();
       console.log(total_info.step);
     })
-    </script>
+  </script>
 
 
-<script>
-  function check_nav_state(){
-    if(total_info.step != 0){
-      $('#nav_prev').css('display','block');
-    }else{
-      $('#nav_prev').css('display','none');
+  <script>
+    function check_nav_state() {
+      if (total_info.step != 0) {
+        $('#nav_prev').css('display', 'block');
+      } else {
+        $('#nav_prev').css('display', 'none');
+      }
     }
-  }
-</script>
 
-<script>
-  $( document ).ready(function() {
-    info_slide.disableTouchControl();
-    check_nav_state();
-  })
-</script>
+  </script>
 
-<script>
-  $('#gender_man').click(function() {
-    total_info.gender = "man";
-  })
-  $('#gender_woman').click(function() {
-    total_info.gender = "woman";
-  })
-</script>
+  <script>
+    $(document).ready(function () {
+      info_slide.disableTouchControl();
+      check_nav_state();
+    })
 
-<script>
-  function update_user() {
-    console.log("update_user");
-  }
-</script>
+  </script>
+
+  <script>
+    $('#gender_man').click(function () {
+      total_info.gender = "man";
+    })
+    $('#gender_woman').click(function () {
+      total_info.gender = "woman";
+    })
+
+  </script>
+
+  <script>
+    function update_user() {
+      console.log("update_user");
+    }
+
+  </script>
 
 </body>
+
 </html>

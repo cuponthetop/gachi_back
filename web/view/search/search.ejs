@@ -34,71 +34,37 @@
   <link rel="apple-touch-icon" href="">
 
   <!--4 제이쿼리-->
-  <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
   <!--5 웹 폰트-->
-  <link href="" rel="stylesheet" type="text/css"/>
+  <link href="" rel="stylesheet" type="text/css" />
 
   <!--5 웹 폰트-->
 
 
   <!--6-1-1 네비게이션 레벨1 css-->
-  <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css" />
 
-  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/nav/nav_level2.css" rel="stylesheet" type="text/css" />
 
-  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/nav/nav_level3.css" rel="stylesheet" type="text/css" />
 
-  <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css" />
 
   <!--6-2 인기 페스티벌 css-->
-  <link href="/css/search/search_head/search_head.css" rel="stylesheet" type="text/css"/>
-  <link href="/css/search/search_result/search_result.css" rel="stylesheet" type="text/css"/>
+  <link href="/css/search/search_head/search_head.css" rel="stylesheet" type="text/css" />
+  <link href="/css/search/search_result/search_result.css" rel="stylesheet" type="text/css" />
 
   <script type="text/javascript" src="/vue/vue.js"></script>
-  <script type="text/javascript" src="/axio/axio.js"></script>
   <script type="text/javascript" src="/moment/moment.js"></script>
   <script type="text/javascript" src="/lodash/lodash.js"></script>
 
-  <!-- google firebase-->
-  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-  <script>
-  var config = {
-      apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
-      authDomain: "gachi-test.firebaseapp.com",
-      databaseURL: "https://gachi-test.firebaseio.com",
-      projectId: "gachi-test",
-      storageBucket: "gachi-test.appspot.com",
-      messagingSenderId: "48888243317"
-    };
-    firebase.initializeApp(config);
+  <script src="/js/common/common.js"></script>
+</head>
 
-  firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    console.log('로그인함');
-    console.log(user.email);
-    console.log(user.uid);
-    total_info.is_login=true;
-    total_info.email = user.email;
-  } else {
-    console.log("로그인 안했음");
-    // No user is signed in.
-  }
-  });
+<body>
 
-  var total_info = {
-    is_login:false,
-    email:"",
-  }
-  </script>
-
-
-  </head>
-
-  <body>
-
-    <% include ../nav/nav_level1.ejs %>
+  <% include ../nav/nav_level1.ejs %>
 
     <div id="search_head">
       <span id="word1">
@@ -113,80 +79,90 @@
 
     <% include ../nav/nav_level3.ejs %>
 
-    <div id="search_result">
+      <div id="search_result">
 
-      <a class="search_box" v-for="fest in searchfestivals">
-        <div class="search_image" v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
+        <a class="search_box" v-for="fest in searchfestivals">
+          <div class="search_image" v-bind:style="{ backgroundImage: 'url(' + fest.image + ')' }">
 
-        </div>
-        <div class="search_info">
-          <div class="search_title">
-            {{fest.title}}
           </div>
-          <div class="search_date">
-            {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
-          </div>
-          <div class="search_genre">
-            <span v-for="a in fest.genres">
+          <div class="search_info">
+            <div class="search_title">
+              {{fest.title}}
+            </div>
+            <div class="search_date">
+              {{fest.from | formatDate}} ~ {{fest.until | formatDate}}
+            </div>
+            <div class="search_genre">
+              <span v-for="a in fest.genres">
               {{a.genre}}
             </span>
+            </div>
           </div>
+        </a>
+
+        <div style="clear:both;">
+
         </div>
-      </a>
-
-      <div style="clear:both;">
-
       </div>
-    </div>
 
-    <div id="no_search">
-      <div id="no_search_head"><%=term%>에 대한 검색결과가 없습니다.</div>
-      <ul>
-        <li>단어의 철자가 정확한지 확인해주세요</li>
-        <li>검색어의 단어 수를 줄이거나, 다른 검색어로 검색해보세요.</li>
-        <li>더 일반적인 검색어로 다시 검색해 보세요.</li>
-      </ul>
-    </div>
+      <div id="no_search">
+        <div id="no_search_head">
+          <%=term%>에 대한 검색결과가 없습니다.</div>
+        <ul>
+          <li>단어의 철자가 정확한지 확인해주세요</li>
+          <li>검색어의 단어 수를 줄이거나, 다른 검색어로 검색해보세요.</li>
+          <li>더 일반적인 검색어로 다시 검색해 보세요.</li>
+        </ul>
+      </div>
 
-    <script>
-      $('#search').val('<%=term%>');
-    </script>
+      <script>
+        $('#search').val('<%=term%>');
+      </script>
 
-    <script>
-      var app = new Vue({
-      el: '#search_result',
-      data: {
-        searchfestivals: [],
-      },
-      created: function(){
-        this.load();
-      },
-      methods: {
-        load: function() {
-          axios.get('http://cuponthetop.com/gachi/api/v1/festival/search?page=1&term='+'<%=term%>')
-          .then(function (response){
-              app.searchfestivals = response.data;
-              $('#word3').html(response.data.length);
-              if(response.data.length == 0){
-                $('#no_search').css('display','block');
-              }
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-        },
-      }
-    });
-    </script>
+      <script>
+        var app = new Vue({
+          el: '#search_result',
+          data: {
+            searchfestivals: [],
+          },
+          created: function () {
+            this.load('<%=term%>');
+          },
+          methods: {
+            load: function (term) {
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/festival/search',
+                data: {
+                  page: 1,
+                  term
+                },
+                dataType: 'json'
+              })
+                .then(function (response) {
+                  app.searchfestivals = response;
+                  $('#word3').html(response.length);
+                  if (response.length == 0) {
+                    $('#no_search').css('display', 'block');
+                  }
+                })
+                .catch(function (error) {
+                  console.log(error);
+                })
+            },
+          }
+        });
+      </script>
 
-    <script>
-    Vue.filter('formatDate', function(value) {
-      if (value) {
-        return moment(String(value)).format('MM/DD')
-      }
-    });
-    </script>
+      <script>
+        Vue.filter('formatDate', function (value) {
+          if (value) {
+            return moment(String(value)).format('MM/DD')
+          }
+        });
+      </script>
 
 
-  </body>
+</body>
+
 </html>

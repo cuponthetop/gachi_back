@@ -16,49 +16,61 @@ var gachi = (function (gachi, $, firebase) {
   };
 
   gachi.retrieveUserInfo = function () {
-    // returns observable handler
-    return firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        var fbid = user.uid;
-        var uid = null;
-        var headers = null;
-        user.getIdToken()
-          .then(function (token) {
-            headers = gachi.authHeader(token);
-            // find user id
-            $.ajax({
-              type: 'GET',
-              url: gachi.GACHI_URL + 'v1/user/' + 'login',
-              dataType: 'json',
-              headers
-            })
-              .then(function (data) {
-                uid = data.uid;
-                // retrieve user info
-                return $.ajax({
-                  type: 'GET',
-                  url: gachi.GACHI_URL + 'v1/user/' + uid,
-                  dataType: 'json',
-                  headers
-                });
+    // returns promise<GachiUserInfo>
+    return new Promise(function (resolve, reject) {
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          var fbid = user.uid;
+          var uid = null;
+          var headers = null;
+          user.getIdToken()
+            .then(function (token) {
+              headers = gachi.authHeader(token);
+              // find user id
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/user/' + 'login',
+                dataType: 'json',
+                headers
               })
-              .then(function (data) {
-                // 로그인 성공
-                console.log(data);
-              }).fail(function (err) {
-                console.error(JSON.stringify(err));
-              });
-          })
-          .catch(function (err) {
-            // 로그인 에러
-            console.error(err);
-          });
+                .then(function (data) {
+                  uid = data.uid;
+                  // retrieve user info
+                  return $.ajax({
+                    type: 'GET',
+                    url: gachi.GACHI_URL + 'v1/user/' + uid,
+                    dataType: 'json',
+                    headers
+                  });
+                })
+                .then(function (data) {
+                  // 로그인 성공
+                  resolve(data);
+                }).fail(function (err) {
+                  // 로그인 에러
+                  reject(err);
+                });
+            })
+            .catch(function (err) {
+              // 로그인 에러
+              reject(err);
+            });
+        } else {
+          resolve(null);
+        }
+      });
+    });
+  }
 
+  gachi.redirectIfLoggedIn = function () {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('로그인함');
+        location.href = "/";
       } else {
-        console.log("로그인 안했음");
       }
     });
-  };
+  }
 
   return gachi;
 }(gachi || {}, $, firebase));

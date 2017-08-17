@@ -1,48 +1,57 @@
-  <div id="nav_level1">
-    <a id="logo" href="/" style="background-image:url('/image/gachi_logo1.png')"></a>
-    <div id="nav_right">
-      <a v-if="user" class="nav_info nav_email" href="/info">
-        {{user.email}}
-      </a>
-      <a v-if="user == null" class="nav_info" href="login">
-        로그인
-      </a>
+<div id="nav_level1">
+  <a id="logo" href="/" style="background-image:url('/image/gachi_logo1.png')"></a>
+  <div id="nav_right">
+    <a v-if="user" class="nav_info nav_email" href="/info">
+      {{user.nickname}}
+    </a>
+    <a v-if="user == null" class="nav_info" href="login">
+      로그인
+    </a>
 
-      <div class="nav_info logout" v-if="user" v-on:click="logout">
-        로그아웃
-      </div>
-
-      <a v-if="user == null" class="nav_info" href="signup">
-        회원가입
-      </a>
-
-      <a class="nav_info">
-        소개
-      </a>
-
+    <div class="nav_info logout" v-if="user" v-on:click="logout">
+      로그아웃
     </div>
+
+    <a v-if="user == null" class="nav_info" href="signup">
+      회원가입
+    </a>
+
+    <a class="nav_info">
+      소개
+    </a>
+
   </div>
+</div>
+
+<!-- google firebase-->
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+<script src="/js/common/common.js"></script>
+<script src="/js/common/firebase.js"></script>
 
 <script>
-var nav_level1 = new Vue({
-  el: '#nav_level1',
-  data: {
-  user: ""
-  },
-  created: function() {
-    firebase.auth().onAuthStateChanged( this.onUserLogin );
-  },
-  methods: {
-    onUserLogin: function( user ) {
-      this.user = user;
+  var nav_level1 = new Vue({
+    el: '#nav_level1',
+    data: {
+      user: ""
     },
-    logout: function(event) {
-      firebase.auth().signOut().then(function() {
-        // Sign-out successful.
-      }, function(error) {
-        // An error happened.
-      });
-    }
-  },
-});
+    created: function () {
+      gachi.initFirebaseApp();
+      gachi.retrieveUserInfo().then(this.onUserLogin);
+    },
+    methods: {
+      onUserLogin: function (user) {
+        this.user = user;
+      },
+      logout: function (event) {
+        firebase.auth().signOut().then(function () {
+          // Sign-out successful.
+          location.href = "/";
+        }, function (error) {
+          // An error happened.
+        });
+      }
+    },
+  });
+
 </script>

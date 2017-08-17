@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!--
+
+<head>
+  <!--
     head에 기술하는 것은 다음 규칙에 따른다.
     1. 타이틀
     2. 메타 태그
@@ -14,157 +15,111 @@
     9. 페이스북 픽셀
       -->
 
-    <!--1 타이틀-->
-    <title>회원가입</title>
+  <!--1 타이틀-->
+  <title>회원가입</title>
 
-    <!--2 메타 태그-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta name="theme-color" content="#fff">
-    <meta property="og:url" content="">
-    <meta property="og.title" content="가치">
-    <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="">
-    <meta content="telephone=no" name="format-detection">
+  <!--2 메타 태그-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta name="theme-color" content="#fff">
+  <meta property="og:url" content="">
+  <meta property="og.title" content="가치">
+  <meta property="og:description" content="가치에서 공연을 가치즐겨보세요">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="">
+  <meta content="telephone=no" name="format-detection">
 
-    <!--3 파비콘-->
-    <link rel="shortcut icon" href="">
-    <link rel="apple-touch-icon" href="">
+  <!--3 파비콘-->
+  <link rel="shortcut icon" href="">
+  <link rel="apple-touch-icon" href="">
 
-    <!--4 제이쿼리-->
-    <script type="text/javascript" src="/jquery/jquery-1.12.4.min.js"></script>
+  <!--4 제이쿼리-->
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
-    <!--6-1 회원가입CSS-->
-    <link href="/css/auth/signup.css" rel="stylesheet" type="text/css"/>
+  <!--6-1 회원가입CSS-->
+  <link href="/css/auth/signup.css" rel="stylesheet" type="text/css" />
 
 
-    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <!-- google firebase-->
+  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
-    <script>
-    var config = {
-        apiKey: "AIzaSyDAAJDFPXgHl5SFjaV6HFiEOCWySb48lro",
-        authDomain: "gachi-test.firebaseapp.com",
-        databaseURL: "https://gachi-test.firebaseio.com",
-        projectId: "gachi-test",
-        storageBucket: "gachi-test.appspot.com",
-        messagingSenderId: "48888243317"
-      };
-      firebase.initializeApp(config);
-    </script>
+  <script src="/js/common/common.js"></script>
+  <script src="/js/common/firebase.js"></script>
+  <script src="/js/common/login.js"></script>
+  <script>
+    gachi.initFirebaseApp();
+    gachi.redirectIfLoggedIn();
+  </script>
 
-    <script>
-    firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      console.log('로그인함');
-      console.log(user.email);
-      console.log(user.uid);
-      location.href="/";
-    } else {
-      console.log("로그인 안했음");
-      // No user is signed in.
-    }
-    });
-    </script>
+</head>
 
-  </head>
-  <body>
+<body>
 
-    <div id="signup_all">
-      <h1>회원가입</h1>
+  <div id="signup_all">
+    <h1>회원가입</h1>
 
-      <form name="sginup_form" id="signup_form" action="http://cuponthetop.com/gachi/api/v1/user" method="post">
-        <input type="hidden" name="provider" value="email">
-        <input id="nickname" type="text" name="nickname" placeholder="닉네임" value="">
-        <input id="email" type="email" name="email" placeholder="이메일" value="">
-        <input id="password" type="password" name="password" placeholder="비밀번호" value="">
+    <form name="sginup_form" id="signup_form" action="http://cuponthetop.com/gachi/api/v1/user" method="post">
+      <input type="hidden" name="provider" value="email">
+      <input id="email" type="email" name="email" placeholder="이메일" value="">
+      <input id="password" type="password" name="password" placeholder="비밀번호" value="">
 
-        <button id="submit_button" type="submit">완료</button>
-      </form>
-    </div>
+      <button id="submit_button" type="submit">완료</button>
+    </form>
+  </div>
 
-    <script>
-      $('form').submit(function () {
-        var nickname = $('#nickname').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
+  <script>
+    $('form').submit(function () {
+      var email = $('#email').val();
+      var password = $('#password').val();
 
-        if(nickname.length == 0){
-          alert('닉네임을 입력해주세요');
-          return false;
-        }
-
-        if(email.length == 0){
-          alert('이메일을 입력해주세요');
-          return false;
-        }
-
-        if(email.match('@')){
-        }else{
-          alert('정확한 이메일 형식을 입력해주세요');
-          return false;
-        }
-
-        if(password.length == 0){
-          alert('비밀번호를 입력해주세요');
-          return false;
-        }
-
-        if(password.length<6){
-          alert('비밀번호는 6자 이상 입력해주세요');
-          return false;
-        }
-
-        $.ajax({
-          url: 'http://cuponthetop.com/gachi/api/v1/user',
-          type: 'POST',
-          data: $('#signup_form').serialize(),
-          async:false,
-          success: function(data) {
-            console.log(data.uid);
-            console.log(data.fbid);
-            alert(data.uid);
-            alert(data.fbid);
-              fb();
-          },
-          error: function(data){
-            console.log(data.responseText);
-            if(data.responseText == 'Validation error'){
-              alert('이미 등록된 닉네임 입니다.');
-            }
-            if(data.responseText == 'The email address is already in use by another account.'){
-              alert('이미 등록된 이메일 입니다.');
-            }
-            return false;
-          }
-        });
-
+      if (email.length == 0) {
+        alert('이메일을 입력해주세요');
         return false;
-      })
-    </script>
-    <script>
-    function fb(){
-    var email = $('#email').val();
-    var password = $('#password').val();
+      }
 
-      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      if (email.match('@')) {
+      } else {
+        alert('정확한 이메일 형식을 입력해주세요');
+        return false;
+      }
+
+      if (password.length == 0) {
+        alert('비밀번호를 입력해주세요');
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert('비밀번호는 6자 이상 입력해주세요');
+        return false;
+      }
+
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(function (data) {
+        gachi.emailLogin(email, password);
+      }).catch(function (error) {
         var errorCode = error.code;
-        if(errorCode == "auth/user-not-found"){
-        alert("등록된 정보가 없습니다.");
-        }
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
 
-        if(errorCode == "auth/wrong-password"){
-          alert("비밀번호를 잘못 입력하셨습니다");
+        if (errorCode === 'auth/email-already-in-use') {
+          alert('이미 등록된 이메일 입니다.');
+        } else if (errorCode === 'auth/invalid-email') {
+          alert('잘못된 이메일 입니다.');
+        } else if (errorCode === 'auth/weak-password') {
+          alert('비밀번호가 너무 쉽습니다.');
         }
+        return false;
       });
-    }
-    </script>
-    <script>
+
+      return false;
+    })
+  </script>
+  <script>
     //init_info();
     function init_info() {
-      location.href="/info_slide";
+      location.href = "/info_slide";
     }
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
