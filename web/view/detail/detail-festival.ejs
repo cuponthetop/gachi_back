@@ -1,0 +1,185 @@
+<div id="detail" v-cloak>
+  <div id="image_info_all">
+    <div id="image_info">
+
+      <div id="image_blur" v-if="fetched" v-bind:style="{ 'background-image': 'url(' + festival.image + ')' }">
+      </div>
+
+      <div id="filter"> </div>
+
+    </div>
+    <div id="pc_info_all">
+
+      <div id="pc_title" v-if="fetched">
+        {{festival.title}}
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/schedule.png">
+        <div class="pc_info_description" v-if="fetched">
+          {{moment(festival.from).format('YYYY/MM/DD')}} ~ {{moment(festival.until).format('YYYY/MM/DD')}}
+        </div>
+      </div>
+
+      <div class="pc_info">
+        <img class="pc_info_image" src="/image/location.png">
+        <div class="pc_info_description" v-if="fetched">
+          {{festival.location}}
+        </div>
+      </div>
+
+      <div id="pc_intro">
+        <div id="pc_intro_label">
+          소개
+        </div>
+        <div id="pc_intro_description" v-if="fetched">
+          {{festival.detail}}
+        </div>
+        <div style="clear:both;"> </div>
+
+      </div>
+
+      <div id="pc_star">
+        <div id="pc_star_label">
+          출연
+        </div>
+        <div id="pc_star_description" v-if="fetched">
+          {{festival.starring}}
+        </div>
+        <div style="clear:both;"> </div>
+
+      </div>
+
+      <div id="pc_genre">
+        <div id="pc_genre_label">
+          장르
+        </div>
+        <div id="pc_genre_description">
+          <span v-for="key in festival.genres">
+            #{{key.genre}}
+          </span>
+        </div>
+        <div style="clear:both;"> </div>
+
+      </div>
+
+      <div id="pc_star">
+        <div id="pc_star_label">
+          라인업
+        </div>
+        <div id="pc_star_description" v-if="fetched">
+          {{festival.starring}}
+        </div>
+        <div style="clear:both;"> </div>
+
+      </div>
+
+
+      <div id="pc_room">
+        <div id="pc_room_label">
+          대화방
+        </div>
+
+        <div id="pc_room_going" v-if="fetched">
+          {{ festival.going }}명이 이 곳에 같이 갈 사람들을 찾고 있어요
+        </div>
+
+        <div id="pc_room_list" v-if="fetched">
+          <a v-for="leadroom in festival.leadrooms" href="leadroom.leadroom_id">
+            <div>
+              <span class="pc_leadroom_detail"> {{leadroom.detail}} </span>
+              <div class="pc_leadroom_tag">
+                <span> #{{leadroom.characteristic}} </span>
+                <span> #{{leadroom.age}} </span>
+                <span> #{{leadroom.location}} </span>
+              </div>
+
+              <div class="oc_leadroom_date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div>
+              <div class="pc_leadroom_number"> {{leadroom.member.length}}/{{leadroom.max_follower}} </div>
+            </div>
+          </a>
+        </div>
+
+        <div style="clear:both;"> </div>
+
+      </div>
+
+    </div>
+    <div id="center">
+      <div id="center_image" v-if="fetched" v-bind:style="{ 'background-image': 'url(' + festival.image + ')' }">
+      </div>
+      <div id="pc_gachi">
+        가치하기
+      </div>
+      <div id="center_info">
+        <div id="center_date" v-if="fetched">
+          {{moment(festival.from).format('YY/MM/DD')}} ~ {{moment(festival.until).format('MM/DD')}}
+        </div>
+        <div id="center_title" v-if="fetched">
+          {{festival.title}}
+        </div>
+        <div id="center_tag">
+          <span v-for="genre in festival.genres">
+            #{{genre.genre}}
+          </span>
+        </div>
+
+
+      </div>
+
+      <div style="clear:both;">
+
+      </div>
+
+    </div>
+
+    <div id="intro_head">
+      정보
+    </div>
+    <div id="intro" v-if="fetched">
+      {{festival.detail}}
+    </div>
+    <div id="intro_foot">
+      <div id="intro_more" v-on:click="showMore" v-if="showMoreDiv">
+        더보기
+      </div>
+      <div id="intro_less" v-on:click="showLess" v-if="showLessDiv">
+        접기
+      </div>
+    </div>
+
+    <div id="star_head">
+      라인업
+    </div>
+    <div id="star" v-if="fetched">
+      {{festival.starring}}
+    </div>
+    <div id="star_foot">
+    </div>
+
+    <div id="room_head">
+      대화방
+    </div>
+    <div id="room_going" v-if="fetched">
+      {{ festival.going }}명이 이 곳에 같이 갈 사람들을 찾고 있어요
+    </div>
+    <div id="room_list" v-if="fetched">
+
+      <a v-for="leadroom in festival.leadrooms" href="leadroom.leadroom_id">
+        <div>
+          <span class="leadroom-detail"> {{leadroom.detail}} </span>
+          <div class="leadroom-tag">
+            <span> #{{leadroom.characteristic}} </span>
+            <span> #{{leadroom.age}} </span>
+            <span> #{{leadroom.location}} </span>
+          </div>
+
+          <div class="leadroom-date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div>
+          <div class="leadroom-number"> {{leadroom.member.length}}/{{leadroom.max_follower}} </div>
+
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
