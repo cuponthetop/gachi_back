@@ -79,7 +79,8 @@
           data: {
             fetched: false,
             festival: { image: '' },
-            showDetail: false
+            showDetail: false,
+            collapsible: false
           },
           created: function () {
             this.fetchFestivalInfo("<%=fid %>");
@@ -113,12 +114,10 @@
               return moment(date);
             }
           },
+          updated: function () {
+            this.collapsible = $('#intro')[0].scrollHeight > $('#intro').innerHeight();
+          },
           computed: {
-            collapsible: {
-              get: function () {
-                return $('#intro').height() > 50;
-              }
-            },
             showMoreDiv: {
               get: function () {
                 return !this.showDetail && this.collapsible;

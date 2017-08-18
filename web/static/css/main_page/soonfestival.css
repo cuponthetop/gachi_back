@@ -1,0 +1,171 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+.soonfestival_link{
+  width:100%;
+  height:100%;
+  text-decoration: none;
+}
+.soonfestival_image{
+  width:100%;
+  height:48vw;
+  background-position: center;
+  background-size:cover;
+  overflow: hidden;
+}
+.soonfestival_info{
+  width:100%;
+  height:100px;
+}
+.soonfestival_title{
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:#484848;
+  text-align: left;
+  padding-top:10px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-wrap:break-word;
+}
+.soonfestival_date{
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  line-height: 20px;
+  text-align:left;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  color:#888c92;
+}
+.soonfestival_genre{
+  width:calc(100% - 10px);
+  margin-left:auto;
+  margin-right:auto;
+  height:20px;
+  line-height: 20px;
+  text-align:left;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  color:#888c92;
+}
+
+#soonfestival_word{
+  width:calc(100% - 30px);
+  height:30px;
+  margin-top:45px;
+  margin-bottom:5px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#soonfestival_title{
+  color:#484848;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight:600;
+  font-size:23px;
+  float:left;
+}
+#soonfestival_description{
+  color:#888c92;
+  font-family:"Nanum Barun Gothic";
+  font-size:11px;
+  float:left;
+  line-height:23px;
+  margin-left:7px;
+}
+
+#soonfestival_more{
+  float:right;
+  margin-top:12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#soonfestival_more_word{
+  color:#484848;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  float:left;
+  font-weight: 300;
+}
+
+#soonfestival_more_arrow{
+  width:12px;
+  height:12px;
+  float:left;
+  margin-top:4px;
+  margin-left:5px;
+
+  overflow:hidden;
+  background-position:center;
+  background-size:cover;
+}
+
+@media  screen and (min-width:500px){
+  .soonfestival_image{
+    height:34vw;
+  }
+}
+
+@media  screen and (min-width:700px){
+  .soonfestival_image{
+    height:22vw;
+  }
+}
+
+@media  screen and (min-width:1080px){
+  #soonfestival_word{
+    width:1080px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:25px;
+  }
+  #soonfestival_title{
+    margin-left:0px;
+    font-size:20px;
+  }
+  #soonfestival_description{
+    font-size:14px;
+  }
+  #soonfestival_buttons{
+    display: block;
+  }
+  .swiper-container{
+    width:1080px;
+    height:380px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .soonfestival_image{
+    height:247px;
+  }
+  .soonfestival_info{
+    width:100%;
+    height:50px;
+  }
+  .soonfestival_title{
+    width:100%;
+    height:25px;
+    font-size:15px;
+  }
+  .soonfestival_partner{
+    height:13px;
+    font-size:12px;
+    margin-top:10px;
+  }
+}
+
+#soonfestival {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
+  width: calc(100% - 30px);
+  height: calc(60vw + 55px);
+}

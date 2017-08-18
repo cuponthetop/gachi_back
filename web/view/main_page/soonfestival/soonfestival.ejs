@@ -1,4 +1,4 @@
-<!--공연 임박 인클루드-->
+<!-- 공연 임박 인클루드 -->
 <div id="soonfestival_word">
 
   <div id="soonfestival_title">
@@ -18,55 +18,81 @@
 
 
 <!-- soonfestival -->
-<div class="soonfestival-container">
-  <div class="soonfestival-wrapper">
-    <% festival.forEach(function(fest) { %>
+<swiper id="soonfestival" v-cloak :options="swiperOption">
+  <swiper-slide class="soonfestival" v-for="fest in soonFestivals" :key="fest.fid">
+    <a class="soonfestival_link" v-bind:href="'/festival/' + fest.fid">
 
-    <div class="soonfestival-slide">
-      <a class="soonfestival_link" href='/festival/<%= fest.fid%>'>
+      <div class="soonfestival_image" v-bind:style="{'background-image' :'url(' + fest.image + ')'}">
+      </div>
 
-        <div class="soonfestival_image"  style="background-image:url('<%= fest.image %>')">
+      <div class="soonfestival_info">
+
+        <div class="soonfestival_title">
+          {{fest.title}}
         </div>
 
-        <div class="soonfestival_info">
+        <div class="soonfestival_date">
+          {{moment(fest.from).format('MM/DD')}} ~ {{moment(fest.until).format('MM/DD')}}
+        </div>
 
-          <div class="soonfestival_title">
-            <%= fest.title %>
-          </div>
-
-          <div class="soonfestival_date">
-            <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
-          </div>
-
-          <div class="soonfestival_genre">
-            <% for (var key in fest.genres) { %>
-            <span>
-              <%= fest.genres[key].genre %>
+        <div class="soonfestival_genre">
+          <span v-for="genre in fest.genres">
+              {{genre.genre }}
             </span>
-            <% } %>
-          </div>
-
         </div>
 
-      </a>
-    </div>
-    <% }); %>
+      </div>
 
-  </div>
-</div>
+    </a>
+  </swiper-slide>
+</swiper>
 
+<!-- Initialize famefestival -->
 <script>
-var soonfestival = new soonfestival('.soonfestival-container', {
-    slidesPerView: 5,
-    spaceBetween: 10,
-    freeMode: true,
-    breakpoints: {
-      499: {
-        slidesPerView:2.2
+  Vue.use(window.VueAwesomeSwiper);
+
+  var soonFestival = new Vue({
+    el: '#soonfestival',
+    data: {
+      soonFestivals: null,
+      swiperOption: {
+        initialSlide: 1,
+        slidesPerView: 5,
+        spaceBetween: 10,
+        freeMode: true,
+        breakpoints: {
+          499: {
+            slidesPerView: 2.2
+          },
+          699: {
+            slidesPerView: 3.2
+          },
+        }
+      }
+    },
+    created: function () {
+      this.getSoonFestivals();
+    },
+    methods: {
+      getSoonFestivals: function () {
+        $.ajax({
+          type: 'GET',
+          url: gachi.GACHI_URL + 'v1/festival/list',
+          data: {
+            page: 1,
+            type: 'default'
+          },
+          dataType: 'json'
+        }).then(function (festivals) {
+          this.soonFestivals = festivals;
+        }.bind(this)).fail(function (error) {
+          console.error(JSON.stringify(error));
+        })
       },
-      699: {
-        slidesPerView:3.2
-      },
-    }
-});
+      moment: function (date) {
+        return moment(date);
+      }
+    },
+  });
+
 </script>

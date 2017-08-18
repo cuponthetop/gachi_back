@@ -2,6 +2,11 @@
   margin:0px;
   padding:0px;
 }
+
+[v-cloak] {
+  display: none;
+}
+
 #nav_level1_all{
   width:100%;
   height:56px;

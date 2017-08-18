@@ -18,56 +18,81 @@
 
 
 <!-- famefestival -->
-<div class="famefestival-container">
-    <div class="famefestival-wrapper">
-<% festival.forEach(function(fest) { %>
-        <div class="famefestival-slide">
-          <a class="famefestival_link" href='/festival/<%= fest.fid%>'>
+<swiper id="famefestival" v-cloak :options="swiperOption">
+  <swiper-slide class="famefestival" v-for="fest in famousFestivals" v-if="famousFestivals" :key="fest.fid">
+      <a class="famefestival_link" v-bind:href="'/festival/' + fest.fid">
 
-            <div class="famefestival_image" style="background-image:url('<%= fest.image %>')">
-            </div>
-
-            <div class="famefestival_info">
-
-              <div class="famefestival_title">
-                <%= fest.title %>
-              </div>
-
-              <div class="famefestival_date">
-                <%= moment(fest.from).format('MM/DD') %> ~ <%= moment(fest.until).format('MM/DD') %>
-              </div>
-
-              <div class="famefestival_genre">
-                <% for (var key in fest.genres) { %>
-                <span>
-                  <%= fest.genres[key].genre %>
-                </span>
-                <% } %>
-              </div>
-
-            </div>
-
-          </a>
+        <div class="famefestival_image" v-bind:style="{'background-image' :'url(' + fest.image + ')'}">
         </div>
-<% }); %>
 
-      </div>
-    </div>
+        <div class="famefestival_info">
+
+          <div class="famefestival_title">
+            {{fest.title}}
+          </div>
+
+          <div class="famefestival_date">
+            {{moment(fest.from).format('MM/DD')}} ~ {{moment(fest.until).format('MM/DD')}}
+          </div>
+
+          <div class="famefestival_genre">
+            <span v-for="genre in fest.genres">
+              {{genre.genre }}
+            </span>
+          </div>
+
+        </div>
+
+      </a>
+  </swiper-slide>
+</swiper>
 
 <!-- Initialize famefestival -->
 <script>
-var famefestival = new famefestival('.famefestival-container', {
-    slidesPerView: 5,
-    paginationClickable: true,
-    spaceBetween: 10,
-    freeMode: true,
-    breakpoints: {
-      499: {
-        slidesPerView:2.2
+  Vue.use(window.VueAwesomeSwiper);
+
+  var fameFestival = new Vue({
+    el: '#famefestival',
+    data: {
+      famousFestivals: null,
+      swiperOption: {
+        slidesPerView: 5,
+        slidesPerColumn: 1,
+        spaceBetween: 10,
+        freeMode: true,
+        breakpoints: {
+          499: {
+            slidesPerView: 2.2
+          },
+          699: {
+            slidesPerView: 3.2
+          },
+        }
+      }
+    },
+    created: function () {
+      this.getFamousFestivals();
+    },
+    methods: {
+      getFamousFestivals: function () {
+        $.ajax({
+          type: 'GET',
+          url: gachi.GACHI_URL + 'v1/festival/list',
+          data: {
+            page: 1,
+            type: 'going'
+          },
+          dataType: 'json'
+        }).then(function (festivals) {
+          this.famousFestivals = festivals;
+        }.bind(this)).fail(function (error) {
+          console.error(JSON.stringify(error));
+        })
       },
-      699: {
-        slidesPerView:3.2
-      },
-    }
-});
+      moment: function (date) {
+        return moment(date);
+      }
+    },
+  });
+
 </script>
