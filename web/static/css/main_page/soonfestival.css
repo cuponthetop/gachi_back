@@ -108,6 +108,14 @@
   background-size:cover;
 }
 
+#soonfestival {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
+  width: calc(100% - 30px);
+  height: calc(60vw + 55px);
+}
+
 @media  screen and (min-width:500px){
   .soonfestival_image{
     height:34vw;
@@ -137,7 +145,7 @@
   #soonfestival_buttons{
     display: block;
   }
-  .swiper-container{
+  #soonfestival{
     width:1080px;
     height:380px;
     margin-left:auto;
@@ -160,12 +168,4 @@
     font-size:12px;
     margin-top:10px;
   }
-}
-
-#soonfestival {
-  width: 100%;
-  height: 300px;
-  margin: 20px auto;
-  width: calc(100% - 30px);
-  height: calc(60vw + 55px);
 }

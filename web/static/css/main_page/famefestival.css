@@ -112,6 +112,16 @@
   background-size:cover;
 }
 
+
+#famefestival {
+  width: 100%;
+  height: 300px;
+  margin: 20px auto;
+  width: calc(100% - 30px);
+  height: calc(60vw + 55px);
+}
+
+
 @media  screen and (min-width:500px){
   .famefestival_image{
     height:34vw;
@@ -141,7 +151,7 @@
   #famefestival_buttons{
     display: block;
   }
-  .famefestival-container{
+  #famefestival{
     width:1080px;
     height:380px;
     margin-left:auto;
@@ -164,12 +174,4 @@
     font-size:12px;
     margin-top:10px;
   }
-}
-
-#famefestival {
-  width: 100%;
-  height: 300px;
-  margin: 20px auto;
-  width: calc(100% - 30px);
-  height: calc(60vw + 55px);
 }
