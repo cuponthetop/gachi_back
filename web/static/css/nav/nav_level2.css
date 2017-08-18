@@ -3,6 +3,7 @@
   margin-left:auto;
   margin-right:auto;
   margin-bottom:45px;
+  margin-top:30px;
 }
 
 #head_word1{
@@ -37,6 +38,8 @@
 @media  screen and (min-width:1080px){
   #nav_level2{
     width:1080px;
+    margin-bottom:65px;
+    margin-top:80px;
   }
   #head_word1{
     font-size:48px;

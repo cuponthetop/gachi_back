@@ -64,6 +64,8 @@
   margin-bottom:5px;
   margin-left:auto;
   margin-right:auto;
+  height:50px;
+  border-bottom:1px solid #D9D9D9;
 }
 #famefestival_title{
   color:#484848;
@@ -71,6 +73,8 @@
   font-weight:600;
   font-size:23px;
   float:left;
+  height:50px;
+  border-bottom:1px solid #484848;
 }
 #famefestival_description{
   color:#888c92;
@@ -730,6 +734,7 @@ button.famefestival-pagination-bullet {
     width:1080px;
     margin-left:auto;
     margin-right:auto;
+    margin-bottom:25px;
   }
   #famefestival_title{
     margin-left:0px;
