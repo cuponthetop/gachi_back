@@ -37,9 +37,8 @@
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
   <!--5 웹 폰트-->
-  <link href="" rel="stylesheet" type="text/css"/>
+  <link href="" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-
   <!--6-1-1 네비게이션 레벨1 css-->
   <link href="/css/nav/nav_level1.css" rel="stylesheet" type="text/css" />
 
@@ -49,34 +48,45 @@
 
   <link href="/css/nav/nav_level4.css" rel="stylesheet" type="text/css" />
 
-  <!--6-2 인기 페스티벌 css-->
-  <link href="/css/main_page/swiper.css" rel="stylesheet" type="text/css" />
-  <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
-  <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
+  <link href="/css/chat/list.css" rel="stylesheet" type="text/css" />
 
   <script type="text/javascript" src="/vue/vue.js"></script>
   <script type="text/javascript" src="/moment/moment.js"></script>
   <script type="text/javascript" src="/lodash/lodash.js"></script>
 
-  <!-- awesome swiper -->
-  <script src="/vue/vue-awesome-swiper.min.js"></script>
-
-  <!-- google firebase-->
-  <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-
 </head>
 
 <body>
+
   <% include ../nav/nav_level1.ejs %>
 
-  <% include ../nav/nav_level4.ejs %>
+    <div id="chatroom-list">
+      <div class="chatroom" v-for="room in chatrooms">
+        <a v-bind:href="./room.leadroom_id">
+          이동~
+        </a>
+      </div>
+    </div>
 
-  <% include ../nav/nav_level2.ejs %>
-
-  <% include /famefestival.ejs %>
-
-  <% include /soonfestival.ejs %>
-
+    <script>
+      var chatroomList = new Vue({
+        el: '#chatroom-list',
+        data: {
+          chatrooms: []
+        },
+        created: function () {
+          gachi.retrieveUserInfo(true).then(this.onUserLogin);
+        },
+        methods: {
+          onUserLogin: function (user) {
+            this.chatrooms = user.leadrooms;
+          },
+          moment: function (date) {
+            return moment(date);
+          }
+        }
+      });
+    </script>
 </body>
 
 </html>

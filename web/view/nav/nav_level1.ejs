@@ -42,7 +42,7 @@
     },
     created: function () {
       gachi.initFirebaseApp();
-      gachi.retrieveUserInfo().then(this.onUserLogin);
+      gachi.retrieveUserInfo(false).then(this.onUserLogin);
     },
     methods: {
       onUserLogin: function (user) {

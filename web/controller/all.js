@@ -6,7 +6,7 @@ var index = function (req, res) {
 };
 
 const search = function (req, res) {
-  var term = req.query.term;
+  var term = req.query.term || '';
 
   res.render('../search/search', { term: term });
 };
@@ -29,7 +29,21 @@ const detail = function (req, res) {
   res.render('../detail/detail', { 'fid': fid });
 };
 
+const chatList = function (req, res) {
+  res.render('../chat/list');
+};
 
+const chatRoom = function (req, res) {
+  var lid = req.params.lid;
+
+  res.render('../chat/chatroom', { lid });
+};
+
+const createChatRoom = function (req, res) {
+  var fid = req.params.fid;
+
+  res.render('../chat/create', { fid });
+};
 
 module.exports = {
   index,
@@ -38,4 +52,7 @@ module.exports = {
   signup,
   info_slide,
   detail,
+  chatList,
+  chatRoom,
+  createChatRoom,
 }

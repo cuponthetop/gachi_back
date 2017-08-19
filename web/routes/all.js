@@ -15,6 +15,12 @@ router.get('/info_slide', ctrl.info_slide);
 
 router.get('/festival/:fid', ctrl.detail);
 
+router.get('/festival/:fid/create', ctrl.createChatRoom);
+
+router.get('/chat', ctrl.chatList);
+
+router.get('/chat/:lid', ctrl.chatRoom);
+
 
 
 module.exports = router;
