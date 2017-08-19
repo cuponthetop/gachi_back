@@ -26,13 +26,21 @@
 
       <div id="noti-list" v-cloak v-if="fetched">
         <div class="sent-container" v-if="fetchedSent">
-          <div class="sent-item" v-for="request in sentRequests">
-
+          <div class="sent-label"> <span>보낸 요청</span></div>
+          <div class="sent-none" v-if="sentRequests.length === 0">
+            <span> 보낸 요청이 없습니다 </span>
+          </div>
+          <div class="sent-item" v-for="request in sentRequests" v-if="sentRequests.length !== 0">
+            {{request.leadroom.leader.nickname}}
           </div>
         </div>
 
         <div class="received-container" v-if="fetchedReceived">
-          <div class="received-item" v-for="request in receivedRequests">
+          <div class="received-label"> <span>받은 요청</span></div>
+          <div class="received-none" v-if="receivedRequests.length === 0">
+            <span>받은 요청이 없습니다</span>
+          </div>
+          <div class="received-item" v-for="request in receivedRequests" v-if="receivedRequests.length !== 0">
 
           </div>
         </div>

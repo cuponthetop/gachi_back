@@ -109,7 +109,9 @@
       <div id="center_image" v-if="fetched" v-bind:style="{ 'background-image': 'url(' + festival.image + ')' }">
       </div>
       <div id="pc_gachi">
+        <a v-bind:href="'/festival/' + festival.fid+'/create'">
         가치하기
+        </a>
       </div>
       <div id="center_info">
         <div id="center_date" v-if="fetched">

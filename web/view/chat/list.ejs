@@ -23,8 +23,8 @@
 
     <% include ../nav/nav_level4.ejs %>
 
-      <div id="chatroom-list">
-        <div class="chatroom" v-for="room in chatrooms">
+      <div id="chatroom-list" v-cloak v-if="fetched">
+        <div class="chatroom" v-for="room in chatrooms" v-if="chatrooms.length !== 0">
           <a v-bind:href="'./chat/'+ room.leadroom_id">
             <div class="chatroom listitem">
               <image class="chatroom leader_profile"></image>
@@ -40,13 +40,17 @@
             </div>
           </a>
         </div>
+        <div class="chatroom none" v-if="chatrooms.length === 0">
+          <span>아무 채팅 방에도 참여하지 않았습니다.</span>
+        </div>
       </div>
 
       <script>
         var chatroomList = new Vue({
           el: '#chatroom-list',
           data: {
-            chatrooms: []
+            chatrooms: [],
+            fetched: false
           },
           created: function () {
             gachi.retrieveUserInfo(true).then(this.processLeadroomsFromUser);
@@ -71,6 +75,7 @@
               let promises = this.createProcessingPromisesForChatrooms(user.leadrooms);
               Promise.all(promises).then(function (processedRooms) {
                 this.chatrooms = processedRooms;
+                this.fetched = true;
               }.bind(this));
             },
             moment: function (date) {

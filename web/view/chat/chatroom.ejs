@@ -23,15 +23,20 @@
 
     <% include ../nav/nav_level4.ejs %>
 
-      <div id="chat-container">
+      <div id="chat-container" v-cloak>
         <div class="chat-messages">
-          <div class="chat-item" v-for="messages">
+          <div class="chat-item" v-for="message in messages">
+            <div class="chat-text"><span>{{message.text}}</span></div>
+            <div class="chat-time"><span>{{message.timestamp}}</span></div>
+            <div class="chat-profile"><img v-bind:src="findProfileURL(message.userid)">
+              <div class="chat-nickname"><span>{{message.nickname}}</span></div>
+            </div>
 
           </div>
         </div>
         <form v-on:submit.prevent="sendMessage" id="chat-send">
-          <input type="text" id="message" v-on:keyup.enter="submit">
-          <button id="send-message" v-on:click="submit"></button>
+          <input type="text" v-model="messageToSend" v-on:keyup.enter="sendMessage">
+          <button id="send-message" v-on:click="sendMessage">보내기</button>
         </form>
       </div>
 
@@ -39,6 +44,7 @@
         var chatroom = new Vue({
           el: '#chat-container',
           data: {
+            messageToSend: '',
             leadroom: null,
             user: null,
             fetched: false,
@@ -52,8 +58,18 @@
             }.bind(this));
           },
           methods: {
-            sendMessage: function (message) {
-
+            sendMessage: function () {
+              this.chatroomRef.push({
+                text: this.messageToSend,
+                userid: this.user.uid,
+                username: this.user.nickname
+              }).then(function () {
+              }.bind(this));
+              this.messageToSend = '';
+            },
+            findProfileURL: function (uid) {
+              const EMPTY_IMAGE = '';
+              return _.get(_.find(this.leadroom.member, {uid}), 'profile_image', EMPTY_IMAGE);
             },
             processNewMessage: function (message) {
               this.messages.push(message);

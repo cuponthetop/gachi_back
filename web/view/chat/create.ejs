@@ -85,7 +85,7 @@
               </span>
             </div>
           </div>
-          <button type="submit" id="create-chatroom"><span>방 만들기</span></button>
+          <button type="submit" id="create-chatroom" v-bind:disabled="sent"><span>방 만들기</span></button>
         </vue-form>
       </div>
 
@@ -114,6 +114,7 @@
             locationItems: locationList,
             fetched: false,
             festival: null,
+            sent: false
           },
           created: function () {
             this.fetchFestivalInfo("<%=fid %>");
@@ -124,6 +125,7 @@
                 return;
               }
 
+              this.sent = true;
               let age = this.age.join(',');
               let characteristic = this.characteristic.join(',');
               let location = this.location.join(',');
@@ -146,7 +148,8 @@
                   headers: gachi.authHeader(token)
                 }).then(function (leadroom_id) {
                   console.log(leadroom_id);
-                  location.href = "/room/" + leadroom_id;
+                  window.location.href = "/room/" + leadroom_id.leadroom_id;
+                  this.sent = false;
                 }.bind(this)).fail(function (error) {
                   console.error(JSON.stringify(error));
                 });
