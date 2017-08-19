@@ -21,45 +21,65 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="create-chat-container">
-    </div>
+    <% include ../nav/nav_level4.ejs %>
 
-    <script>
-      var detail = new Vue({
-        el: '#create-chat-container',
-        data: {
-          fetched: false,
-          festival: null,
-        },
-        created: function () {
-          this.fetchFestivalInfo("<%=fid %>");
-        },
-        methods: {
-          validateDuration: function () {
+      <script>
+        const ageList = [
 
-          },
-          createChatroom: function () {
+        ];
+        const ageList = [];
+        const locationList = [];
+      </script>
 
+      <div id="create-chat-container" v-cloak v-if="fetched">
+        <form v-on:submit.prevent="createChatroom" id="create-form">
+          <span id="festival"></span>
+          <input type="text" id="max_member" />
+          <input type="text" id="detail" />
+          <input type="text" id="datetime" />
+          <div id="age"></div>
+          <div id="characteristic"></div>
+          <div id="location"></div>
+          <button id="create-chatroom" v-on:click="submit"></button>
+        </form>
+      </div>
+
+      <script>
+        var detail = new Vue({
+          el: '#create-chat-container',
+          data: {
+            fetched: false,
+            festival: null,
           },
-          fetchFestivalInfo: function (fid) {
-            $.ajax({
-              type: 'GET',
-              url: gachi.GACHI_URL + 'v1/festival/' + fid,
-              dataType: 'json'
-            }).then(function (festival) {
-              console.log(festival);
-              this.festival = festival;
-              this.fetched = true;
-            }.bind(this)).fail(function (error) {
-              console.error(JSON.stringify(error));
-            })
+          created: function () {
+            this.fetchFestivalInfo("<%=fid %>");
           },
-          moment: function (date) {
-            return moment(date);
+          methods: {
+            validateDuration: function () {
+
+            },
+            createChatroom: function () {
+
+            },
+            fetchFestivalInfo: function (fid) {
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/festival/' + fid,
+                dataType: 'json'
+              }).then(function (festival) {
+                console.log(festival);
+                this.festival = festival;
+                this.fetched = true;
+              }.bind(this)).fail(function (error) {
+                console.error(JSON.stringify(error));
+              })
+            },
+            moment: function (date) {
+              return moment(date);
+            }
           }
-        }
-      });
-    </script>
+        });
+      </script>
 </body>
 
 </html>

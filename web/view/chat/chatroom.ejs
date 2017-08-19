@@ -13,7 +13,7 @@
 
   <% include ../common/common.ejs %>
 
-  <link href="/css/chat/chatroom.css" rel="stylesheet" type="text/css" />
+    <link href="/css/chat/chatroom.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -21,49 +21,69 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="chat-container">
-    </div>
+    <% include ../nav/nav_level4.ejs %>
 
-    <script>
-      var chatroom = new Vue({
-        el: '#chat-container',
-        data: {
-          leadroom: null,
-          user: null,
-          fetched: false
-        },
-        created: function () {
-          gachi.retrieveUserInfo(true).then(function (user) {
-            this.user = user;
-            this.fetchLeadroomInfo("<%=lid %>");
-          }.bind(this));
-        },
-        methods: {
-          sendMessage: function (message) {
+      <div id="chat-container">
+        <div class="chat-messages">
+          <div class="chat-item" v-for="messages">
 
-          },
-          getChatroom: function () {
+          </div>
+        </div>
+        <form v-on:submit.prevent="sendMessage" id="chat-send">
+          <input type="text" id="message" v-on:keyup.enter="submit">
+          <button id="send-message" v-on:click="submit"></button>
+        </form>
+      </div>
 
+      <script>
+        var chatroom = new Vue({
+          el: '#chat-container',
+          data: {
+            leadroom: null,
+            user: null,
+            fetched: false,
+            chatroomRef: null,
+            messages: []
           },
-          fetchLeadroomInfo: function (lid) {
-            $.ajax({
-              type: 'GET',
-              url: gachi.GACHI_URL + 'v1/leadroom/' + lid,
-              dataType: 'json'
-            }).then(function (leadroom) {
-              console.log(leadroom);
-              this.leadroom = leadroom;
-              this.fetched = true;
-            }.bind(this)).fail(function (error) {
-              console.error(JSON.stringify(error));
-            })
+          created: function () {
+            gachi.retrieveUserInfo(true).then(function (user) {
+              this.user = user;
+              this.fetchLeadroomInfo("<%=lid %>");
+            }.bind(this));
           },
-          moment: function (date) {
-            return moment(date);
+          methods: {
+            sendMessage: function (message) {
+
+            },
+            processNewMessage: function (message) {
+              this.messages.push(message);
+            },
+            getChatroom: function (leadroom_id) {
+              this.chatroomRef = firebase.storage().ref('chat/' + leadroom_id + '/msg');
+              this.chatroomRef.on('child_added', function (dataSnapshot) {
+                this.processNewMessage(dataSnapshot);
+              }.bind(this));
+            },
+            fetchLeadroomInfo: function (lid) {
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/leadroom/' + lid,
+                dataType: 'json'
+              }).then(function (leadroom) {
+                console.log(leadroom);
+                this.leadroom = leadroom;
+                this.getChatroom(leadroom.leadroom_id);
+                this.fetched = true;
+              }.bind(this)).fail(function (error) {
+                console.error(JSON.stringify(error));
+              });
+            },
+            moment: function (date) {
+              return moment(date);
+            }
           }
-        }
-      });
-    </script>
+        });
+      </script>
 </body>
 
 </html>

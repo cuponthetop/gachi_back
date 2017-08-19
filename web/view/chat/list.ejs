@@ -13,7 +13,7 @@
 
   <% include ../common/common.ejs %>
 
-  <link href="/css/chat/list.css" rel="stylesheet" type="text/css" />
+    <link href="/css/chat/list.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -21,33 +21,64 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="chatroom-list">
-      <div class="chatroom" v-for="room in chatrooms">
-        <a v-bind:href="./room.leadroom_id">
-          이동~
-        </a>
-      </div>
-    </div>
+    <% include ../nav/nav_level4.ejs %>
 
-    <script>
-      var chatroomList = new Vue({
-        el: '#chatroom-list',
-        data: {
-          chatrooms: []
-        },
-        created: function () {
-          gachi.retrieveUserInfo(true).then(this.onUserLogin);
-        },
-        methods: {
-          onUserLogin: function (user) {
-            this.chatrooms = user.leadrooms;
+      <div id="chatroom-list">
+        <div class="chatroom" v-for="room in chatrooms">
+          <a v-bind:href="'./chat/'+ room.leadroom_id">
+            <div class="chatroom listitem">
+              <image class="chatroom leader_profile"></image>
+              <div class="chatroom roominfo">
+                <div class="detail-wrapper">
+                  <div class="chatroom detail">
+                    <div class="chatroom member"></div>
+                  </div>
+                  <div class="chatroom message"></div>
+                </div>
+                <div class="chatroom time"><span></span><span class="chatroom recruit"></span></div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <script>
+        var chatroomList = new Vue({
+          el: '#chatroom-list',
+          data: {
+            chatrooms: []
           },
-          moment: function (date) {
-            return moment(date);
+          created: function () {
+            gachi.retrieveUserInfo(true).then(this.processLeadroomsFromUser);
+          },
+          methods: {
+            createProcessingPromisesForChatrooms: function (leadrooms) {
+              let promises = _.map(leadrooms, function (leadroom) {
+                let chatroomId = leadroom.leadroom_id;
+                let chatroomMSG = firebase.storage().ref('chat/' + chatroomId + '/msg');
+                let recentPromise = chatroomMSG.orderByChild("timestamp").limitToLast(1).once();
+                return new Promise(function (resolve, recent) {
+                  let processed = recentPromise.then(function (msg) {
+                    _.set(leadroom, 'recentMsg', msg);
+                    return leadroom;
+                  }).catch(reject);
+                  resolve(processed);
+                });
+              });
+              return promises;
+            },
+            processLeadroomsFromUser: function (user) {
+              let promises = this.createProcessingPromisesForChatrooms(user.leadrooms);
+              Promise.all(promises).then(function (processedRooms) {
+                this.chatrooms = processedRooms;
+              }.bind(this));
+            },
+            moment: function (date) {
+              return moment(date);
+            }
           }
-        }
-      });
-    </script>
+        });
+      </script>
 </body>
 
 </html>
