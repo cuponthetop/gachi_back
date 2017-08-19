@@ -165,7 +165,7 @@
     </div>
     <div id="room_list" v-if="fetched">
 
-      <a v-for="leadroom in festival.leadrooms" v-bind:href="leadroom.leadroom_id">
+      <a v-if="festival.leadrooms" v-for="leadroom in festival.leadrooms" v-bind:href="leadroom.leadroom_id">
         <div>
           <span class="leadroom-detail"> {{leadroom.detail}} </span>
           <div class="leadroom-tag">
