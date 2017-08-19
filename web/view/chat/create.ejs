@@ -144,8 +144,9 @@
                     detail: this.detail,
                   },
                   headers: gachi.authHeader(token)
-                }).then(function (leadroom) {
-                  console.log(leadroom);
+                }).then(function (leadroom_id) {
+                  console.log(leadroom_id);
+                  location.href = "/room/" + leadroom_id;
                 }.bind(this)).fail(function (error) {
                   console.error(JSON.stringify(error));
                 });

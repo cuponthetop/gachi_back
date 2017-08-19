@@ -21,6 +21,7 @@ router.get('/chat', ctrl.chatList);
 
 router.get('/chat/:lid', ctrl.chatRoom);
 
+router.get('/room/:lid', ctrl.chatInfo);
 
 
 module.exports = router;
