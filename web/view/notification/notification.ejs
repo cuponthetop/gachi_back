@@ -22,92 +22,94 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="noti-list" v-cloak v-if="fetched">
-      <div class="sent-container" v-if="fetchedSent">
-        <div class="sent-item" v-for="request in sentRequests">
+    <% include ../nav/nav_level4.ejs %>
 
+      <div id="noti-list" v-cloak v-if="fetched">
+        <div class="sent-container" v-if="fetchedSent">
+          <div class="sent-item" v-for="request in sentRequests">
+
+          </div>
+        </div>
+
+        <div class="received-container" v-if="fetchedReceived">
+          <div class="received-item" v-for="request in receivedRequests">
+
+          </div>
         </div>
       </div>
 
-      <div class="received-container" v-if="fetchedReceived">
-        <div class="received-item" v-for="request in receivedRequests">
-
-        </div>
-      </div>
-    </div>
-
-    <script>
-      var notiList = new Vue({
-        el: '#noti-list',
-        data: {
-          fetchedReceived: false,
-          fetchedSent: false,
-          sentRequests: [],
-          receivedRequests: [],
-        },
-        created: function () {
-          gachi.getToken(true)
-            .then(this.retrieveToken)
-            .then(this.retrieveInfo)
-            .then(function () {
-            }.bind(this));
-        },
-        methods: {
-          retrieveSent: function (token) {
-            return new Promise(function (resolve, reject) {
-              $.ajax({
-                type: 'GET',
-                url: gachi.GACHI_URL + 'v1/request/list/sent',
-                dataType: 'json',
-                headers: gachi.authHeader(token)
-              }).then(function (requests) {
-                this.sentRequests = requests;
-                this.fetchedSent = true;
-                resolve(requests)
-              }.bind(this)).fail(function (error) {
-                reject(error);
-              });
-            }.bind(this));
+      <script>
+        var notiList = new Vue({
+          el: '#noti-list',
+          data: {
+            fetchedReceived: false,
+            fetchedSent: false,
+            sentRequests: [],
+            receivedRequests: [],
           },
-          retrieveReceived: function (token) {
-            return new Promise(function (resolve, reject) {
-              $.ajax({
-                type: 'GET',
-                url: gachi.GACHI_URL + 'v1/request/list/received',
-                dataType: 'json',
-                headers: gachi.authHeader(token)
-              }).then(function (requests) {
-                this.receivedRequests = requests;
-                this.fetchedReceived = true;
-                resolve(requests)
-              }.bind(this)).fail(function (error) {
-                reject(error);
-              });
-            }.bind(this));
+          created: function () {
+            gachi.getToken(true)
+              .then(this.retrieveToken)
+              .then(this.retrieveInfo)
+              .then(function () {
+              }.bind(this));
           },
-          retrieveInfo: function (token) {
-            return Promise.all([
-              this.retrieveReceived(token),
-              this.retrieveSent(token)
-            ]);
+          methods: {
+            retrieveSent: function (token) {
+              return new Promise(function (resolve, reject) {
+                $.ajax({
+                  type: 'GET',
+                  url: gachi.GACHI_URL + 'v1/request/list/sent',
+                  dataType: 'json',
+                  headers: gachi.authHeader(token)
+                }).then(function (requests) {
+                  this.sentRequests = requests;
+                  this.fetchedSent = true;
+                  resolve(requests)
+                }.bind(this)).fail(function (error) {
+                  reject(error);
+                });
+              }.bind(this));
+            },
+            retrieveReceived: function (token) {
+              return new Promise(function (resolve, reject) {
+                $.ajax({
+                  type: 'GET',
+                  url: gachi.GACHI_URL + 'v1/request/list/received',
+                  dataType: 'json',
+                  headers: gachi.authHeader(token)
+                }).then(function (requests) {
+                  this.receivedRequests = requests;
+                  this.fetchedReceived = true;
+                  resolve(requests)
+                }.bind(this)).fail(function (error) {
+                  reject(error);
+                });
+              }.bind(this));
+            },
+            retrieveInfo: function (token) {
+              return Promise.all([
+                this.retrieveReceived(token),
+                this.retrieveSent(token)
+              ]);
+            },
+            retrieveToken: function (token) {
+              return new Promise(function (resolve, reject) {
+                this.token = token;
+                resolve(token);
+              }.bind(this));
+            },
+            moment: function (date) {
+              return moment(date);
+            }
           },
-          retrieveToken: function (token) {
-            return new Promise(function (resolve, reject) {
-              this.token = token;
-              resolve(token);
-            }.bind(this));
-          },
-          moment: function (date) {
-            return moment(date);
+          computed: {
+            fetched: function () {
+              return this.fetchedSent && this.fetchedReceived;
+            }
           }
-        },
-        computed: {
-          fetched: function () {
-            return this.fetchedSent && this.fetchedReceived;
-          }
-        }
-      });
-    </script>
+        });
+      </script>
 </body>
 
 </html>
