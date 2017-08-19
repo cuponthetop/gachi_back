@@ -5,7 +5,7 @@
 
     <div id="nav_right">
 
-      <a v-if="user" class="nav_info nav_email" href="/info">
+      <a v-if="user" class="nav_info nav_nickname" href="/info">
         {{user.nickname}}
       </a>
 
@@ -27,9 +27,6 @@
     </div>
   </div>
 </div>
-
-<!-- google firebase-->
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 
 <script src="/js/common/common.js"></script>
 <script src="/js/common/firebase.js"></script>

@@ -77,6 +77,20 @@
   margin-left:20px;
 }
 
+.nav_info{
+  float:left;
+  margin-left:35px;
+  line-height:35px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight:300;
+  color:#484848;
+  text-decoration: none;
+}
+
+.nav_nickname{
+  color:#4f2cfa;
+}
+
 @media  screen and (min-width:1080px){
     #nav_level1_all{
       width:1080px;
@@ -116,7 +130,8 @@
       color:#484848;
       text-decoration: none;
     }
-    .nav_email{
+
+    .nav_nickname{
       color:#4f2cfa;
     }
     .logout{
