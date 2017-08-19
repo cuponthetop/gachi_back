@@ -14,7 +14,7 @@
 
   <% include ../common/common.ejs %>
 
-  <link href="/css/notification/notification.css" rel="stylesheet" type="text/css" />
+    <link href="/css/notification/notification.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -22,29 +22,88 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="chatroom-list">
-      <div class="chatroom" v-for="room in chatrooms">
-        <a v-bind:href="./room.leadroom_id">
-          이동~
-        </a>
+    <div id="noti-list" v-cloak v-if="fetched">
+      <div class="sent-container" v-if="fetchedSent">
+        <div class="sent-item" v-for="request in sentRequests">
+
+        </div>
+      </div>
+
+      <div class="received-container" v-if="fetchedReceived">
+        <div class="received-item" v-for="request in receivedRequests">
+
+        </div>
       </div>
     </div>
 
     <script>
-      var chatroomList = new Vue({
-        el: '#chatroom-list',
+      var notiList = new Vue({
+        el: '#noti-list',
         data: {
-          chatrooms: []
+          fetchedReceived: false,
+          fetchedSent: false,
+          sentRequests: [],
+          receivedRequests: [],
         },
         created: function () {
-          gachi.retrieveUserInfo(true).then(this.onUserLogin);
+          gachi.getToken(true)
+            .then(this.retrieveToken)
+            .then(this.retrieveInfo)
+            .then(function () {
+            }.bind(this));
         },
         methods: {
-          onUserLogin: function (user) {
-            this.chatrooms = user.leadrooms;
+          retrieveSent: function (token) {
+            return new Promise(function (resolve, reject) {
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/request/list/sent',
+                dataType: 'json',
+                headers: gachi.authHeader(token)
+              }).then(function (requests) {
+                this.sentRequests = requests;
+                this.fetchedSent = true;
+                resolve(requests)
+              }.bind(this)).fail(function (error) {
+                reject(error);
+              });
+            }.bind(this));
+          },
+          retrieveReceived: function (token) {
+            return new Promise(function (resolve, reject) {
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/request/list/received',
+                dataType: 'json',
+                headers: gachi.authHeader(token)
+              }).then(function (requests) {
+                this.receivedRequests = requests;
+                this.fetchedReceived = true;
+                resolve(requests)
+              }.bind(this)).fail(function (error) {
+                reject(error);
+              });
+            }.bind(this));
+          },
+          retrieveInfo: function (token) {
+            return Promise.all([
+              this.retrieveReceived(token),
+              this.retrieveSent(token)
+            ]);
+          },
+          retrieveToken: function (token) {
+            return new Promise(function (resolve, reject) {
+              this.token = token;
+              resolve(token);
+            }.bind(this));
           },
           moment: function (date) {
             return moment(date);
+          }
+        },
+        computed: {
+          fetched: function () {
+            return this.fetchedSent && this.fetchedReceived;
           }
         }
       });

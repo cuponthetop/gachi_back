@@ -51,6 +51,10 @@ const chatInfo = function (req, res) {
   res.render('../chat/info', { lid });
 };
 
+const notification = function (req, res) {
+  res.render('../notification/notification');
+};
+
 module.exports = {
   index,
   search,
@@ -62,4 +66,5 @@ module.exports = {
   chatRoom,
   createChatRoom,
   chatInfo,
+  notification,
 }
