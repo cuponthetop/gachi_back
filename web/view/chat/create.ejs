@@ -66,21 +66,21 @@
           </div>
           <div id="age-box"><span>원하는 나이대를 선택하세요</span>
             <div>
-              <span class="age-item" v-for="age in ageItems" v-on:click="toggleAge" :key="age">
+              <span class="age-item not-checked" v-for="age in ageItems" v-on:click="toggleAge" :key="age">
               {{age}}
             </span>
             </div>
           </div>
           <div id="characteristic-box"><span>공연을 즐기는 성향을 선택하세요</span>
             <div>
-              <span class="characteristic-item" v-for="character in characteristicItems" v-on:click="toggleCharacter">
+              <span class="characteristic-item not-checked" v-for="character in characteristicItems" v-on:click="toggleCharacter">
               {{character}}
               </span>
             </div>
           </div>
           <div id="location-box"><span>출발지역을 선택하세요</span>
             <div>
-              <span class="location-item" v-for="location in locationItems" v-on:click="toggleLocation">
+              <span class="location-item not-checked" v-for="location in locationItems" v-on:click="toggleLocation">
               {{location}}
               </span>
             </div>
@@ -138,8 +138,8 @@
                   data: {
                     fid: this.festival.fid,
                     max_follower: this.max_number,
-                    from: new Date(Date.now()),
-                    until: new Date(Date.now() + 1000 * 3600),
+                    from: new Date(Date.now() + 24 * 1000 * 3600).toISOString(),
+                    until: new Date(Date.now() + 2 * 24 * 1000 * 3600).toISOString(),
                     age,
                     characteristic,
                     location,
@@ -157,34 +157,34 @@
             },
             toggleAge: function ($event) {
               let target = $event.target;
-              if (-1 === target.className.indexOf("checked")) {
+              if (-1 === target.className.indexOf(" checked")) {
                 // currently not checked
-                target.className += " checked";
+                target.className = target.className.replace(' not-checked', '') + " checked";
                 this.age.push(target.innerText.trim());
               } else {
-                target.className = target.className.replace(" checked", '');
+                target.className = target.className.replace(" checked", '') + ' not-checked';
                 this.age.pop(target.innerText.trim());
               }
             },
             toggleCharacter: function ($event) {
               let target = $event.target;
-              if (-1 === target.className.indexOf("checked")) {
+              if (-1 === target.className.indexOf(" checked")) {
                 // currently not checked
-                target.className += " checked";
+                target.className = target.className.replace(' not-checked', '') + " checked";
                 this.characteristic.push(target.innerText.trim());
               } else {
-                target.className = target.className.replace(" checked", '');
+                target.className = target.className.replace(" checked", '') + ' not-checked';
                 this.characteristic.pop(target.innerText.trim());
               }
             },
             toggleLocation: function ($event) {
               let target = $event.target;
-              if (-1 === target.className.indexOf("checked")) {
+              if (-1 === target.className.indexOf(" checked")) {
                 // currently not checked
-                target.className += " checked";
+                target.className = target.className.replace(' not-checked', '') + " checked";
                 this.location.push(target.innerText.trim());
               } else {
-                target.className = target.className.replace(" checked", '');
+                target.className = target.className.replace(" checked", '') + ' not-checked';
                 this.location.pop(target.innerText.trim());
               }
             },

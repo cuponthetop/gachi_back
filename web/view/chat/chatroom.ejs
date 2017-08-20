@@ -36,7 +36,7 @@
         </div>
         <form v-on:submit.prevent="sendMessage" id="chat-send">
           <input type="text" v-model="messageToSend" v-on:keyup.enter="sendMessage">
-          <button id="send-message" v-on:click="sendMessage">보내기</button>
+          <button id="send-message" v-on:click="sendMessage" v-bind:disabled="messageToSend === ''">보내기</button>
         </form>
       </div>
 
@@ -59,23 +59,30 @@
           },
           methods: {
             sendMessage: function () {
+              if (this.messageToSend === '') {
+                return;
+              }
               this.chatroomRef.push({
                 text: this.messageToSend,
                 userid: this.user.uid,
-                username: this.user.nickname
+                username: this.user.nickname,
+                timestamp: Date.now()
               }).then(function () {
-              }.bind(this));
+              }.bind(this)).catch(function (err) {
+                console.error(err);
+              });
               this.messageToSend = '';
             },
             findProfileURL: function (uid) {
               const EMPTY_IMAGE = '';
-              return _.get(_.find(this.leadroom.member, {uid}), 'profile_image', EMPTY_IMAGE);
+              return _.get(_.find(this.leadroom.member, { uid }), 'profile_image', EMPTY_IMAGE);
             },
             processNewMessage: function (message) {
-              this.messages.push(message);
+              let value = message.val();
+              this.messages.push(value);
             },
             getChatroom: function (leadroom_id) {
-              this.chatroomRef = firebase.storage().ref('chat/' + leadroom_id + '/msg');
+              this.chatroomRef = firebase.database().ref('chat/' + leadroom_id + '/msg');
               this.chatroomRef.on('child_added', function (dataSnapshot) {
                 this.processNewMessage(dataSnapshot);
               }.bind(this));

@@ -33,7 +33,7 @@
                   <div class="chatroom detail">
                     <div class="chatroom member"></div>
                   </div>
-                  <div class="chatroom message"></div>
+                  <div class="chatroom message"> {{room.recentMsg.text}}</div>
                 </div>
                 <div class="chatroom time"><span></span><span class="chatroom recruit"></span></div>
               </div>
@@ -59,11 +59,12 @@
             createProcessingPromisesForChatrooms: function (leadrooms) {
               let promises = _.map(leadrooms, function (leadroom) {
                 let chatroomId = leadroom.leadroom_id;
-                let chatroomMSG = firebase.storage().ref('chat/' + chatroomId + '/msg');
-                let recentPromise = chatroomMSG.orderByChild("timestamp").limitToLast(1).once();
-                return new Promise(function (resolve, recent) {
+                let chatroomMSG = firebase.database().ref('chat/' + chatroomId + '/msg');
+                let recentPromise = chatroomMSG.orderByChild("timestamp").limitToLast(1).once('value');
+                return new Promise(function (resolve, reject) {
                   let processed = recentPromise.then(function (msg) {
-                    _.set(leadroom, 'recentMsg', msg);
+                    let value = msg.val();
+                    _.set(leadroom, 'recentMsg', _.get(value, _.keys(value)));
                     return leadroom;
                   }).catch(reject);
                   resolve(processed);
