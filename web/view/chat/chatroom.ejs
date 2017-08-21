@@ -25,7 +25,7 @@
 
       <div id="chat-container" v-cloak>
         <div class="chat-messages">
-          <div class="chat-item" v-for="message in messages">
+          <div class="chat-item" v-bind:class="[isMine(message) ? 'chat-mine' : 'chat-other']" v-for="message in messages">
             <div class="chat-text"><span>{{message.text}}</span></div>
             <div class="chat-time"><span>{{message.timestamp}}</span></div>
             <div class="chat-profile"><img v-bind:src="findProfileURL(message.userid)">
@@ -103,7 +103,13 @@
             },
             moment: function (date) {
               return moment(date);
+            },
+
+            isMine: function (message) {
+              return false;
             }
+          },
+          computed: {
           }
         });
       </script>

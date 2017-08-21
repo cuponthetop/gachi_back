@@ -31,7 +31,10 @@
             <span> 보낸 요청이 없습니다 </span>
           </div>
           <div class="sent-item" v-for="request in sentRequests" v-if="sentRequests.length !== 0">
-            {{request.leadroom.leader.nickname}}
+            <div class="sent request-name">
+              {{request.leadroom.leader.nickname}}
+            </div>
+            <button class="request-button" v-bind:disabled="!cancelSent" v-on:click="cancelRequest(request.rid)">취소하기</button>
           </div>
         </div>
 
@@ -41,7 +44,11 @@
             <span>받은 요청이 없습니다</span>
           </div>
           <div class="received-item" v-for="request in receivedRequests" v-if="receivedRequests.length !== 0">
-
+            <div class="sent request-name">
+              {{request.requester.nickname}}
+            </div>
+            <button class="request-button" v-bind:disabled="!acceptSent" v-on:click="acceptRequest(request.rid)">승낙하기</button>
+            <button class="request-button" v-bind:disabled="!refuseSent" v-on:click="refuseRequest(request.rid)">거절하기</button>
           </div>
         </div>
       </div>
@@ -50,6 +57,9 @@
         var notiList = new Vue({
           el: '#noti-list',
           data: {
+            cancelSent: false,
+            acceptSent: false,
+            refuseSent: false,
             fetchedReceived: false,
             fetchedSent: false,
             sentRequests: [],
@@ -106,6 +116,57 @@
                 this.token = token;
                 resolve(token);
               }.bind(this));
+            },
+            acceptRequest: function (requestID) {
+              this.acceptSent = true;
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/accept',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.acceptSent = true;
+                _.remove(this.receivedRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully accepted
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
+            },
+            refuseRequest: function (requestID) {
+              this.refuseSent = true;
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/refuse',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.refuseSent = true;
+                _.remove(this.receivedRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully refused
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
+            },
+            cancelRequest: function (requestID) {
+              this.cancelSent = true;
+              $.ajax({
+                type: 'GET',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/cancel',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.cancelSent = true;
+                _.remove(this.sentRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully canceled
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
             },
             moment: function (date) {
               return moment(date);
