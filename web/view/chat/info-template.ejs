@@ -38,6 +38,6 @@
         <span class="member-nickname">{{member.nickname}}</span>
       </div>
     </div>
-    <div class="request-btn">가치하기</div>
+    <button class="request-btn" v-bind:disabled="isDisabled" v-on:click="sendRequest">가치하기</button>
   </div>
 </div>

@@ -120,12 +120,12 @@
             acceptRequest: function (requestID) {
               this.acceptSent = true;
               $.ajax({
-                type: 'GET',
+                type: 'PATCH',
                 url: gachi.GACHI_URL + 'v1/request/' + requestID + '/accept',
                 dataType: 'json',
                 headers: gachi.authHeader(this.token)
               }).then(function (requests) {
-                this.acceptSent = true;
+                this.acceptSent = false;
                 _.remove(this.receivedRequests, function (req) {
                   return req.rid === requestID;
                 });
@@ -137,12 +137,12 @@
             refuseRequest: function (requestID) {
               this.refuseSent = true;
               $.ajax({
-                type: 'GET',
+                type: 'PATCH',
                 url: gachi.GACHI_URL + 'v1/request/' + requestID + '/refuse',
                 dataType: 'json',
                 headers: gachi.authHeader(this.token)
               }).then(function (requests) {
-                this.refuseSent = true;
+                this.refuseSent = false;
                 _.remove(this.receivedRequests, function (req) {
                   return req.rid === requestID;
                 });
@@ -154,12 +154,12 @@
             cancelRequest: function (requestID) {
               this.cancelSent = true;
               $.ajax({
-                type: 'GET',
+                type: 'PATCH',
                 url: gachi.GACHI_URL + 'v1/request/' + requestID + '/cancel',
                 dataType: 'json',
                 headers: gachi.authHeader(this.token)
               }).then(function (requests) {
-                this.cancelSent = true;
+                this.cancelSent = false;
                 _.remove(this.sentRequests, function (req) {
                   return req.rid === requestID;
                 });
