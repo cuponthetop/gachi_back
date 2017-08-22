@@ -22,26 +22,64 @@
   <% include ../nav/nav_level1.ejs %>
 
     <% include ../nav/nav_level4.ejs %>
-
-      <div id="chatroom-list">
-        <div class="chatroom" v-for="room in chatrooms">
-          <a v-bind:href="'./chat/'+ room.leadroom_id">
-            <div class="chatroom listitem">
-              <image class="chatroom leader_profile"></image>
-              <div class="chatroom roominfo">
-                <div class="detail-wrapper">
-                  <div class="chatroom detail">
-                    <div class="chatroom member"></div>
-                  </div>
-                  <div class="chatroom message"></div>
-                </div>
-                <div class="chatroom time"><span></span><span class="chatroom recruit"></span></div>
-              </div>
-            </div>
-          </a>
+      <div class="content-container">
+        <div class="sub-title-group">
+          <span class="sub-title">채팅 리스트</span>
         </div>
-      </div>
+        
+        <div id="chatroom-list">
+          <div class="chatroom">
+            <a>
+              <div class="chatroom listitem">
+                <image class="leader_profile" width="69px" height="69px"></image>
+                <div class="chatroom-info">
+                  <div class="detail-wrapper">
+                    <div class="chatroom-detail">
+                      <span class="chatroom-member badge">5명 가치중</span>
+                    </div>
+                    <div class="chatroom-message">건대에서 만나서가요!</div>
+                  </div>
+                  <div class="chatroom-time"><span>오후 1:00</span><span class="chatroom recruit"></span></div>
+                </div>
+              </div>
+            </a>
+          </div>
 
+          <div class="chatroom">
+            <a>
+              <div class="chatroom listitem">
+                <image class="leader_profile" width="69px" height="69px"></image>
+                <div class="chatroom-info">
+                  <div class="detail-wrapper">
+                    <div class="chatroom-detail">
+                      <span class="chatroom-member badge">5명 가치중</span>
+                    </div>
+                    <div class="chatroom-message">건대에서 만나서가요!</div>
+                  </div>
+                  <div class="chatroom-time"><span>오후 1:00</span><span class="chatroom recruit"></span></div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="chatroom" v-for="room in chatrooms">
+            <a v-bind:href="'./chat/'+ room.leadroom_id">
+              <div class="chatroom listitem">
+                <image class="chatroom leader_profile"></image>
+                <div class="chatroom roominfo">
+                  <div class="detail-wrapper">
+                    <div class="chatroom detail">
+                      <div class="chatroom member"></div>
+                    </div>
+                    <div class="chatroom message"></div>
+                  </div>
+                  <div class="chatroom time"><span></span><span class="chatroom recruit"></span></div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>    
+      </div>
       <script>
         var chatroomList = new Vue({
           el: '#chatroom-list',
