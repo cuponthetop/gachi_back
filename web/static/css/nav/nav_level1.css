@@ -14,7 +14,6 @@
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
-  position: relative;
 }
 #nav_level1{
   width:calc(100% - 30px);
@@ -181,12 +180,12 @@
 
 @media  screen and (min-width:1080px){
     #nav_level1_all{
-      width:1080px;
-      height:64px;
+      /* width:1080px; */
+      height:59px;
     }
     #nav_level1{
-      width:1080px;
-      height:64px;
+      /* width:1080px; */
+      height:59px;
     }
     #logo_image{
       margin-top:19px;
@@ -214,6 +213,11 @@
       width:26px;
       height:26px;
       margin-top:17px;
+    }
+
+    .nav_info {
+      margin-top: 12px;
+      font-size: small;
     }
 
     .nav_nickname{
