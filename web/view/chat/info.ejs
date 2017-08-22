@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 공통 head
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+  10. JS
+    -->
+
+  <% include ../common/common.ejs %>
+
+    <link href="/css/chat/info.css" rel="stylesheet" type="text/css" />
+
+    <script src="/js/common/common.js"></script>
+
+</head>
+
+<body>
+
+  <% include ../nav/nav_level1.ejs %>
+    <% include ../nav/nav_level4.ejs %>
+
+      <% include ../chat/info-template.ejs %>
+
+        <script>
+          var info = new Vue({
+            el: '#info-container',
+            data: {
+              fetched: false,
+              token: null,
+              leadroom: null,
+              showDetail: false,
+              collapsible: false,
+              isMember: false,
+              requestSent: false,
+            },
+            created: function () {
+
+              gachi.retrieveUserInfo(true)
+                .then(function (user) {
+                  this.user = user;
+                  this.token = user.token;
+                }.bind(this))
+                .then(this.fetchLeadroomInfo.bind(this, "<%=lid %>"));
+            },
+            methods: {
+              fetchLeadroomInfo: function (lid) {
+                $.ajax({
+                  type: 'GET',
+                  url: gachi.GACHI_URL + 'v1/leadroom/' + lid,
+                  dataType: 'json'
+                }).then(function (leadroom) {
+                  console.log(leadroom);
+                  this.leadroom = leadroom;
+                  this.fetched = true;
+                }.bind(this)).fail(function (error) {
+                  console.error(JSON.stringify(error));
+                })
+              },
+              sendRequest: function () {
+                this.requestSent = true;
+                $.ajax({
+                  type: 'POST',
+                  url: gachi.GACHI_URL + 'v1/request/',
+                  dataType: 'json',
+                  data: {
+                    lid: this.leadroom.leadroom_id
+                  },
+                  headers: gachi.authHeader(this.token)
+                }).then(function (request) {
+                  console.log(request);
+                  this.requestSent = false;
+                }.bind(this)).fail(function (error) {
+                  console.error(JSON.stringify(error));
+                })
+              },
+              showMore: function () {
+                $('.info-detail').css('height', 'auto');
+                this.toggleDetail();
+              },
+              showLess: function () {
+                $('.info-detail').css('height', '50px');
+                this.toggleDetail();
+              },
+              toggleDetail: function () {
+                this.showDetail = !this.showDetail;
+              },
+              moment: function (date) {
+                return moment(date);
+              }
+            },
+            updated: function () {
+              this.collapsible = $('.info-detail')[0].scrollHeight > 50;
+            },
+            computed: {
+              isDisabled: {
+                get: function () {
+                  return (this.requestSent || !_.isNull(_.find(this.leadroom.member, { uid: this.user.uid })));
+                }
+              },
+              showMoreDiv: {
+                get: function () {
+                  return !this.showDetail && this.collapsible;
+                }
+              },
+              showLessDiv: {
+                get: function () {
+                  return this.showDetail && this.collapsible;
+                }
+              }
+            }
+          });
+        </script>
+</body>
+
+</html>

@@ -45,6 +45,16 @@ const createChatRoom = function (req, res) {
   res.render('../chat/create', { fid });
 };
 
+const chatInfo = function (req, res) {
+  var lid = req.params.lid;
+
+  res.render('../chat/info', { lid });
+};
+
+const notification = function (req, res) {
+  res.render('../notification/notification');
+};
+
 module.exports = {
   index,
   search,
@@ -55,4 +65,6 @@ module.exports = {
   chatList,
   chatRoom,
   createChatRoom,
+  chatInfo,
+  notification,
 }

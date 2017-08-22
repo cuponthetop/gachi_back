@@ -1,0 +1,46 @@
+#create-chat-container {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+span.checked {
+  background-color:#4f2cfa;
+  color:#fff;
+  border-color: #4f2cfa;
+}
+
+span.not-checked {
+  color:rgb(164, 170, 179);
+  background-color: white;
+  border-color: rgb(164, 170, 179);
+}
+
+#characteristic-box > span, #location-box > span, #age-box > span {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+span.characteristic-item, span.age-item, span.location-item {
+  font-size:10px;
+  padding-left:5px;
+  padding-right:5px;
+  cursor: default;
+
+  height:28px;
+  /* line-height: 20px; */
+  font-weight:300;
+
+  margin-right:5px;
+  padding-left:7px;
+  padding-right:7px;
+  width:fit-content;
+
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#create-chatroom {
+  background-color: rgb(79, 44, 250);
+  color: white;
+}

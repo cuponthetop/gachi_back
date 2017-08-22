@@ -1,0 +1,43 @@
+<div id="info-container" v-cloak v-if="fetched">
+  <div class="title"><span>방정보</span></div>
+
+  <div class="info-leader">
+    <div class="leader-rel"></div>
+    <div class="leader-profile">
+      <img src="" class="leader-img">
+      <span> {{leadroom.leader.nickname}}</span>
+    </div>
+  </div>
+  <div class="info-detail">
+    <span> {{leadroom.detail}} </span>
+
+    <div id="detail-more" v-on:click="showMore" v-if="showMoreDiv">
+      더보기
+    </div>
+    <div id="detail-less" v-on:click="showLess" v-if="showLessDiv">
+      접기
+    </div>
+  </div>
+  <div class="info-location"> <span> #{{leadroom.location}} </span></div>
+  <div class="info-tag">
+    <span> #{{leadroom.characteristic}} </span>
+    <span> #{{leadroom.age}} </span>
+  </div>
+  <!--  <div class="info-date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div> -->
+  <div class="info-number"> {{leadroom.max_follower}} </div>
+
+  <div class="member-list">
+    <div class="member-text">
+      <span class="member-label">이 방에 참여한 사람들</span>
+      <span class="member-count">{{leadroom.going}}</span>
+    </div>
+
+    <div v-for="member in leadroom.member">
+      <div class="member-item">
+        <img src="" class="member-profile">
+        <span class="member-nickname">{{member.nickname}}</span>
+      </div>
+    </div>
+    <button class="request-btn" v-bind:disabled="isDisabled" v-on:click="sendRequest">가치하기</button>
+  </div>
+</div>

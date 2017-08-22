@@ -40,9 +40,12 @@ var gachi = (function (gachi, $, firebase) {
   gachi.retrieveUserInfo = function (redirectIfNotLoggedIn) {
     // returns promise<GachiUserInfo>
     return new Promise(function (resolve, reject) {
+
+      var token = null;
       gachi.getToken(redirectIfNotLoggedIn)
-        .then(function (token) {
-          headers = gachi.authHeader(token);
+        .then(function (authToken) {
+          token = authToken;
+          headers = gachi.authHeader(authToken);
           // find user id
           $.ajax({
             type: 'GET',
@@ -62,6 +65,7 @@ var gachi = (function (gachi, $, firebase) {
             })
             .then(function (data) {
               // 로그인 성공
+              _.set(data, 'token', token);
               resolve(data);
             }).fail(function (err) {
               // 로그인 에러

@@ -9,11 +9,11 @@
         {{user.nickname}}
       </a>
 
-      <a v-if="user == null" id="nav_login" class="nav_info" href="/login">
+      <a v-if="user == ''" id="nav_login" class="nav_info" href="/login">
         로그인
       </a>
 
-      <div class="nav_info logout" v-if="user" v-on:click="logout">
+      <div v-if="user" v-on:click="logout" class="nav_info logout" >
         로그아웃
       </div>
 

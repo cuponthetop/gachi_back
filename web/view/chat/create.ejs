@@ -11,9 +11,11 @@
   10. JS
     -->
 
-  <% include /common/common.ejs %>
+  <% include ../common/common.ejs %>
 
     <link href="/css/chat/create.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="/vue/vue-form.js"></script>
 
 </head>
 
@@ -24,41 +26,169 @@
     <% include ../nav/nav_level4.ejs %>
 
       <script>
-        const ageList = [
-
+        const ageRangeList = [
+          '10대', '20대', '30대', '40대'
         ];
-        const ageList = [];
-        const locationList = [];
+        const ageModifierList = ['초반', '중반', '후반'];
+        const ageList = _.flatten(_.map(ageRangeList, function (range) {
+          return _.map(ageModifierList, function (modifier) {
+            return range + modifier;
+          });
+        }));
+
+        const characteristicList = [
+          '술 마시고 놀아요', '음악에 집중해요', '에프터 파티도 즐겨요',
+          '미친듯이 놀아요', '조용히 놀아요', '때에 따라 달라요', '기타'
+        ];
+        const locationList = [
+          '서울특별시', '부산광역시', '대구광역시', '인천광역시', '광주광역시',
+          '대전광역시', '울산광역시', '세종특별자치시', '경기도', '강원도',
+          '충청북도', '전라북도', '전라남도', '경상북도', '경상남도', '제주특별자치도'
+        ];
       </script>
 
       <div id="create-chat-container" v-cloak v-if="fetched">
-        <form v-on:submit.prevent="createChatroom" id="create-form">
-          <span id="festival"></span>
-          <input type="text" id="max_member" />
-          <input type="text" id="detail" />
-          <input type="text" id="datetime" />
-          <div id="age"></div>
-          <div id="characteristic"></div>
-          <div id="location"></div>
-          <button id="create-chatroom" v-on:click="submit"></button>
-        </form>
+        <vue-form :state="formstate" @submit.prevent="onSubmit">
+          <div>
+            <span id="festival">{{ festival.title }}</span>
+          </div>
+          <div>
+            <label></label>
+            <input v-model="max_number" type="number" id="max_member" placeholder="최대 인원을 설정해주세요" />
+          </div>
+          <div>
+            <label></label>
+            <input v-model="detail" type="text" id="detail" placeholder="방을 설명해주세요 (최대 200자)" />
+          </div>
+          <div>
+            <label></label>
+            <input v-model="fromuntil" type="text" id="datetime" placeholder="가는 날을 입력해주세요" />
+          </div>
+          <div id="age-box"><span>원하는 나이대를 선택하세요</span>
+            <div>
+              <span class="age-item not-checked" v-for="age in ageItems" v-on:click="toggleAge" :key="age">
+              {{age}}
+            </span>
+            </div>
+          </div>
+          <div id="characteristic-box"><span>공연을 즐기는 성향을 선택하세요</span>
+            <div>
+              <span class="characteristic-item not-checked" v-for="character in characteristicItems" v-on:click="toggleCharacter">
+              {{character}}
+              </span>
+            </div>
+          </div>
+          <div id="location-box"><span>출발지역을 선택하세요</span>
+            <div>
+              <span class="location-item not-checked" v-for="location in locationItems" v-on:click="toggleLocation">
+              {{location}}
+              </span>
+            </div>
+          </div>
+          <button type="submit" id="create-chatroom" v-bind:disabled="sent"><span>방 만들기</span></button>
+        </vue-form>
       </div>
 
       <script>
-        var detail = new Vue({
+        let options = {
+          validators: {
+            'sample-validator': function (value, attrValue, vnode) {
+
+            },
+          }
+        };
+
+        Vue.use(VueForm, options);
+        var create = new Vue({
           el: '#create-chat-container',
           data: {
+            formstate: {},
+            age: [],
+            characteristic: [],
+            location: [],
+            max_number: null,
+            detail: '',
+            fromuntil: null,
+            ageItems: ageList,
+            characteristicItems: characteristicList,
+            locationItems: locationList,
             fetched: false,
             festival: null,
+            sent: false
           },
           created: function () {
             this.fetchFestivalInfo("<%=fid %>");
           },
           methods: {
-            validateDuration: function () {
+            onSubmit: function () {
+              if (this.formstate.$invalid) {
+                return;
+              }
 
+              this.sent = true;
+              let age = this.age.join(',');
+              let characteristic = this.characteristic.join(',');
+              let location = this.location.join(',');
+
+              gachi.getToken(false).then(function (token) {
+                return $.ajax({
+                  type: 'POST',
+                  url: gachi.GACHI_URL + 'v1/leadroom',
+                  dataType: 'json',
+                  data: {
+                    fid: this.festival.fid,
+                    max_follower: this.max_number,
+                    from: new Date(Date.now() + 24 * 1000 * 3600).toISOString(),
+                    until: new Date(Date.now() + 2 * 24 * 1000 * 3600).toISOString(),
+                    age,
+                    characteristic,
+                    location,
+                    detail: this.detail,
+                  },
+                  headers: gachi.authHeader(token)
+                }).then(function (leadroom_id) {
+                  console.log(leadroom_id);
+                  window.location.href = "/room/" + leadroom_id.leadroom_id;
+                  this.sent = false;
+                }.bind(this)).fail(function (error) {
+                  console.error(JSON.stringify(error));
+                });
+              }.bind(this));
             },
-            createChatroom: function () {
+            toggleAge: function ($event) {
+              let target = $event.target;
+              if (-1 === target.className.indexOf(" checked")) {
+                // currently not checked
+                target.className = target.className.replace(' not-checked', '') + " checked";
+                this.age.push(target.innerText.trim());
+              } else {
+                target.className = target.className.replace(" checked", '') + ' not-checked';
+                this.age.pop(target.innerText.trim());
+              }
+            },
+            toggleCharacter: function ($event) {
+              let target = $event.target;
+              if (-1 === target.className.indexOf(" checked")) {
+                // currently not checked
+                target.className = target.className.replace(' not-checked', '') + " checked";
+                this.characteristic.push(target.innerText.trim());
+              } else {
+                target.className = target.className.replace(" checked", '') + ' not-checked';
+                this.characteristic.pop(target.innerText.trim());
+              }
+            },
+            toggleLocation: function ($event) {
+              let target = $event.target;
+              if (-1 === target.className.indexOf(" checked")) {
+                // currently not checked
+                target.className = target.className.replace(' not-checked', '') + " checked";
+                this.location.push(target.innerText.trim());
+              } else {
+                target.className = target.className.replace(" checked", '') + ' not-checked';
+                this.location.pop(target.innerText.trim());
+              }
+            },
+            validateDuration: function () {
 
             },
             fetchFestivalInfo: function (fid) {

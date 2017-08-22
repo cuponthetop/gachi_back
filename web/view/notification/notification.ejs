@@ -14,7 +14,7 @@
 
   <% include ../common/common.ejs %>
 
-  <link href="/css/notification/notification.css" rel="stylesheet" type="text/css" />
+    <link href="/css/notification/notification.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -22,33 +22,163 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <div id="chatroom-list">
-      <div class="chatroom" v-for="room in chatrooms">
-        <a v-bind:href="./room.leadroom_id">
-          이동~
-        </a>
-      </div>
-    </div>
+    <% include ../nav/nav_level4.ejs %>
 
-    <script>
-      var chatroomList = new Vue({
-        el: '#chatroom-list',
-        data: {
-          chatrooms: []
-        },
-        created: function () {
-          gachi.retrieveUserInfo(true).then(this.onUserLogin);
-        },
-        methods: {
-          onUserLogin: function (user) {
-            this.chatrooms = user.leadrooms;
+      <div id="noti-list" v-cloak v-if="fetched">
+        <div class="sent-container" v-if="fetchedSent">
+          <div class="sent-label"> <span>보낸 요청</span></div>
+          <div class="sent-none" v-if="sentRequests.length === 0">
+            <span> 보낸 요청이 없습니다 </span>
+          </div>
+          <div class="sent-item" v-for="request in sentRequests" v-if="sentRequests.length !== 0">
+            <div class="sent request-name">
+              {{request.leadroom.leader.nickname}}
+            </div>
+            <button class="request-button" v-bind:disabled="!cancelSent" v-on:click="cancelRequest(request.rid)">취소하기</button>
+          </div>
+        </div>
+
+        <div class="received-container" v-if="fetchedReceived">
+          <div class="received-label"> <span>받은 요청</span></div>
+          <div class="received-none" v-if="receivedRequests.length === 0">
+            <span>받은 요청이 없습니다</span>
+          </div>
+          <div class="received-item" v-for="request in receivedRequests" v-if="receivedRequests.length !== 0">
+            <div class="sent request-name">
+              {{request.requester.nickname}}
+            </div>
+            <button class="request-button" v-bind:disabled="!acceptSent" v-on:click="acceptRequest(request.rid)">승낙하기</button>
+            <button class="request-button" v-bind:disabled="!refuseSent" v-on:click="refuseRequest(request.rid)">거절하기</button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        var notiList = new Vue({
+          el: '#noti-list',
+          data: {
+            cancelSent: false,
+            acceptSent: false,
+            refuseSent: false,
+            fetchedReceived: false,
+            fetchedSent: false,
+            sentRequests: [],
+            receivedRequests: [],
           },
-          moment: function (date) {
-            return moment(date);
+          created: function () {
+            gachi.getToken(true)
+              .then(this.retrieveToken)
+              .then(this.retrieveInfo)
+              .then(function () {
+              }.bind(this));
+          },
+          methods: {
+            retrieveSent: function (token) {
+              return new Promise(function (resolve, reject) {
+                $.ajax({
+                  type: 'GET',
+                  url: gachi.GACHI_URL + 'v1/request/list/sent',
+                  dataType: 'json',
+                  headers: gachi.authHeader(token)
+                }).then(function (requests) {
+                  this.sentRequests = requests;
+                  this.fetchedSent = true;
+                  resolve(requests)
+                }.bind(this)).fail(function (error) {
+                  reject(error);
+                });
+              }.bind(this));
+            },
+            retrieveReceived: function (token) {
+              return new Promise(function (resolve, reject) {
+                $.ajax({
+                  type: 'GET',
+                  url: gachi.GACHI_URL + 'v1/request/list/received',
+                  dataType: 'json',
+                  headers: gachi.authHeader(token)
+                }).then(function (requests) {
+                  this.receivedRequests = requests;
+                  this.fetchedReceived = true;
+                  resolve(requests)
+                }.bind(this)).fail(function (error) {
+                  reject(error);
+                });
+              }.bind(this));
+            },
+            retrieveInfo: function (token) {
+              return Promise.all([
+                this.retrieveReceived(token),
+                this.retrieveSent(token)
+              ]);
+            },
+            retrieveToken: function (token) {
+              return new Promise(function (resolve, reject) {
+                this.token = token;
+                resolve(token);
+              }.bind(this));
+            },
+            acceptRequest: function (requestID) {
+              this.acceptSent = true;
+              $.ajax({
+                type: 'PATCH',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/accept',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.acceptSent = false;
+                _.remove(this.receivedRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully accepted
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
+            },
+            refuseRequest: function (requestID) {
+              this.refuseSent = true;
+              $.ajax({
+                type: 'PATCH',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/refuse',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.refuseSent = false;
+                _.remove(this.receivedRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully refused
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
+            },
+            cancelRequest: function (requestID) {
+              this.cancelSent = true;
+              $.ajax({
+                type: 'PATCH',
+                url: gachi.GACHI_URL + 'v1/request/' + requestID + '/cancel',
+                dataType: 'json',
+                headers: gachi.authHeader(this.token)
+              }).then(function (requests) {
+                this.cancelSent = false;
+                _.remove(this.sentRequests, function (req) {
+                  return req.rid === requestID;
+                });
+                // successfully canceled
+              }.bind(this)).fail(function (error) {
+                console.log(error);
+              });
+            },
+            moment: function (date) {
+              return moment(date);
+            }
+          },
+          computed: {
+            fetched: function () {
+              return this.fetchedSent && this.fetchedReceived;
+            }
           }
-        }
-      });
-    </script>
+        });
+      </script>
 </body>
 
 </html>
