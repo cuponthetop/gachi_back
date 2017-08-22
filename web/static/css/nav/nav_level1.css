@@ -60,18 +60,6 @@
   float:left;
 }
 
-#nav_signup{
-  color:#424242;
-  font-family: 'Noto Sans KR', sans-serif;
-  height:56px;
-  line-height: 53px;
-  text-decoration: none;
-  font-size:13px;
-  font-weight:400;
-  float:left;
-  display: none;
-}
-
 #nav_logout{
   display: none;
 }
@@ -89,84 +77,9 @@
   margin-left:20px;
 }
 
-#noprofile{
-  width:26px;
-  height:26px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  border-radius: 50%;
-  margin-left:20px;
-  margin-top:15px;
-  float:left;
-  cursor: pointer;
-}
-.is_open{
-  display:block !important;
-}
-#list_menu{
-  width:100vw;
-  height:100vh;
-  position: absolute;
-  top:55px;
-  right:0px;
-  background-color: #fff;
-  z-index:2;
-  display: none;
-}
-
-#profile{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size:19px;
-  font-weight:300;
-  width:calc(100% - 30px);
-  margin-left:auto;
-  margin-right:auto;
-  display: block;
-  text-decoration: none;
-  color:#484848;
-  height:60px;
-  line-height: 60px;
-  border-bottom:1px solid #ececec;
-  box-sizing: border-box;
-}
-
-#intro{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size:19px;
-  font-weight:300;
-  width:calc(100% - 30px);
-  margin-left:auto;
-  margin-right:auto;
-  display: block;
-  text-decoration: none;
-  color:#484848;
-  height:60px;
-  line-height: 60px;
-  border-bottom:1px solid #ececec;
-  box-sizing: border-box;
-}
-
-#logout{
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size:19px;
-  font-weight:300;
-  width:calc(100% - 30px);
-  margin-left:auto;
-  margin-right:auto;
-  display: block;
-  text-decoration: none;
-  color:#484848;
-  height:60px;
-  line-height: 60px;
-  border-bottom:1px solid #ececec;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
 .nav_info{
   float:left;
-  margin-left:20px;
+  margin-left:35px;
   line-height:35px;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight:300;
@@ -202,13 +115,6 @@
       line-height: 57px;
       font-weight: 300;
     }
-    #nav_signup{
-      font-size:17px;
-      height:64px;
-      line-height: 57px;
-      font-weight: 300;
-      display: block;
-    }
     #nav_search{
       width:26px;
       height:26px;
@@ -218,39 +124,11 @@
     .nav_info {
       margin-top: 12px;
       font-size: small;
-    }
 
     .nav_nickname{
       color:#4f2cfa;
     }
     .logout{
       cursor:pointer;
-    }
-    #noprofile{
-      width:29px;
-      height:29px;
-      margin-top:15px;
-    }
-    #list_menu{
-      width:100vw;
-      height:100vh;
-      top:64px;
-      width:280px;
-      height:180px;
-      border:1px solid #dbdbdb;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      box-sizing: border-box;
-    }
-    #profile{
-      font-size:15px;
-      color:#767676;
-    }
-    #intro{
-      font-size:15px;
-      color:#767676;
-    }
-    #logout{
-      font-size:15px;
-      color:#767676;
     }
 }
