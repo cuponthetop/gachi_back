@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 공통 head
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+  10. JS
+    -->
+
+  <% include ../common/common.ejs %>
+
+  <!--6-2 인기 페스티벌 css-->
+  <link href="/css/main_page/swiper.css" rel="stylesheet" type="text/css" />
+  <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
+  <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
+  <link href="/css/info/info.css" rel="stylesheet" type="text/css" />
+
+  <!-- awesome swiper -->
+  <script src="/vue/vue-awesome-swiper.min.js"></script>
+
+</head>
+
+<body>
+  <% include ../nav/nav_level1.ejs %>
+
+<div id="info_all" v-cloak>
+
+  <div id ="info">
+    <div id="info_word">
+      마이페이지
+    </div>
+
+    <div id="info_image" style="background-image:url('/image/info/noprofile.png')">
+    </div>
+
+    <div id="info_nickname">
+      {{user.nickname}}
+    </div>
+
+    <div id="info_location">
+      {{user.location}}
+    </div>
+
+    <div id="info_detail">
+      {{age}} / {{gender}}
+    </div>
+
+    <div id="info_intro">
+      나를 한줄로 표현해보세요
+    </div>
+
+  </div>
+
+  <div id="info_tag_all">
+    <div id="info_tag">
+
+      <span v-for="genre in user.genre">
+        {{genre.genre}}
+      </span>
+
+      <div style="clear:both;">
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <div class="">
+
+  </div>
+<script>
+var info_all = new Vue({
+  el: '#info_all',
+  data: {
+    user: "",
+    isopen: false,
+  },
+
+  created: function () {
+    gachi.retrieveUserInfo(false).then(this.onUserLogin);
+  },
+
+  methods: {
+    onUserLogin: function (user) {
+      this.user = user;
+    },
+  },
+
+  computed: {
+
+    gender: function () {
+      var gender;
+      if (this.user.gender == 'male') {
+        gender = "남성";
+      }else{
+        gender = "여성";
+      }
+      return gender
+    },
+
+    age: function () {
+      var number;
+      var word;
+
+      number = Math.floor(this.user.age/10) * 10;
+
+      if(this.user.age%10<3){
+        word = "대 초반";
+      }else if(this.user.age%10<7){
+        word = "대 중반";
+      }else{
+        word = "대 후반";
+      }
+
+      return number+word;
+    }
+
+  },
+
+});
+</script>
+
+<script>
+window.onload = function () {
+ console.log(info_all.$data.user);
+}
+</script>
+
+</body>
+</html>
