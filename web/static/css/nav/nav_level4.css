@@ -29,17 +29,19 @@
   #nav_level4_all{
     margin-left:auto;
     margin-right:auto;
-    height:50px;
+    height:45px;
   }
   #nav_level4{
     width:1080px;
-    height:50px;
-    line-height: 50px;
+    height:45px;
+    line-height: 45px;
   }
   #nav_level4 ul li{
     margin-right:20px;
   }
   #nav_level4 ul li a{
-    font-size:16px;
+    /* font-size:16px; */
+    font-size: small;
+    font-weight: 400;
   }
 }

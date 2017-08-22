@@ -25,5 +25,6 @@ router.get('/room/:lid', ctrl.chatInfo);
 
 router.get('/notification', ctrl.notification);
 
+router.get('/info', ctrl.info);
 
 module.exports = router;

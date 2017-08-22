@@ -93,12 +93,12 @@
 
 @media  screen and (min-width:1080px){
     #nav_level1_all{
-      width:1080px;
-      height:64px;
+      /* width:1080px; */
+      height:59px;
     }
     #nav_level1{
-      width:1080px;
-      height:64px;
+      /* width:1080px; */
+      height:59px;
     }
     #logo_image{
       margin-top:19px;
@@ -121,16 +121,11 @@
       margin-top:17px;
     }
 
-    .nav_info{
-      float:left;
-      margin-left:35px;
-      line-height:35px;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-weight:300;
-      color:#484848;
-      text-decoration: none;
+    .nav_info {
+      margin-top: 12px;
+      font-size: small;
     }
-
+    
     .nav_nickname{
       color:#4f2cfa;
     }

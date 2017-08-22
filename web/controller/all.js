@@ -55,6 +55,10 @@ const notification = function (req, res) {
   res.render('../notification/notification');
 };
 
+const info = function (req, res) {
+  res.render('../info/info');
+};
+
 module.exports = {
   index,
   search,
@@ -67,4 +71,5 @@ module.exports = {
   createChatRoom,
   chatInfo,
   notification,
+  info,
 }
