@@ -5,35 +5,24 @@
 
     <div id="nav_right">
 
+      <a v-if="user" class="nav_info nav_nickname" href="/info">
+        {{user.nickname}}
+      </a>
+
       <a v-if="user == ''" id="nav_login" class="nav_info" href="/login">
         로그인
       </a>
 
-      <a v-if="user == ''" id="nav_signup" class="nav_info" href="/signup">
+      <div v-if="user" v-on:click="logout" class="nav_info logout" >
+        로그아웃
+      </div>
+
+      <a v-if="user == null" id="nav_logout" class="nav_info" href="signup">
         회원가입
       </a>
 
       <a id="nav_search" href="/search" style="background-image:url('/image/search_black.png')">
       </a>
-
-      <div v-if="user" v-on:click="is_open" id="noprofile" style="background-image:url('/image/nav/noprofile.png')">
-      </div>
-
-      <div id="list_menu" v-bind:class="{'is_open':isopen}">
-
-        <a id="profile" v-if="user" href="/info">
-          마이페이지
-        </a>
-
-        <a id="intro" v-if="user" href="/intro">
-          가치란?
-        </a>
-
-        <div id="logout" v-if="user" v-on:click="logout">
-          로그아웃
-        </div>
-
-      </div>
 
     </div>
   </div>
@@ -46,8 +35,7 @@
   var nav_level1 = new Vue({
     el: '#nav_level1',
     data: {
-      user: "",
-      isopen: false,
+      user: ""
     },
     created: function () {
       gachi.initFirebaseApp();
@@ -64,9 +52,6 @@
         }, function (error) {
           // An error happened.
         });
-      },
-      is_open: function (event) {
-        this.isopen = !this.isopen;
       }
     },
   });
