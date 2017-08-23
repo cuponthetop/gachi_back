@@ -22,15 +22,15 @@
 
   <!-- awesome swiper -->
   <script src="/vue/vue-awesome-swiper.min.js"></script>
-
 </head>
 
 <body>
   <% include ../nav/nav_level1.ejs %>
+<div id="wrapper">
 
 
   <div id="photo">
-    <div id="profile_image">
+    <div id="profile_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
     </div>
     <div id="profile_modify" style="background-image:url('/image/info/photo_modify.png')">
     </div>
@@ -42,21 +42,78 @@
       <div id="nickname_word">
         닉네임
       </div>
-      <input id="nickname_input" type="text" name="" value="" placeholder="닉네임을 입력해주세요">
+      <input id="nickname_input" type="text" name="" v-model="user.nickname" placeholder="닉네임을 입력해주세요">
     </div>
 
     <div id="intro_all">
       <div id="intro_word">
         한줄 소개
       </div>
-      <input id="intro_input" type="text" name="" value="" placeholder="간단히 자기소개를 적어주세요">
+      <input id="intro_input" type="text" name=""  placeholder="간단히 자기소개를 적어주세요">
     </div>
 
   </div>
 
-  <div id="profile_save">
+  <div id="profile_save" v-on:click="profile_save">
     저장하기
   </div>
 
+</div>
+
+<script>
+var wrapper = new Vue({
+  el: '#wrapper',
+  data: {
+    user: "",
+  },
+
+  created: function () {
+    gachi.retrieveUserInfo(false).then(this.onUserLogin);
+  },
+
+  methods: {
+    onUserLogin: function (user) {
+      this.user = user;
+    },
+
+    profile_save: function (){
+
+      var settings = {
+        "async": false,
+        "url": "http://cuponthetop.com/gachi/api/v1/user/"+this.user.uid,
+        "method": "PATCH",
+        "headers": {
+          "authorization": this.user.token,
+        },
+        "data": {
+          "nickname": this.user.nickname,
+        },
+        error: function(error){
+          alert('에러');
+        },
+        success: function(data){
+          alert('성공');
+        }
+      }
+      $.ajax(settings);
+    }
+
+  },
+  computed: {
+
+    profile_image: function() {
+      var profile_image;
+
+      if (this.user.profile_image){
+        profile_image = this.user.profile_image;
+      }else{
+        profile_image = '/image/info/noprofile.png';
+      }
+
+      return profile_image;
+    },
+  }
+});
+</script>
 </body>
 </html>

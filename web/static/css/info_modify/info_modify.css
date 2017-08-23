@@ -17,10 +17,14 @@ textarea:focus, input:focus{
   width:111px;
   height:111px;
   border-radius: 50%;
-  background-color: pink;
   margin-left:auto;
   margin-right:auto;
   margin-top:65px;
+  background-position: center;
+  background-size:cover;
+  overflow: hidden;
+  border:1px solid #ececec;
+  box-sizing: border-box;
 }
 
 #profile_modify{
@@ -134,5 +138,9 @@ textarea:focus, input:focus{
   border-radius:30px;
   margin-top:30px;
   font-size:14px;
-  font-weight: 300; 
+  font-weight: 300;
+  cursor:pointer;
+}
+#profile_save:hover{
+  opacity: 0.85;
 }
