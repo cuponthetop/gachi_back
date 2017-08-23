@@ -31,8 +31,15 @@
 <div id="info_all" v-cloak>
 
   <div id ="info">
-    <div id="info_word">
-      마이페이지
+
+    <div id="info_top">
+      <div id="info_word">
+        마이페이지
+      </div>
+
+      <a id="info_modify" href="/info_modify">
+        수정
+      </a>
     </div>
 
     <div id="info_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
@@ -73,11 +80,12 @@
     </div>
   </div>
 
+  <div v-if="user.history == ''" id="no_history">
+    다녀온 공연이 없습니다. 가치에서 함께 즐겨보세요
+  </div>
+
 </div>
 
-  <div class="">
-
-  </div>
 <script>
 var info_all = new Vue({
   el: '#info_all',

@@ -27,4 +27,6 @@ router.get('/notification', ctrl.notification);
 
 router.get('/info', ctrl.info);
 
+router.get('/info_modify', ctrl.info_modify);
+
 module.exports = router;

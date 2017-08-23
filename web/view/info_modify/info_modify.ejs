@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!--
+  head에 기술하는 것은 다음 규칙에 따른다.
+  1. 공통 head
+  7. 페이지별 스타일 시트
+  8. 구글 애널리틱스
+  9. 페이스북 픽셀
+  10. JS
+    -->
+
+  <% include ../common/common.ejs %>
+
+  <!--6-2 인기 페스티벌 css-->
+  <link href="/css/main_page/swiper.css" rel="stylesheet" type="text/css" />
+  <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
+  <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
+  <link href="/css/info_modify/info_modify.css" rel="stylesheet" type="text/css" />
+
+  <!-- awesome swiper -->
+  <script src="/vue/vue-awesome-swiper.min.js"></script>
+
+</head>
+
+<body>
+  <% include ../nav/nav_level1.ejs %>
+
+
+  <div id="photo">
+    <div id="profile_image">
+    </div>
+    <div id="profile_modify" style="background-image:url('/image/info/photo_modify.png')">
+    </div>
+  </div>
+
+  <div id="profile_all">
+
+    <div id="nickname_all">
+      <div id="nickname_word">
+        닉네임
+      </div>
+      <input id="nickname_input" type="text" name="" value="" placeholder="닉네임을 입력해주세요">
+    </div>
+
+    <div id="intro_all">
+      <div id="intro_word">
+        한줄 소개
+      </div>
+      <input id="intro_input" type="text" name="" value="" placeholder="간단히 자기소개를 적어주세요">
+    </div>
+
+  </div>
+
+  <div id="profile_save">
+    저장하기
+  </div>
+
+</body>
+</html>
