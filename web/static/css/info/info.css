@@ -84,7 +84,7 @@
   box-sizing: border-box;
 }
 #info_tag{
-  width:calc(100% - 30px);
+  width:290px;
   height:auto;
   margin-left: auto;
   margin-right: auto;
@@ -107,4 +107,13 @@
   margin-bottom:10px;
   display: inline-block;
   float:left;
+}
+#no_genre{
+  text-align: center;
+  width:100%;
+  height:20px;
+  line-height: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:15px;
+  color:#4f2cfa;
 }

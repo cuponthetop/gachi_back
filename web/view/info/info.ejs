@@ -35,7 +35,7 @@
       마이페이지
     </div>
 
-    <div id="info_image" style="background-image:url('/image/info/noprofile.png')">
+    <div id="info_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
     </div>
 
     <div id="info_nickname">
@@ -43,7 +43,7 @@
     </div>
 
     <div id="info_location">
-      {{user.location}}
+      {{location}}
     </div>
 
     <div id="info_detail">
@@ -51,13 +51,17 @@
     </div>
 
     <div id="info_intro">
-      나를 한줄로 표현해보세요
+      {{intro}}
     </div>
 
   </div>
 
   <div id="info_tag_all">
     <div id="info_tag">
+
+      <div v-if="user.genre == ''" id="no_genre">
+        선호하는 장르 미등록
+      </div>
 
       <span v-for="genre in user.genre">
         {{genre.genre}}
@@ -94,42 +98,83 @@ var info_all = new Vue({
 
   computed: {
 
-    gender: function () {
-      var gender;
-      if (this.user.gender == 'male') {
-        gender = "남성";
+    profile_image: function() {
+      var profile_image;
+
+      if (this.user.profile_image){
+        profile_image = this.user.profile_image;
       }else{
-        gender = "여성";
+        profile_image = '/image/info/noprofile.png';
       }
-      return gender
+
+      return profile_image;
+    },
+
+    location: function () {
+      var location;
+
+      if (this.user.location){
+        location = this.user.location;
+      }else{
+        location = '장소 미등록';
+      }
+      return location;
     },
 
     age: function () {
       var number;
       var word;
+      var fullword;
 
-      number = Math.floor(this.user.age/10) * 10;
+      if (this.user.age){
 
-      if(this.user.age%10<3){
-        word = "대 초반";
-      }else if(this.user.age%10<7){
-        word = "대 중반";
+       number = Math.floor(this.user.age/10) * 10;
+
+       if(this.user.age%10<3){
+         word = "대 초반";
+       }else if(this.user.age%10<7){
+         word = "대 중반";
+       }else{
+         word = "대 후반";
+       }
+
+       fullword = number + word;
+     }else{
+       fullword = "나이 미등록";
+     }
+
+      return fullword;
+    },
+
+    gender: function () {
+
+      var gender;
+      if (this.user.gender == 'male') {
+        gender = "남성";
+      }else if (this.user.gender == 'female') {
+        gender = "여성";
       }else{
-        word = "대 후반";
+        gender = "성별 미등록"
+      }
+      return gender
+
+    },
+
+    intro: function () {
+      var intro;
+
+      if (this.user.intro){
+        intro = this.user.intro;
+      }else{
+        intro = "나를 한줄로 표현해보세요";
       }
 
-      return number+word;
-    }
+      return intro;
+    },
 
   },
 
 });
-</script>
-
-<script>
-window.onload = function () {
- console.log(info_all.$data.user);
-}
 </script>
 
 </body>
