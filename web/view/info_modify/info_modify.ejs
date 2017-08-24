@@ -19,6 +19,8 @@
   <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
   <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
   <link href="/css/info_modify/info_modify.css" rel="stylesheet" type="text/css" />
+  <link href="/css/info_modify/profile/profile.css" rel="stylesheet" type="text/css" />
+  <link href="/css/info_modify/password/password.css" rel="stylesheet" type="text/css" />
 
   <!-- awesome swiper -->
   <script src="/vue/vue-awesome-swiper.min.js"></script>
@@ -26,94 +28,42 @@
 
 <body>
   <% include ../nav/nav_level1.ejs %>
-<div id="wrapper">
 
-
-  <div id="photo">
-    <div id="profile_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
-    </div>
-    <div id="profile_modify" style="background-image:url('/image/info/photo_modify.png')">
-    </div>
+<div id="info_nav">
+  <div class="info_tab">
+    프로필
   </div>
-
-  <div id="profile_all">
-
-    <div id="nickname_all">
-      <div id="nickname_word">
-        닉네임
-      </div>
-      <input id="nickname_input" type="text" name="" v-model="user.nickname" placeholder="닉네임을 입력해주세요">
-    </div>
-
-    <div id="intro_all">
-      <div id="intro_word">
-        한줄 소개
-      </div>
-      <input id="intro_input" type="text" name=""  placeholder="간단히 자기소개를 적어주세요">
-    </div>
-
+  <div class="info_tab">
+    비밀번호
   </div>
-
-  <div id="profile_save" v-on:click="profile_save">
-    저장하기
+  <div class="info_tab">
+    계정정보
   </div>
-
 </div>
 
+<% include ../info_modify/profile/profile.ejs %>
+
+<% include ../info_modify/password/password.ejs %>
+
+
 <script>
-var wrapper = new Vue({
-  el: '#wrapper',
-  data: {
-    user: "",
-  },
+  $('.info_tab').eq(0).css('color','#4f2cfa');
+  $('.info_tab').eq(0).css('border-color','#4f2cfa');
 
-  created: function () {
-    gachi.retrieveUserInfo(false).then(this.onUserLogin);
-  },
+  $('.info_tab').click(function (){
+    var index = $('.info_tab').index(this);
 
-  methods: {
-    onUserLogin: function (user) {
-      this.user = user;
-    },
+    $('.info_tab').css('color','#686868');
+    $('.info_tab').css('border-color','transparent');
 
-    profile_save: function (){
+    $('.info_tab').eq(index).css('color','#4f2cfa');
+    $('.info_tab').eq(index).css('border-color','#4f2cfa');
 
-      var settings = {
-        "async": false,
-        "url": "http://cuponthetop.com/gachi/api/v1/user/"+this.user.uid,
-        "method": "PATCH",
-        "headers": {
-          "authorization": this.user.token,
-        },
-        "data": {
-          "nickname": this.user.nickname,
-        },
-        error: function(error){
-          alert('에러');
-        },
-        success: function(data){
-          alert('성공');
-        }
-      }
-      $.ajax(settings);
-    }
+    $('.info_modify_content').css('display','none');
+    $('.info_modify_content').eq(index).css('display','block');
 
-  },
-  computed: {
-
-    profile_image: function() {
-      var profile_image;
-
-      if (this.user.profile_image){
-        profile_image = this.user.profile_image;
-      }else{
-        profile_image = '/image/info/noprofile.png';
-      }
-
-      return profile_image;
-    },
-  }
-});
+  })
 </script>
+
 </body>
 </html>

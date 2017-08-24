@@ -1,0 +1,505 @@
+<div id="wrapper" class="info_modify_content">
+
+  <div id="photo">
+    <div id="profile_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
+    </div>
+    <div id="profile_modify" style="background-image:url('/image/info/photo_modify.png')">
+    </div>
+  </div>
+
+  <div id="profile_all">
+
+    <div id="nickname_all">
+      <div id="nickname_word">
+        닉네임
+      </div>
+      <input id="nickname_input" type="text" name="" v-model="user.nickname" placeholder="닉네임을 입력해주세요">
+    </div>
+
+    <div id="intro_all">
+      <div id="intro_word">
+        한줄 소개
+      </div>
+      <input id="intro_input" type="text" name=""  placeholder="간단히 자기소개를 적어주세요">
+    </div>
+
+    <div id="age_all">
+      <div id="age_word">
+        나이
+      </div>
+      <input id="age_input" type="text" name=""  v-model="user.age" placeholder="나이를 입력해주세요">
+    </div>
+  </div>
+
+  <div id="gender_all">
+    <div id="gender_word">
+      성별
+    </div>
+    <div id="gender_select_all">
+      <div id="gender_select_box">
+        <div id="gender_man">
+          남성
+        </div>
+        <div id="gender_woman">
+          여성
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="location_all">
+    <div id="location_word">
+      내가 사는 지역
+    </div>
+    <div id="location_select_all">
+      <div id="location_select_box">
+
+      <div class="location_select">
+        서울특별시
+      </div>
+      <div class="location_select">
+        부산광역시
+      </div>
+      <div class="location_select">
+        대구광역시
+      </div>
+      <div class="location_select">
+        인천광역시
+      </div>
+      <div class="location_select">
+        경기도
+      </div>
+      <div class="location_select">
+        광주광역시
+      </div>
+      <div class="location_select">
+        대전광역시
+      </div>
+      <div class="location_select">
+        울산광역시
+      </div>
+      <div class="location_select">
+        세종특별자치시
+      </div>
+      <div class="location_select">
+        강원도
+      </div>
+      <div class="location_select">
+        충청북도
+      </div>
+      <div class="location_select">
+        전라북도
+      </div>
+      <div class="location_select">
+        전라남도
+      </div>
+      <div class="location_select">
+        경상북도
+      </div>
+      <div class="location_select">
+        경상남도
+      </div>
+      <div class="location_select">
+        제주특별자치도
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div id="genre_all">
+    <div id="genre_word">
+      내가 좋아하는 장르
+    </div>
+    <div id="genre_select_all">
+      <div id="genre_select_box">
+        <div class="genre_select">
+          힙합
+        </div>
+
+        <div class="genre_select">
+          랩
+        </div>
+
+        <div class="genre_select">
+          발라드
+        </div>
+
+        <div class="genre_select">
+          재즈
+        </div>
+
+        <div class="genre_select">
+          락
+        </div>
+
+        <div class="genre_select">
+          메탈
+        </div>
+
+        <div class="genre_select">
+          일렉트로니카
+        </div>
+
+        <div class="genre_select">
+          댄스
+        </div>
+
+        <div class="genre_select">
+          포크
+        </div>
+
+        <div class="genre_select">
+          트로트
+        </div>
+
+        <div class="genre_select">
+          크로스오버
+        </div>
+
+        <div class="genre_select">
+          뉴에이지
+        </div>
+
+        <div class="genre_select">
+          블루스
+        </div>
+
+        <div class="genre_select">
+          콘서트
+        </div>
+
+        <div class="genre_select">
+          탱고
+        </div>
+
+        <div class="genre_select">
+          내한공연
+        </div>
+
+        <div class="genre_select">
+          개그콘서트
+        </div>
+
+        <div class="genre_select">
+          알앤비
+        </div>
+
+        <div class="genre_select">
+          클럽
+        </div>
+
+        <div class="genre_select">
+          제이팝
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id="profile_save" v-on:click="profile_save">
+    저장하기
+  </div>
+
+</div>
+
+<script>
+var wrapper = new Vue({
+  el: '#wrapper',
+  data: {
+    user: "",
+    genre_length: 0,
+    genre: [],
+  },
+
+  created: function () {
+    gachi.retrieveUserInfo(false).then(this.onUserLogin);
+  },
+
+  methods: {
+    onUserLogin: function (user) {
+      this.user = user;
+      this.age_design(user);
+      this.location_design(user);
+      this.genre_design(user);
+
+    },
+
+    age_design: function(user){
+      if(user.gender){
+        if(user.gender == 'male'){
+          $('#gender_man').css('color','#4f2cfa');
+          $('#gender_man').css('border-color','#4f2cfa');
+          this.gender = 1;
+        }else{
+          $('#gender_woman').css('color', '#4f2cfa');
+          $('#gender_woman').css('border-color', '#4f2cfa');
+          this.gender = 2;
+        }
+      }
+    },
+
+    location_design: function(user){
+      if(user.location){
+        if(user.location == "서울특별시"){
+          $('.location_select').eq(0).css('color','#4f2cfa');
+          $('.location_select').eq(0).css('border-color','#4f2cfa');
+        }else if(user.location == "부산광역시"){
+          $('.location_select').eq(1).css('color','#4f2cfa');
+          $('.location_select').eq(1).css('border-color','#4f2cfa');
+        }else if(user.location == "대구광역시"){
+          $('.location_select').eq(2).css('color','#4f2cfa');
+          $('.location_select').eq(2).css('border-color','#4f2cfa');
+        }else if(user.location == "인천광역시"){
+          $('.location_select').eq(3).css('color','#4f2cfa');
+          $('.location_select').eq(3).css('border-color','#4f2cfa');
+        }else if(user.location == "경기도"){
+          $('.location_select').eq(4).css('color','#4f2cfa');
+          $('.location_select').eq(4).css('border-color','#4f2cfa');
+        }else if(user.location == "광주광역시"){
+          $('.location_select').eq(5).css('color','#4f2cfa');
+          $('.location_select').eq(5).css('border-color','#4f2cfa');
+        }else if(user.location == "대전광역시"){
+          $('.location_select').eq(6).css('color','#4f2cfa');
+          $('.location_select').eq(6).css('border-color','#4f2cfa');
+        }else if(user.location == "울산광역시"){
+          $('.location_select').eq(7).css('color','#4f2cfa');
+          $('.location_select').eq(7).css('border-color','#4f2cfa');
+        }else if(user.location == "세종특별자치시"){
+          $('.location_select').eq(8).css('color','#4f2cfa');
+          $('.location_select').eq(8).css('border-color','#4f2cfa');
+        }else if(user.location == "강원도"){
+          $('.location_select').eq(9).css('color','#4f2cfa');
+          $('.location_select').eq(9).css('border-color','#4f2cfa');
+        }else if(user.location == "충청북도"){
+          $('.location_select').eq(10).css('color','#4f2cfa');
+          $('.location_select').eq(10).css('border-color','#4f2cfa');
+        }else if(user.location == "전라북도"){
+          $('.location_select').eq(11).css('color','#4f2cfa');
+          $('.location_select').eq(11).css('border-color','#4f2cfa');
+        }else if(user.location == "전라남도"){
+          $('.location_select').eq(12).css('color','#4f2cfa');
+          $('.location_select').eq(12).css('border-color','#4f2cfa');
+        }else if(user.location == "경상북도"){
+          $('.location_select').eq(13).css('color','#4f2cfa');
+          $('.location_select').eq(13).css('border-color','#4f2cfa');
+        }else if(user.location == "경상남도"){
+          $('.location_select').eq(14).css('color','#4f2cfa');
+          $('.location_select').eq(14).css('border-color','#4f2cfa');
+        }else{
+          $('.location_select').eq(15).css('color','#4f2cfa');
+          $('.location_select').eq(15).css('border-color','#4f2cfa');
+        }
+
+      }
+    },
+
+    genre_design: function (user){
+      this.genre_length = user.genre.length;
+      for(var i=0; i<user.genre.length; i++){
+        this.genre[i] = user.genre[i].genre;
+      }
+      for(var i=0; i< user.genre.length; i++){
+        if(user.genre[i].genre == '힙합'){
+          $('.genre_select').eq(0).css('color', '#4f2cfa');
+          $('.genre_select').eq(0).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '랩'){
+          $('.genre_select').eq(1).css('color', '#4f2cfa');
+          $('.genre_select').eq(1).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '발라드'){
+          $('.genre_select').eq(2).css('color', '#4f2cfa');
+          $('.genre_select').eq(2).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '재즈'){
+          $('.genre_select').eq(3).css('color', '#4f2cfa');
+          $('.genre_select').eq(3).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '락'){
+          $('.genre_select').eq(4).css('color', '#4f2cfa');
+          $('.genre_select').eq(4).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '메탈'){
+          $('.genre_select').eq(5).css('color', '#4f2cfa');
+          $('.genre_select').eq(5).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '일렉트로니카'){
+          $('.genre_select').eq(6).css('color', '#4f2cfa');
+          $('.genre_select').eq(6).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '댄스'){
+          $('.genre_select').eq(7).css('color', '#4f2cfa');
+          $('.genre_select').eq(7).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '포크'){
+          $('.genre_select').eq(8).css('color', '#4f2cfa');
+          $('.genre_select').eq(8).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '트로트'){
+          $('.genre_select').eq(9).css('color', '#4f2cfa');
+          $('.genre_select').eq(9).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '크로스오버'){
+          $('.genre_select').eq(10).css('color', '#4f2cfa');
+          $('.genre_select').eq(10).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '뉴에이지'){
+          $('.genre_select').eq(11).css('color', '#4f2cfa');
+          $('.genre_select').eq(11).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '블루스'){
+          $('.genre_select').eq(12).css('color', '#4f2cfa');
+          $('.genre_select').eq(12).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '콘서트'){
+          $('.genre_select').eq(13).css('color', '#4f2cfa');
+          $('.genre_select').eq(13).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '탱고'){
+          $('.genre_select').eq(14).css('color', '#4f2cfa');
+          $('.genre_select').eq(14).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '내한공연'){
+          $('.genre_select').eq(15).css('color', '#4f2cfa');
+          $('.genre_select').eq(15).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '개그콘서트'){
+          $('.genre_select').eq(16).css('color', '#4f2cfa');
+          $('.genre_select').eq(16).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '알앤비'){
+          $('.genre_select').eq(17).css('color', '#4f2cfa');
+          $('.genre_select').eq(17).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '클럽'){
+          $('.genre_select').eq(18).css('color', '#4f2cfa');
+          $('.genre_select').eq(18).css('border-color', '#4f2cfa');
+        }
+        if(user.genre[i].genre == '제이팝'){
+          $('.genre_select').eq(19).css('color', '#4f2cfa');
+          $('.genre_select').eq(19).css('border-color', '#4f2cfa');
+        }
+      }
+    },
+
+    profile_save: function (){
+
+      var settings = {
+        "async": false,
+        "url": "http://cuponthetop.com/gachi/api/v1/user/"+this.user.uid,
+        "method": "PATCH",
+        "headers": {
+          "authorization": this.user.token,
+        },
+        "data": {
+          "nickname": this.user.nickname,
+          "age": this.user.age,
+          "gender": this.user.gender,
+          "location": this.user.location,
+          "genre":this.genre,
+        },
+        error: function(error){
+          alert('에러');
+        },
+        success: function(data){
+          alert('성공');
+        }
+      }
+      $.ajax(settings);
+    }
+
+  },
+  computed: {
+
+    profile_image: function() {
+      var profile_image;
+
+      if (this.user.profile_image){
+        profile_image = this.user.profile_image;
+      }else{
+        profile_image = '/image/info/noprofile.png';
+      }
+
+      return profile_image;
+    },
+  }
+});
+</script>
+
+<script>
+  //성별
+  $('#gender_man').click(function () {
+    $('#gender_man').css('color', '#4f2cfa');
+    $('#gender_man').css('border-color', '#4f2cfa');
+
+    $('#gender_woman').css('color', '#888c92');
+    $('#gender_woman').css('border-color', '#888c92');
+    wrapper.user.gender = 1;
+  })
+
+  $('#gender_woman').click(function () {
+    $('#gender_woman').css('color', '#4f2cfa');
+    $('#gender_woman').css('border-color', '#4f2cfa');
+
+    $('#gender_man').css('color', '#888c92');
+    $('#gender_man').css('border-color', '#888c92');
+    wrapper.user.gender = 2;
+  })
+</script>
+
+
+
+<script>
+    //지역선택
+    $('.location_select').click(function () {
+      var index = $('.location_select').index(this);
+
+      $('.location_select').css('color', '#888c92');
+      $('.location_select').css('border-color', '#888c92');
+
+      $('.location_select').eq(index).css('color', '#4f2cfa');
+      $('.location_select').eq(index).css('border-color', '#4f2cfa');
+      wrapper.user.location = $('.location_select').eq(index).html().trim();
+    })
+</script>
+
+<script>
+    //장르 선택
+    $('.genre_select').click(function () {
+      var index = $('.genre_select').index(this);
+      var check_genre = $('.genre_select').eq(index).text().trim();
+
+      //배열에서 요소 제거 함수
+      Array.prototype.remove = function() {
+        var what, a = arguments, L = a.length, ax;
+        while (L && this.length) {
+          what = a[--L];
+          while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+          }
+        }
+        return this;
+      };
+
+      var is_here;
+      for(var i=0; i<wrapper.genre_length; i++){
+        if(wrapper.genre[i] == check_genre){
+          is_here = true;
+          break;
+        }
+      }
+
+      if(is_here){
+        wrapper.genre.remove(check_genre);
+        $('.genre_select').eq(index).css('color', '#888c92');
+        $('.genre_select').eq(index).css('border-color', '#888c92');
+      }else{
+        wrapper.genre.push(check_genre);
+        $('.genre_select').eq(index).css('color', '#4f2cfa');
+        $('.genre_select').eq(index).css('border-color', '#4f2cfa');
+      }
+
+    })
+</script>

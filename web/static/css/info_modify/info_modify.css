@@ -1,146 +1,18 @@
-textarea:focus, input:focus{
-    outline: none;
-}
-#info_tab{
+#info_nav{
   width:100%;
+  height:50px;
+  border-bottom:1px solid #ececec;
 }
-
-#photo{
-  position: relative;
-  width:111px;
-  height:111px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#profile_image{
-  width:111px;
-  height:111px;
-  border-radius: 50%;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top:65px;
-  background-position: center;
-  background-size:cover;
-  overflow: hidden;
-  border:1px solid #ececec;
-  box-sizing: border-box;
-}
-
-#profile_modify{
-  width:34px;
-  height:34px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  position: absolute;
-  bottom:0px;
-  right:0px;
-}
-
-#profile_all{
-  width:calc(100% - 60px);
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:30px;
-}
-
-#nickname_all{
-  width:100%;
-  height:70px;
-}
-
-#nickname_word{
-  width:100%;
-  height:12px;
-  line-height: 12px;
-  color:#8b8b8b;
-  font-size:12px;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-#nickname_input{
-  width:100%;
-  height:33px;
-  border:none;
-  border-bottom: 1px solid #acacac;
-  margin-top:25px;
-  padding-bottom:10px;
-  color:#404040;
-  font-size:15px;
-  font-family: 'Noto Sans KR', sans-serif;
-  box-sizing: border-box;
-}
-#nickname_input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #C6C5C5;
-}
-#nickname_input::-moz-placeholder { /* Firefox 19+ */
-  color: #C6C5C5;
-}
-#nickname_input:-ms-input-placeholder { /* IE 10+ */
-  color: #C6C5C5;
-}
-#nickname_input:-moz-placeholder { /* Firefox 18- */
-  color: #C6C5C5;
-}
-
-
-#intro_all{
-  width:100%;
-  height:70px;
-  margin-top:25px;
-}
-
-#intro_word{
-  width:100%;
-  height:12px;
-  line-height: 12px;
-  color:#8b8b8b;
-  font-size:12px;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-#intro_input{
-  width:100%;
-  height:33px;
-  border:none;
-  border-bottom: 1px solid #acacac;
-  margin-top:25px;
-  padding-bottom:10px;
-  color:#404040;
-  font-size:15px;
-  font-family: 'Noto Sans KR', sans-serif;
-  box-sizing: border-box;
-}
-#intro_input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #C6C5C5;
-}
-#intro_input::-moz-placeholder { /* Firefox 19+ */
-  color: #C6C5C5;
-}
-#intro_input:-ms-input-placeholder { /* IE 10+ */
-  color: #C6C5C5;
-}
-#intro_input:-moz-placeholder { /* Firefox 18- */
-  color: #C6C5C5;
-}
-
-#profile_save{
-  width:calc(100% - 60px);
+.info_tab{
+  width:calc(100% / 3);
   height:50px;
   line-height: 50px;
-  margin-left:auto;
-  margin-right:auto;
-  color:#fff;
+  font-size:15px;
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #4f2cfa;
+  float:left;
   text-align: center;
-  border-radius:30px;
-  margin-top:30px;
-  font-size:14px;
+  border-bottom:1px solid transparent;
   font-weight: 300;
+  color:#686868;
   cursor:pointer;
-}
-#profile_save:hover{
-  opacity: 0.85;
 }
