@@ -34,7 +34,7 @@
             <div class="sent request-name">
               {{request.leadroom.leader.nickname}}
             </div>
-            <button class="request-button" v-bind:disabled="!cancelSent" v-on:click="cancelRequest(request.rid)">취소하기</button>
+            <button class="request-button" v-bind:disabled="cancelSent" v-on:click="cancelRequest(request.rid)">취소하기</button>
           </div>
         </div>
 
@@ -47,8 +47,8 @@
             <div class="sent request-name">
               {{request.requester.nickname}}
             </div>
-            <button class="request-button" v-bind:disabled="!acceptSent" v-on:click="acceptRequest(request.rid)">승낙하기</button>
-            <button class="request-button" v-bind:disabled="!refuseSent" v-on:click="refuseRequest(request.rid)">거절하기</button>
+            <button class="request-button" v-bind:disabled="acceptSent" v-on:click="acceptRequest(request.rid)">승낙하기</button>
+            <button class="request-button" v-bind:disabled="refuseSent" v-on:click="refuseRequest(request.rid)">거절하기</button>
           </div>
         </div>
       </div>
