@@ -61,7 +61,14 @@
 }
 
 #nav_logout{
-  display: none;
+  color:#424242;
+  font-family: 'Noto Sans KR', sans-serif;
+  height:56px;
+  line-height: 53px;
+  text-decoration: none;
+  font-size:13px;
+  font-weight:400;
+  float:left;
 }
 
 #nav_search{
@@ -93,11 +100,9 @@
 
 @media  screen and (min-width:1080px){
     #nav_level1_all{
-      /* width:1080px; */
       height:59px;
     }
     #nav_level1{
-      /* width:1080px; */
       height:59px;
     }
     #logo_image{
@@ -125,7 +130,7 @@
       margin-top: 12px;
       font-size: small;
     }
-    
+
     .nav_nickname{
       color:#4f2cfa;
     }

@@ -9,14 +9,9 @@
         로그인
       </a>
 
-      <div v-if="user" v-on:click="logout" class="nav_info logout" >
+      <div v-if="user" id="nav_logout" v-on:click="logout" class="nav_info logout" >
         로그아웃
       </div>
-
-
-      <a v-if="user == ''" id="nav_signup" class="nav_info" href="/signup">
-        회원가입
-      </a>
 
       <a id="nav_search" href="/search" style="background-image:url('/image/search_black.png')">
       </a>
