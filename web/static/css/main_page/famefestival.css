@@ -73,8 +73,8 @@
   font-weight:600;
   font-size:23px;
   float:left;
-  height:50px;
-  /* border-bottom:1px solid #484848; */
+  height:40px;
+  border-bottom:1px solid #484848;
 }
 #famefestival_description{
   color:#888c92;
@@ -87,7 +87,7 @@
 
 #famefestival_more{
   float:right;
-  margin-top:12px;
+  margin-top:6px;
   cursor: pointer;
   text-decoration: none;
 }
