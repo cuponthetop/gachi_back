@@ -118,6 +118,7 @@
   margin: 20px auto;
   width: calc(100% - 30px);
   height: calc(60vw + 35px);
+  margin-bottom:50px;
 }
 
 @media  screen and (min-width:500px){
