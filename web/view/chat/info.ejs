@@ -45,6 +45,7 @@
                   this.user = user;
                   this.token = user.token;
                 }.bind(this))
+                .then(this.retrieveSent.bind(this))
                 .then(this.fetchLeadroomInfo.bind(this, "<%=lid %>"));
             },
             methods: {
@@ -61,7 +62,23 @@
                   console.error(JSON.stringify(error));
                 })
               },
+              retrieveSent: function () {
+                return new Promise(function (resolve, reject) {
+                  $.ajax({
+                    type: 'GET',
+                    url: gachi.GACHI_URL + 'v1/request/list/sent',
+                    dataType: 'json',
+                    headers: gachi.authHeader(this.token)
+                  }).then(function (requests) {
+                    this.requestSent = !_.isUndefined(_.find(requests, { leadroom_id: "<%=lid %>" }));
+                    resolve(requests)
+                  }.bind(this)).fail(function (error) {
+                    reject(error);
+                  });
+                }.bind(this));
+              },
               sendRequest: function () {
+                // 요청 보내시겠습니까? TODO
                 this.requestSent = true;
                 $.ajax({
                   type: 'POST',
@@ -73,7 +90,7 @@
                   headers: gachi.authHeader(this.token)
                 }).then(function (request) {
                   console.log(request);
-                  this.requestSent = false;
+                  // this.requestSent = false;
                 }.bind(this)).fail(function (error) {
                   console.error(JSON.stringify(error));
                 })
@@ -99,7 +116,7 @@
             computed: {
               isDisabled: {
                 get: function () {
-                  return (this.requestSent || !_.isNull(_.find(this.leadroom.member, { uid: this.user.uid })));
+                  return (this.requestSent || !_.isUndefined(_.find(this.leadroom.member, { uid: this.user.uid })));
                 }
               },
               showMoreDiv: {

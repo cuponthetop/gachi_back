@@ -14,175 +14,177 @@
 
   <% include ../common/common.ejs %>
 
-  <!--6-2 인기 페스티벌 css-->
-  <link href="/css/main_page/swiper.css" rel="stylesheet" type="text/css" />
-  <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
-  <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
-  <link href="/css/info/info.css" rel="stylesheet" type="text/css" />
+    <!--6-2 인기 페스티벌 css-->
+    <link href="/css/main_page/swiper.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main_page/famefestival.css" rel="stylesheet" type="text/css" />
+    <link href="/css/main_page/soonfestival.css" rel="stylesheet" type="text/css" />
+    <link href="/css/info/info.css" rel="stylesheet" type="text/css" />
 
-  <!-- awesome swiper -->
-  <script src="/vue/vue-awesome-swiper.min.js"></script>
+    <!-- awesome swiper -->
+    <script src="/vue/vue-awesome-swiper.min.js"></script>
 
 </head>
 
 <body>
   <% include ../nav/nav_level1.ejs %>
 
-<div id="info_all" v-cloak>
+    <div id="info_all" v-cloak>
 
-  <div id ="info">
+      <div id="info">
 
-    <div id="info_top">
-      <div id="info_word">
-        마이페이지
-      </div>
+        <div id="info_top">
+          <div id="info_word">
+            마이페이지
+          </div>
 
-      <a id="info_modify" href="/info_modify">
+          <a id="info_modify" href="/info_modify">
         수정
       </a>
-    </div>
+        </div>
 
-    <div id="info_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
-    </div>
+        <div id="info_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
+        </div>
 
-    <div id="info_nickname">
-      {{user.nickname}}
-    </div>
+        <div id="info_nickname">
+          {{user.nickname}}
+        </div>
 
-    <div id="info_location">
-      {{location}}
-    </div>
+        <div id="info_location">
+          {{location}}
+        </div>
 
-    <div id="info_detail">
-      {{age}} / {{gender}}
-    </div>
+        <div id="info_detail">
+          {{age}} / {{gender}}
+        </div>
 
-    <div id="info_intro">
-      {{intro}}
-    </div>
+        <div id="info_intro">
+          {{intro}}
+        </div>
 
-  </div>
-
-  <div id="info_tag_all">
-    <div id="info_tag">
-
-      <div v-if="user.genre == ''" id="no_genre">
-        선호하는 장르 미등록
       </div>
 
-      <span v-for="genre in user.genre">
+      <div id="info_tag_all">
+        <div id="info_tag">
+
+          <div v-if="user.genre == ''" id="no_genre">
+            선호하는 장르 미등록
+          </div>
+
+          <span v-for="genre in user.genre">
         {{genre.genre}}
       </span>
 
-      <div style="clear:both;">
+          <div style="clear:both;">
+          </div>
+
+        </div>
+      </div>
+
+      <div v-if="user.history == ''" id="no_history">
+        다녀온 공연이 없습니다. 가치에서 함께 즐겨보세요
       </div>
 
     </div>
-  </div>
 
-  <div v-if="user.history == ''" id="no_history">
-    다녀온 공연이 없습니다. 가치에서 함께 즐겨보세요
-  </div>
+    <script>
+      var info_all = new Vue({
+        el: '#info_all',
+        data: {
+          user: "",
+        },
 
-</div>
+        created: function () {
+          gachi.retrieveUserInfo(false).then(this.onUserLogin);
+        },
 
-<script>
-var info_all = new Vue({
-  el: '#info_all',
-  data: {
-    user: "",
-  },
+        methods: {
+          onUserLogin: function (user) {
+            this.user = user;
+          },
+        },
 
-  created: function () {
-    gachi.retrieveUserInfo(false).then(this.onUserLogin);
-  },
+        computed: {
 
-  methods: {
-    onUserLogin: function (user) {
-      this.user = user;
-    },
-  },
+          profile_image: function () {
+            var profile_image;
 
-  computed: {
+            if (this.user.profile_image) {
+              profile_image = this.user.profile_image;
+            } else {
+              profile_image = '/image/info/noprofile.png';
+            }
 
-    profile_image: function() {
-      var profile_image;
+            return profile_image;
+          },
 
-      if (this.user.profile_image){
-        profile_image = this.user.profile_image;
-      }else{
-        profile_image = '/image/info/noprofile.png';
-      }
+          location: function () {
+            var location;
 
-      return profile_image;
-    },
+            if (this.user.location) {
+              location = this.user.location;
+            } else {
+              location = '장소 미등록';
+            }
+            return location;
+          },
 
-    location: function () {
-      var location;
+          age: function () {
+            var number;
+            var word;
+            var fullword;
 
-      if (this.user.location){
-        location = this.user.location;
-      }else{
-        location = '장소 미등록';
-      }
-      return location;
-    },
+            if (this.user.age) {
 
-    age: function () {
-      var number;
-      var word;
-      var fullword;
+              number = Math.floor(this.user.age / 10) * 10;
 
-      if (this.user.age){
+              if (this.user.age % 10 < 3) {
+                word = "대 초반";
+              } else if (this.user.age % 10 < 7) {
+                word = "대 중반";
+              } else {
+                word = "대 후반";
+              }
 
-       number = Math.floor(this.user.age/10) * 10;
+              fullword = number + word;
+            } else {
+              fullword = "나이 미등록";
+            }
 
-       if(this.user.age%10<3){
-         word = "대 초반";
-       }else if(this.user.age%10<7){
-         word = "대 중반";
-       }else{
-         word = "대 후반";
-       }
+            return fullword;
+          },
 
-       fullword = number + word;
-     }else{
-       fullword = "나이 미등록";
-     }
+          gender: function () {
 
-      return fullword;
-    },
+            var gender;
+            if (this.user.gender == 'male') {
+              gender = "남성";
+            } else if (this.user.gender == 'female') {
+              gender = "여성";
+            } else {
+              gender = "성별 미등록"
+            }
+            return gender
 
-    gender: function () {
+          },
 
-      var gender;
-      if (this.user.gender == 'male') {
-        gender = "남성";
-      }else if (this.user.gender == 'female') {
-        gender = "여성";
-      }else{
-        gender = "성별 미등록"
-      }
-      return gender
+          intro: function () {
+            var intro;
 
-    },
+            if (this.user.intro) {
+              intro = this.user.intro;
+            } else {
+              intro = "나를 한줄로 표현해보세요";
+            }
 
-    intro: function () {
-      var intro;
+            return intro;
+          },
 
-      if (this.user.intro){
-        intro = this.user.intro;
-      }else{
-        intro = "나를 한줄로 표현해보세요";
-      }
+        },
 
-      return intro;
-    },
+      });
 
-  },
-
-});
-</script>
+    </script>
 
 </body>
+
 </html>
