@@ -9,6 +9,7 @@
   margin-left:auto;
   margin-right:auto;
   margin-top:30px;
+  margin-bottom:40px;
 }
 
 #footer_subinfo{
@@ -46,7 +47,6 @@
   font-size:11px;
   font-weight: 400;
   margin-top:20px;
-  margin-bottom:40px;
 }
 @media  screen and (min-width:1080px){
   #footer{
