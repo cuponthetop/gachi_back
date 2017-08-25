@@ -1,5 +1,7 @@
 #chat-container {
   font-family: 'Noto Sans KR', sans-serif;
+ height:calc(100vh - 98px);
+  overflow-y: auto;
 }
 
 /*

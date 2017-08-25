@@ -23,7 +23,6 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <% include ../nav/nav_level4.ejs %>
 
       <script>
         const ageRangeList = [
@@ -46,6 +45,10 @@
           '충청북도', '전라북도', '전라남도', '경상북도', '경상남도', '제주특별자치도'
         ];
       </script>
+
+      <div id="create_word">
+        방 만들기
+      </div>
 
       <div id="create-chat-container" v-cloak v-if="fetched">
         <vue-form :state="formstate" @submit.prevent="onSubmit">

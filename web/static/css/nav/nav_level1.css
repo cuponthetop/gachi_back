@@ -116,8 +116,16 @@
     }
     #nav_login{
       font-size:17px;
-      height:64px;
-      line-height: 57px;
+      margin-top:0px;
+      height:59px;
+      line-height: 59px;
+      font-weight: 300;
+    }
+    #nav_logout{
+      font-size:17px;
+      margin-top:0px;
+      height:59px;
+      line-height: 59px;
       font-weight: 300;
     }
     #nav_search{
