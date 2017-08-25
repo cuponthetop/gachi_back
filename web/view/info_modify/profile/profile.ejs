@@ -223,7 +223,6 @@ var wrapper = new Vue({
       this.age_design(user);
       this.location_design(user);
       this.genre_design(user);
-
     },
 
     age_design: function(user){
@@ -399,6 +398,8 @@ var wrapper = new Vue({
           "gender": this.user.gender,
           "location": this.user.location,
           "genre":this.genre,
+          "step": 1,
+          "express": 20,
         },
         error: function(error){
           alert('에러');

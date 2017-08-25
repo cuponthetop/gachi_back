@@ -17,5 +17,5 @@ app.use(express.static( __dirname + '/static'));
 //라우팅
 app.use('/', route);
 
-app.listen(3001);
+app.listen(80);
 module.exports = app;
