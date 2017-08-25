@@ -5,10 +5,6 @@
 
     <div id="nav_right">
 
-      <a v-if="user" class="nav_info nav_nickname" href="/info">
-        {{user.nickname}}
-      </a>
-
       <a v-if="user == ''" id="nav_login" class="nav_info" href="/login">
         로그인
       </a>
@@ -17,12 +13,18 @@
         로그아웃
       </div>
 
-      <a v-if="user == null" id="nav_logout" class="nav_info" href="signup">
+
+      <a v-if="user == ''" id="nav_signup" class="nav_info" href="/signup">
         회원가입
       </a>
 
       <a id="nav_search" href="/search" style="background-image:url('/image/search_black.png')">
       </a>
+
+      <div v-if="user" v-on:click="is_open" id="noprofile" style="background-image:url('/image/nav/noprofile.png')">
+      </div>
+
+
 
     </div>
   </div>
@@ -35,7 +37,8 @@
   var nav_level1 = new Vue({
     el: '#nav_level1',
     data: {
-      user: ""
+      user: "",
+      isopen: false,
     },
     created: function () {
       gachi.initFirebaseApp();
@@ -52,6 +55,9 @@
         }, function (error) {
           // An error happened.
         });
+      },
+      is_open: function (event) {
+        this.isopen = !this.isopen;
       }
     },
   });

@@ -1,3 +1,96 @@
+.sub-title-group{
+  font-family: 'Noto Sans KR', sans-serif;  color:#767676;
+  color:#242424;
+  font-size:20px;
+  margin-top:35px;
+  width:calc(100% - 30px);
+  margin-left: auto;
+  margin-right: auto;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+#chatroom-list{
+  width:calc(100% - 15px);
+  margin-left:15px;
+}
+.listitem{
+  width:100%;
+  height:66px;
+  padding-top:30px;
+  padding-bottom:30px;
+  border-bottom:1px solid #ececec;
+}
+.detail-wrapper{
+  position:relative;
+}
+.leader_profile{
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  display: block;
+  border:1px solid #ececec;
+  box-sizing: border-box;
+  float:left;
+}
+
+.chatroom-info{
+  width:calc(100% - 86px);
+  margin-left:20px;
+  float:left;
+}
+
+.chatroom-nums{
+  width:auto;
+  height:20px;
+  line-height: 20px;
+  border:1px solid #4f2cfa;
+  color:#4f2cfa;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  border-radius: 20px;
+  padding-left:6px;
+  padding-right:6px;
+  margin-right:7px;
+  margin-bottom:10px;
+  font-size:11px;
+  padding-top:2px;
+  padding-bottom:2px;
+}
+
+.chatroom-title{
+  width:100%;
+  height:20px;
+  line-height: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#484848;
+  margin-top:5px;
+  font-size:16px;
+  font-weight:500;
+}
+
+.chatroom-message{
+  min-height:20px;
+  line-height: 20px;
+  color:#a4aab3;
+  font-size:13px;
+  overflow: hidden;
+  max-height: 40px;
+  width:calc(100% - 31px);
+}
+
+.chatroom-arrow{
+  position: absolute;
+  right:15px;
+  height:16px;
+  width:16px;
+  top:25px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
 @media  screen and (min-width:1080px){
     .content-container {
         width: 1080px;
@@ -24,18 +117,18 @@
         width: 50%;
         float: left;
     }
-/* 
+/*
     .chatroom .listitem {
         width: 100%;
     } */
 
     .listitem {
         padding-top: 27px;
-        padding-bottom: 27px; 
+        padding-bottom: 27px;
         margin-left: 22px;
         margin-right: 22px;
         width: calc(100% - 22px);
-        border-bottom: 1px solid rgb(210, 214, 220); 
+        border-bottom: 1px solid rgb(210, 214, 220);
     }
 
     .leader_profile {

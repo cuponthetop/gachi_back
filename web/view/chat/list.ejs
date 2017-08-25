@@ -22,25 +22,34 @@
   <% include ../nav/nav_level1.ejs %>
 
     <% include ../nav/nav_level4.ejs %>
-      
+
       <div class="content-container">
         <div class="sub-title-group">
-          <span class="sub-title">채팅 리스트</span>
+          <span class="sub-title">가치하기 목록</span>
         </div>
-        
+
         <div id="chatroom-list" v-cloak v-if="fetched">
           <div class="chatroom" v-for="room in chatrooms" v-if="chatrooms.length !== 0">
             <a v-bind:href="'./chat/'+ room.leadroom_id">
               <div class="chatroom listitem">
-                <image class="leader_profile" width="69px" height="69px"></image>
+                <image class="leader_profile"></image>
                 <div class="chatroom-info">
                   <div class="detail-wrapper">
                     <div class="chatroom-detail">
                       <span class="chatroom-member badge"></span>
                     </div>
+                    <span class="chatroom-nums">
+                      {{room.max_follower}}명 모집중
+                    </span>
+                    <div class="chatroom-title">
+                      {{room.detail}}
+                    </div>
                     <div class="chatroom-message"> {{room.recentMsg.text}}</div>
+                    <div class="chatroom-arrow" style="background-image:url('/image/famefestival/arrow_right.png')">
+                    </div>
                   </div>
                 </div>
+                <div style="clear:both;"></div>
               </div>
             </a>
           </div>
