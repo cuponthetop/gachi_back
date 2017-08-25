@@ -35,6 +35,10 @@
   border:1px solid #ececec;
   box-sizing: border-box;
   float:left;
+
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .chatroom-info{

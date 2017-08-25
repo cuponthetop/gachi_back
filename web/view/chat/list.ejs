@@ -32,7 +32,8 @@
           <div class="chatroom" v-for="room in chatrooms" v-if="chatrooms.length !== 0">
             <a v-bind:href="'./chat/'+ room.leadroom_id">
               <div class="chatroom listitem">
-                <image class="leader_profile"></image>
+                <div class="leader_profile" v-bind:style="{'background-image' :'url('+profile_image+')'}">
+                </div>
                 <div class="chatroom-info">
                   <div class="detail-wrapper">
                     <div class="chatroom-detail">
@@ -115,6 +116,22 @@
             moment: function (date) {
               return moment(date);
             }
+          },
+          computed: {
+
+            profile_image: function() {
+              var profile_image;
+
+              for(var i=0; i<chatroomList.chatrooms.length; i++){
+                if (chatroomList.chatrooms[i].leader.profile_image){
+                  profile_image = chatroomList.chatrooms.leader.profile_image;
+                }else{
+                  profile_image = '/image/info/noprofile.png';
+                }
+              }
+              return profile_image;
+            },
+
           }
         });
       </script>
