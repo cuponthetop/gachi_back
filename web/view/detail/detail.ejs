@@ -14,6 +14,7 @@
   <% include ../common/common.ejs %>
 
   <link href="/css/detail/detail.css" rel="stylesheet" type="text/css" />
+  <link href="/css/footer/footer.css" rel="stylesheet" type="text/css" />
 
   <script src="/js/common/common.js"></script>
 
@@ -24,6 +25,8 @@
   <% include ../nav/nav_level1.ejs %>
 
     <% include ../detail/detail-festival.ejs %>
+
+    <% include ../footer/footer.ejs %>
 
       <script>
         var detail = new Vue({
@@ -79,7 +82,19 @@
               get: function () {
                 return this.showDetail && this.collapsible;
               }
-            }
+            },
+            profile_image: function() {
+              var profile_image;
+
+              for(var i=0; i<detail.festival.leadrooms.length; i++){
+                if (detail.festival.leadrooms[i].leader.profile_image){
+                  profile_image = detail.festival.leadrooms[i].leader.profile_image;
+                }else{
+                  profile_image = '/image/info/noprofile.png';
+                }
+              }
+              return profile_image;
+            },
           }
         });
       </script>

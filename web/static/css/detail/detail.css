@@ -229,8 +229,10 @@
   line-height: 30px;
   margin-top:20px;
 }
-
-#room_going, #room_list{
+#room_head span{
+  color:#4f2cfa;
+}
+#room_going{
   width:calc(100% - 40px);
   margin-left:auto;
   margin-right:auto;
@@ -241,8 +243,59 @@
   font-size:14px;
   overflow: hidden;
 }
+#room_list{
+  width:calc(100% - 20px);
+  margin-left:20px;
+  margin-bottom:30px;
+  height:130px;
+  overflow:auto;
+}
+#room_list_wrapper{
+  width:200vw;
+  height:130px;
+}
+#pc_room{
+  display: none;
+}
+.leadroom{
+ width:66px;
+ height:100px;
+ margin-right:20px;
+ display: block;
+ margin-top:30px;
+ text-decoration: none;
+ float:left;
+}
+.leadroom_image{
+  width:66px;
+  height:66px;
+  border-radius:50%;
+  border:1px solid #ececec;
+  box-sizing: border-box;
 
-
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+.leadroom-detail{
+  width:66px;
+  height:20px;
+  line-height: 20px;
+  color:#484848;
+  overflow: hidden;
+  font-size:13px;
+  margin-top:15px;
+  text-align: center;
+}
+.leadroom-tag{
+  display: none;
+}
+.leadroom-date{
+  display: none;
+}
+.leadroom-number{
+  display: none;
+}
 @media  screen and (min-width:466px){
   #center{
     width:466px;
@@ -269,6 +322,10 @@
   }
   #room_head, #room_going, #room_list{
     width:426px;
+  }
+  #room_list{
+    margin-left:auto;
+    margin-right: auto;
   }
 }
 @media  screen and (min-width:890px){
@@ -327,6 +384,7 @@
     height:220px;
     margin-top:5px;
     margin-left:120px;
+    display: none;
   }
   #center_date{
     display: none;
@@ -451,13 +509,14 @@
     font-family: 'Noto Sans KR', sans-serif;
     font-weight:300;
   }
+
   #pc_room_going{
     width:430px;
     height:auto;
-    float:left;
     color:#484848;
     font-family: 'Noto Sans KR', sans-serif;
     font-weight:300;
+    float:left;
   }
 
   #pc_genre{
@@ -529,5 +588,66 @@
     color:#fff;
     text-decoration: none;
     display: block;
+  }
+
+  #room_head{
+    display:none;
+  }
+  #room_going{
+    display:none;
+  }
+  #room_list{
+    display: none;
+  }
+  #pc_room{
+    display: block;
+  }
+  #pc_room_list{
+    width:100%;
+    margin-bottom:30px;
+    overflow: hidden;
+  }
+  #pc_room_box{
+    width:auto;
+    height:auto;
+  }
+  .pc_leadroom{
+   width:66px;
+   height:100px;
+   margin-right:30px;
+   display: block;
+   margin-top:30px;
+   text-decoration: none;
+   float:left;
+  }
+  .pc_leadroom_image{
+    width:66px;
+    height:66px;
+    border-radius:50%;
+    border:1px solid #ececec;
+    box-sizing: border-box;
+
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+  }
+  .pc_leadroom_detail{
+    width:66px;
+    height:20px;
+    line-height: 20px;
+    color:#484848;
+    overflow: hidden;
+    font-size:13px;
+    margin-top:15px;
+    text-align: center;
+  }
+  .pc_leadroom_tag{
+    display: none;
+  }
+  .pc_leadroom_date{
+    display: none;
+  }
+  .pc_leadroom_number{
+    display: none;
   }
 }

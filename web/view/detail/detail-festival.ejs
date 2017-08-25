@@ -84,22 +84,26 @@
           {{ festival.going }}명이 이 곳에 같이 갈 사람들을 찾고 있어요
         </div>
 
+        <div style="clear:both;"> </div>
+
         <div id="pc_room_list" v-if="fetched">
-          <a v-for="leadroom in festival.leadrooms" v-bind:href="'/room/' + leadroom.leadroom_id">
-            <div>
-              <span class="pc_leadroom_detail"> {{leadroom.detail}} </span>
+          <div id="pc_room_box">
+          <a class="pc_leadroom" v-for="leadroom in festival.leadrooms" v-bind:href="'/room/' + leadroom.leadroom_id">
+            <div class="leadroom_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
+            </div>
+              <div class="pc_leadroom_detail"> {{leadroom.detail}} </div>
               <div class="pc_leadroom_tag">
                 <span> #{{leadroom.characteristic}} </span>
                 <span> #{{leadroom.age}} </span>
                 <span> #{{leadroom.location}} </span>
               </div>
 
-              <div class="oc_leadroom_date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div>
+              <div class="pc_leadroom_date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div>
               <div class="pc_leadroom_number"> {{leadroom.member.length}}/{{leadroom.max_follower}} </div>
-            </div>
           </a>
+          <div style="clear:both;"> </div>
         </div>
-
+        </div>
         <div style="clear:both;"> </div>
 
       </div>
@@ -160,16 +164,17 @@
     </div>
 
     <div id="room_head">
-      대화방
+      대화방 <span>{{ festival.going }}</span>
     </div>
     <div id="room_going" v-if="fetched">
       {{ festival.going }}명이 이 곳에 같이 갈 사람들을 찾고 있어요
     </div>
     <div id="room_list" v-if="fetched">
-
-      <a v-if="festival.leadrooms" v-for="leadroom in festival.leadrooms" v-bind:href="'/room/' + leadroom.leadroom_id">
-        <div>
-          <span class="leadroom-detail"> {{leadroom.detail}} </span>
+      <div id="room_list_wrapper">
+      <a class="leadroom" v-if="festival.leadrooms" v-for="leadroom in festival.leadrooms" v-bind:href="'/room/' + leadroom.leadroom_id">
+        <div class="leadroom_image" v-bind:style="{'background-image' :'url('+profile_image+')'}">
+        </div>
+          <div class="leadroom-detail"> {{leadroom.detail}} </div>
           <div class="leadroom-tag">
             <span> #{{leadroom.characteristic}} </span>
             <span> #{{leadroom.age}} </span>
@@ -178,10 +183,14 @@
 
           <div class="leadroom-date"> {{moment(leadroom.lead_from).format('MM/DD/HH')}} ~ {{moment(leadroom.lead_until).format('MM/DD/HH')}}</div>
           <div class="leadroom-number"> {{leadroom.member.length}}/{{leadroom.max_follower}} </div>
-
-        </div>
       </a>
+    </div>
+      <div style="clear:both;"> </div>
+
     </div>
 
   </div>
 </div>
+
+<script>
+</script>
