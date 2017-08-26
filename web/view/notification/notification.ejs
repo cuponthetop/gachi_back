@@ -55,7 +55,7 @@
             <div class="sent request-name">
               {{request.requester.nickname}}
             </div>
-            <button class="request-button" v-bind:disabled="acceptSent" v-on:click="acceptRequest(request.rid)">승낙하기</button>
+            <button class="request-button" v-bind:disabled="acceptSent" v-on:click="acceptRequest(request.rid, request.leadroom.leadroom_id)">승낙하기</button>
             <button class="request-button" v-bind:disabled="refuseSent" v-on:click="refuseRequest(request.rid)">거절하기</button>
           </div>
         </div>
@@ -125,11 +125,14 @@
                 resolve(token);
               }.bind(this));
             },
-            acceptRequest: function (requestID) {
+            acceptRequest: function (requestID, lid) {
               this.acceptSent = true;
               $.ajax({
                 type: 'PATCH',
                 url: gachi.GACHI_URL + 'v1/request/' + requestID + '/accept',
+                data: {
+                  lid
+                },
                 dataType: 'json',
                 headers: gachi.authHeader(this.token)
               }).then(function (requests) {
