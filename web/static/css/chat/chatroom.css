@@ -156,6 +156,7 @@ textarea:focus, input:focus{
 .chat-other .chat-text span{
   color:#727272;
   border-color:#4f2cfa;
+  display:block;
 }
 
 .chat-mine .chat-text span{
