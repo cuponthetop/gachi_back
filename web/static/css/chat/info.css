@@ -204,9 +204,6 @@
   margin-left:15px;
   margin-bottom:30px;
 }
-.member-item{
-  margin-top:30px;
-}
 .leadroomimage{
   width:66px;
   height:66px;
@@ -227,6 +224,21 @@
 .member-nickname{
   margin-top:10px;
   text-align:center;
+  width:66px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1;
+-webkit-box-orient: vertical;
+word-wrap: break-word;
+text-align: center;
+}
+
+#members{
+  float:left;
+  width:66px;
+  height:90px;
+  margin-top:30px;
 }
 
 @media  screen and (min-width:426px){

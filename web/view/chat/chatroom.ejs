@@ -32,7 +32,7 @@
             <div class="chat-text"><span>{{message.text}}</span></div>
             <div class="chat-time"><span>{{message.timestamp}}</span></div>
             </div>
-            <div style="clear:both;">
+            <div id="anc" style="clear:both;">
 
             </div>
           </div>
@@ -129,6 +129,10 @@
         });
       </script>
 
-</body>
 
+<script>
+console.log($('#chat-container').offset());
+</script>
+
+</body>
 </html>
