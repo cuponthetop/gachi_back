@@ -194,8 +194,11 @@
   text-align: center;
   border:none;
   font-size:15px;
+  cursor: pointer;
 }
-
+.request-btn:hover{
+  opacity: 0.85;
+}
 #members{
   width:calc(100% - 15px);
   margin-left:15px;
@@ -224,4 +227,16 @@
 .member-nickname{
   margin-top:10px;
   text-align:center;
+}
+
+@media  screen and (min-width:426px){
+ #info-container{
+   width:426px;
+ }
+ #info_top{
+   width:426px;
+ }
+ .member-list{
+   margin-bottom:30px;
+ }
 }
