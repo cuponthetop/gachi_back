@@ -1,5 +1,43 @@
 <div id="info-container" v-cloak v-if="fetched">
-  <div class="title"><span>방정보</span></div>
+  <div id="info_top">
+  <div id="title">가치 정보</div>
+
+  <div id="room_title">
+    {{leadroom.festival.title}}
+  </div>
+  <span id="room_number">
+    {{leadroom.max_follower}}명 모집중
+  </span>
+
+  <div id="profile_image" style="background-image:url('/image/info/noprofile.png')">
+  </div>
+
+  <div id="info_nickname">
+    {{leadroom.leader.nickname}}
+  </div>
+
+  <div id="info_location">
+    {{leadroom.location}}
+  </div>
+
+  <div id="info_detail">
+    {{leadroom.age}}
+  </div>
+</div>
+<div id="info_tag">
+  <span>#{{leadroom.max_follower}}명 모집중</span>
+  <span>#{{leadroom.age}}</span>
+  <span>#{{leadroom.characteristic}}</span>
+  <div style="clear:both;">
+
+  </div>
+</div>
+
+<div id="info_info">
+  <div id="info_innner">
+    {{leadroom.festival.detail}}
+  </div>
+</div>
 
   <div class="info-leader">
     <div class="leader-rel"></div>
@@ -28,14 +66,16 @@
 
   <div class="member-list">
     <div class="member-text">
-      <span class="member-label">이 방에 참여한 사람들</span>
-      <span class="member-count">{{leadroom.going}}</span>
+      이 방에 참여한 사람들  <span>{{leadroom.numMembers}}</span>
     </div>
 
-    <div v-for="member in leadroom.member">
+    <div id="members" v-for="member in leadroom.member">
       <div class="member-item">
-        <img src="" class="member-profile">
-        <span class="member-nickname">{{member.nickname}}</span>
+        <div class="leadroomimage" style="background-image:url('/image/info/noprofile.png')"></div>
+        <div class="member-nickname">{{member.nickname}}</div>
+      </div>
+      <div style="clear:both;">
+
       </div>
     </div>
     <button class="request-btn" v-bind:disabled="isDisabled" v-on:click="sendRequest">가치하기</button>

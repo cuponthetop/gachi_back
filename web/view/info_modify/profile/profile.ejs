@@ -20,7 +20,7 @@
       <div id="intro_word">
         한줄 소개
       </div>
-      <input id="intro_input" type="text" name=""  placeholder="간단히 자기소개를 적어주세요">
+      <input id="intro_input" type="text" name="" v-model="user.express" placeholder="간단히 자기소개를 적어주세요">
     </div>
 
     <div id="age_all">
@@ -399,13 +399,14 @@ var wrapper = new Vue({
           "location": this.user.location,
           "genre":this.genre,
           "step": 1,
-          "express": 20,
+          "express": this.user.express,
         },
         error: function(error){
           alert('에러');
         },
         success: function(data){
-          alert('성공');
+          //alert('성공');
+          location.href="/info";
         }
       }
       $.ajax(settings);

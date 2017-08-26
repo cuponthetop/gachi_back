@@ -22,7 +22,14 @@
 
   <% include ../nav/nav_level1.ejs %>
 
-    <% include ../nav/nav_level4.ejs %>
+    <div id="tab_all">
+      <div class="tab">
+        보낸요청
+      </div>
+      <div class="tab">
+        받은요청
+      </div>
+    </div>
 
       <div id="noti-list" v-cloak v-if="fetched">
         <div class="sent-container" v-if="fetchedSent">
@@ -33,6 +40,7 @@
           <div class="sent-item" v-for="request in sentRequests" v-if="sentRequests.length !== 0">
             <div class="sent request-name">
               {{request.leadroom.leader.nickname}}
+              {{request.leadroom.festival.title}}
             </div>
             <button class="request-button" v-bind:disabled="cancelSent" v-on:click="cancelRequest(request.rid)">취소하기</button>
           </div>
@@ -178,6 +186,10 @@
             }
           }
         });
+      </script>
+      <script>
+        $('.tab').eq(0).css('color','#4f2cfa');
+        $('.tab').eq(0).css('border-color','#4f2cfa');
       </script>
 </body>
 

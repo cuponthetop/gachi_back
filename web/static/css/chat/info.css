@@ -1,0 +1,227 @@
+#info-container{
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#info_top{
+  width:calc(100% - 30px);
+  margin-left: auto;
+  margin-right: auto;
+  height:300px;
+  border-bottom:1px solid #ececec;
+}
+#title{
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  font-weight: 600;
+  margin-top:30px;
+}
+
+#room_title{
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  color:#4f2cfa;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:16px;
+  margin-top:20px;
+  font-weight: 300;
+}
+
+#room_number{
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:11px;
+  color:#8b8b8b;
+  padding-left: 5px;
+  padding-right:5px;
+  border-radius: 20px;
+  border:1px solid #8b8b8b;
+  margin-top:10px;
+}
+
+#profile_image{
+  width:90px;
+  height:90px;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+  border: 1px solid #ececec;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin-top:25px;
+}
+
+#info_nickname{
+  width:100%;
+  height:15px;
+  line-height: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:15px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+  color:#4a4a4a;
+}
+
+#info_location{
+  width:100%;
+  height: 19px;
+  line-height: 19px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  margin-top:15px;
+  color:#9a9a9a;
+  font-weight: 300;
+}
+
+#info_detail{
+  width:100%;
+  height: 19px;
+  line-height: 19px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:13px;
+  color:#9a9a9a;
+  font-weight: 300;
+}
+
+#info_intro{
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  color:#4F2CFA;
+  height:24px;
+  line-height: 24px;
+  margin-top:10px;
+  font-size:15px;
+}
+
+#info_tag{
+  width:290px;
+  height:auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top:20px;
+  padding-bottom:25px;
+}
+#info_tag span{
+  width:auto;
+  height:20px;
+  line-height: 20px;
+  border:1px solid #4f2cfa;
+  color:#4f2cfa;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:12px;
+  border-radius: 20px;
+  padding-left:7px;
+  padding-right:7px;
+  margin-right:7px;
+  margin-bottom:10px;
+  display: inline-block;
+  float:left;
+}
+
+#info_info{
+  width:100%;
+  color:#888c92;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  line-height: 20px;
+  font-weight: 300;
+  border-bottom:1px solid #A4AAB3;
+  padding-bottom:20px;
+}
+#info_innner{
+  width:calc(100% - 30px);
+  margin-left: auto;
+  margin-right:auto;
+  color:#888c92;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:14px;
+  line-height: 20px;
+  font-weight: 300;
+}
+
+
+.info-leader{
+  display: none;
+}
+.info-detail{
+  display: none;
+}
+.info-location{
+  display: none;
+}
+.info-tag{
+  display: none;
+}
+.info-number{
+  display: none;
+}
+
+.member-text{
+  width:calc(100% - 30px);
+  margin-left: auto;
+  margin-right: auto;
+  height:20px;
+  line-height: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size:20px;
+  margin-top:30px;
+}
+.member-text span{
+  color:#4f2cfa;
+}
+
+.request-btn{
+  width:100%;
+  height:50px;
+  line-height: 50px;
+  color:#fff;
+  background-color: #4f2cfa;
+  text-align: center;
+  border:none;
+  font-size:15px;
+}
+
+#members{
+  width:calc(100% - 15px);
+  margin-left:15px;
+  margin-bottom:30px;
+}
+.member-item{
+  margin-top:30px;
+}
+.leadroomimage{
+  width:66px;
+  height:66px;
+  border:1px solid #ececec;
+  box-sizing: border-box;
+  border-radius: 50%;
+
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+.member-item{
+  width:66px;
+  height:90px;
+  float:left;
+  margin-right:20px;
+}
+.member-nickname{
+  margin-top:10px;
+  text-align:center;
+}

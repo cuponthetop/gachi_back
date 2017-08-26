@@ -22,7 +22,6 @@
 <body>
 
   <% include ../nav/nav_level1.ejs %>
-    <% include ../nav/nav_level4.ejs %>
 
       <% include ../chat/info-template.ejs %>
 
@@ -90,6 +89,8 @@
                   headers: gachi.authHeader(this.token)
                 }).then(function (request) {
                   console.log(request);
+                  alert('참여요청을 전송하였습니다.');
+                  location.href="/";
                   // this.requestSent = false;
                 }.bind(this)).fail(function (error) {
                   console.error(JSON.stringify(error));
