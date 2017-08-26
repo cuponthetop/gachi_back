@@ -55,37 +55,50 @@
           <div>
             <span id="festival">{{ festival.title }}</span>
           </div>
-          <div>
-            <label></label>
-            <input v-model="max_number" type="number" id="max_member" placeholder="최대 인원을 설정해주세요" />
+          <div class="box">
+            <div class="image" style="background-image:url('/image/pencil1.png')"></div>
+            <input class="input" v-model="detail" type="text" placeholder="방 제목을 입력해주세요" />
           </div>
-          <div>
-            <label></label>
-            <input v-model="detail" type="text" id="detail" placeholder="방을 설명해주세요 (최대 200자)" />
+          <div class="box">
+            <div class="image" style="background-image:url('/image/pencil1.png')"></div>
+            <input class="input" v-model="max_number" type="number" id="max_member" placeholder="최대 인원을 설정해주세요" />
           </div>
-          <div>
-            <label></label>
-            <input v-model="fromuntil" type="text" id="datetime" placeholder="가는 날을 입력해주세요" />
+          <div class="box">
+            <div class="image" style="background-image:url('/image/pencil1.png')"></div>
+            <input class="input" v-model="fromuntil" type="text" id="datetime" placeholder="가는 날을 입력해주세요 (YYYY.MM.DD)" />
           </div>
-          <div id="age-box"><span>원하는 나이대를 선택하세요</span>
-            <div>
-              <span class="age-item not-checked" v-for="age in ageItems" v-on:click="toggleAge" :key="age">
-              {{age}}
-            </span>
+          <div id="age-box">
+            <div id="age_word">원하는 나이대를 선택하세요</div>
+            <div id="age_select_box">
+              <div id="age_select_box_inner">
+                <span class="items age-item not-checked" v-for="age in ageItems" v-on:click="toggleAge" :key="age">
+                  {{age}}
+                </span>
+              </div>
             </div>
           </div>
-          <div id="characteristic-box"><span>공연을 즐기는 성향을 선택하세요</span>
+          <div id="age-box">
+            <div id="age_word">공연을 즐기는 성향을 선택하세요</div>
             <div>
-              <span class="characteristic-item not-checked" v-for="character in characteristicItems" v-on:click="toggleCharacter">
-              {{character}}
-              </span>
+              <div id="age_select_box">
+                <div id="age_select_box_inner">
+                  <span class="items characteristic-item not-checked" v-for="character in characteristicItems" v-on:click="toggleCharacter">
+                    {{character}}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div id="location-box"><span>출발지역을 선택하세요</span>
+          <div id="age-box">
+            <div id="age_word">출발 지역을 선택하세요</div>
             <div>
-              <span class="location-item not-checked" v-for="location in locationItems" v-on:click="toggleLocation">
-              {{location}}
-              </span>
+              <div id="age_select_box">
+                <div id="age_select_box_inner">
+                  <span class="items location-item not-checked" v-for="location in locationItems" v-on:click="toggleLocation">
+                    {{location}}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
           <button type="submit" id="create-chatroom" v-bind:disabled="sent"><span>방 만들기</span></button>
