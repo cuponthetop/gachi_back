@@ -26,17 +26,23 @@
       <div id="chat-container" v-cloak>
         <div class="chat-messages">
           <div class="chat-item" v-bind:class="[isMine(message) ? 'chat-mine' : 'chat-other']" v-for="message in messages">
+
+            <div class="chat-profile"><img v-bind:src="findProfileURL(message.userid)">
+            <div class="chat-nickname"><span>{{message.nickname}}</span></div>
             <div class="chat-text"><span>{{message.text}}</span></div>
             <div class="chat-time"><span>{{message.timestamp}}</span></div>
-            <div class="chat-profile"><img v-bind:src="findProfileURL(message.userid)">
-              <div class="chat-nickname"><span>{{message.nickname}}</span></div>
             </div>
+            <div style="clear:both;">
+
+            </div>
+          </div>
+          <div style="clear:both;">
 
           </div>
         </div>
         <form v-on:submit.prevent="sendMessage" id="chat-send">
-          <input type="text" v-model="messageToSend" v-on:keyup.enter="sendMessage">
-          <button id="send-message" v-on:click="sendMessage" v-bind:disabled="messageToSend === ''">보내기</button>
+          <input id="message_input" type="text" v-model="messageToSend" v-on:keyup.enter="sendMessage">
+          <button id="send-message" v-on:click="sendMessage" v-bind:disabled="messageToSend === ''">전송</button>
         </form>
       </div>
 
@@ -106,8 +112,17 @@
             },
 
             isMine: function (message) {
-              return false;
-            }
+              var result;
+              if(this.user.uid == message.userid){
+                console.log('같다');
+//                result = true;
+                return true;
+              }else{
+                console.log('다르다');
+//                result = false;
+                return false;
+              }
+            },
           },
           computed: {
           }
